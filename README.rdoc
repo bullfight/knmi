@@ -2,10 +2,17 @@
 
 Ruby API to access ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE daily climate data
 
-Access climatalogical data as provided by the ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
+Access climatological data as provided by the ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
 through their http get form details of data here (http://www.knmi.nl/climatology/daily_data/scriptxs-en.html) and
 station list here http://www.knmi.nl/climatology/daily_data/scriptxs-en.html, data is parsed into a array of hashes
 with keys for each element { [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ] }
+
+= Installation
+	gem install knmi
+	
+= Dependancies
+* httparty >= 0.7.4
+
 
 = List of Recorded Parameters and group name
 When entering parameters in method call use groupname for collection of variables of use individual parameter names
