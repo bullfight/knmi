@@ -10,13 +10,13 @@ with keys for each element { [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ]
 = List of Recorded Parameters and group name
 
 = Method calls
-station_number = number or array of numbers eg 210 or [210, 225]
-vars = optional parameters to select measure parameters of interest
+* station_number = number or array of numbers eg 210 or [210, 225]
+* vars = optional parameters to select measure parameters of interest
 if not defined all recorded parameters will be returned
-response =  KNMI.get_station(station_number, vars)
+* response =  KNMI.get_station(station_number, vars)
 this will return all daily values from the begining of the month to current
-start = date in the form YYYYMMDD
-end = date in the form YYYYMMDD
+* start = date in the form YYYYMMDD
+* end = date in the form YYYYMMDD
 
 
 response =  KNMI.get_station(station_number, vars)
