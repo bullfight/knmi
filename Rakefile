@@ -15,14 +15,14 @@ Jeweler::Tasks.new do |gem|
   gem.name = "knmi"
   gem.homepage = "http://github.com/bullfight/knmi"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Ruby API to access ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE daily climate data}
+  gem.description = %Q{Access climatalogical data as provided by the ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
+    through their http get form details of data here (http://www.knmi.nl/climatology/daily_data/scriptxs-en.html) and
+    station list here http://www.knmi.nl/climatology/daily_data/scriptxs-en.html, data is parsed into a array of hashes
+    with keys for each element { [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ] } }
   gem.email = "p.schmitz@gmail.com"
   gem.authors = ["bullfight"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.add_runtime_dependency 'httparty', '>= 0.7.4'
 end
 Jeweler::RubygemsDotOrgTasks.new
 

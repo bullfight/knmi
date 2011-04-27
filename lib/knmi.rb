@@ -1,6 +1,4 @@
-require 'rubygems'
 require 'httparty'
-require 'geokit'
 require 'csv'
 
 class KNMI
@@ -120,7 +118,7 @@ class KNMI
     def parse(response, station_number, vars)
       # Line Index Numbers
       nstn = [station_number].flatten.length
-      vars, nvars = KNMIdaily.check_variables(vars)
+      vars, nvars = check_variables(vars)
 
       # Clean Data remove unecessary chars
       response = response.split(/\n/)
