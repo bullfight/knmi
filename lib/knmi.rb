@@ -33,15 +33,6 @@ class KNMI
       "end=#{_end}"
     end
 
-    # Variable Options
-    #WIND = DDVEC:FG:FHX:FHX:FX	wind
-    #TEMP = TG:TN:TX:T10N	      temperature
-    #SUNR = SQ:SP:Q	            Sunshine and global radiation
-    #PRCP = DR:RH:EV24          precipitation and potential evaporation
-    #PRES = PG:PGX:PGN	        sea-level pressure
-    #VICL = VVN:VVX:NG	        visibility and cloud cover
-    #MSTR = UG:UX:UN	          humidity
-    #ALL	= all variables including those not in a collection
     def variables(vars)
             
       if vars.empty? == true
@@ -178,4 +169,14 @@ class KNMI
     puts query
     get("", { :query => query } )
   end
+  
+  def self.to_csv(filename, response)
+    CSV.open(filename, "wb") do |csv|
+      csv << response[0].keys
+      response[(1..(response.length - 1))].each do |line|
+        csv << line.values
+      end
+    end
+  end
+
 end
