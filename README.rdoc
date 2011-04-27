@@ -1,6 +1,36 @@
 = knmi
 
-Description goes here.
+Ruby API to access ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE daily climate data}
+gem.description = %Q{Access climatalogical data as provided by the ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
+through their http get form details of data here (http://www.knmi.nl/climatology/daily_data/scriptxs-en.html) and
+station list here http://www.knmi.nl/climatology/daily_data/scriptxs-en.html, data is parsed into a array of hashes
+with keys for each element { [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ] }
+
+= List of Recorded Parameters and group name
+
+= Method calls
+station_number = number or array of numbers eg 210 or [210, 225]
+vars = optional parameters to select measure parameters of interest
+if not defined all recorded parameters will be returned
+response =  KNMI.get_station(station_number, vars)
+this will return all daily values from the begining of the month to current
+start = date in the form YYYYMMDD
+end = date in the form YYYYMMDD
+
+
+response =  KNMI.get_station(station_number, vars)
+this will return all daily values from the begining of the month to current for selected vars
+
+response =  KNMI.get_station_start_to_current(station_number, start, vars)
+this will return all daily values from defined start date to current
+
+response =  KNMI.get_station_range(station_number, start, end, vars)
+this will return all daily values from defined start date to defined end date
+
+response =  KNMI.get_station_seasonal(station_number, start, end, vars)
+this will return all daily values from seasonally defined start date to defined end date
+eg start = 19800123, end = 19840427 will return data between January 23 and April 27th for 1980 to 1984
+
 
 == Contributing to knmi
  
