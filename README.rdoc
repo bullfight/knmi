@@ -10,14 +10,14 @@ with keys for each element { [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ]
 = List of Recorded Parameters and group name
 When entering parameters in method call use groupname for collection of variables of use individual parameter names
 # Name - GroupName => ["Parameter"]
-* Wind - "WIND" => ["DDVEC", "FG", "FHX", "FHX", "FX"]
-* Temperature - "TEMP" => ["TG", "TN", "TX", "T10N"]
-* Sunshine and global radiation - "SUNR" => ["SQ", "SP", "Q"]
-* Precipitation - "PRCP" => ["DR", "RH", "EV24"]
-* Sea-Level Pressure - "PRES" => ["PG", "PGX", "PGN"]
-* Visibility and Cloud Cover - "VICL" => ["VVN", "VVX", "NG"]
-* Humidity - "MSTR" => ["VVN", "VVX", "NG"]
-* "ALL"  => ["DDVEC", "FHVEC", "FG", "FHX", 
+	* Wind - "WIND" => ["DDVEC", "FG", "FHX", "FHX", "FX"]
+	* Temperature - "TEMP" => ["TG", "TN", "TX", "T10N"]
+	* Sunshine and global radiation - "SUNR" => ["SQ", "SP", "Q"]
+	* Precipitation - "PRCP" => ["DR", "RH", "EV24"]
+	* Sea-Level Pressure - "PRES" => ["PG", "PGX", "PGN"]
+	* Visibility and Cloud Cover - "VICL" => ["VVN", "VVX", "NG"]
+	* Humidity - "MSTR" => ["VVN", "VVX", "NG"]
+	* "ALL"  => ["DDVEC", "FHVEC", "FG", "FHX", 
       "FHXH", "FHN", "FHNH", "FXX", "FXXH", "TG", "TN", 
       "TNH", "TX", "TXH", "T10N", "T10NH", "SQ", "SP", 
       "Q", "DR", "RH", "RHX", "RHXH", "EV24", "PG", "PX", 
@@ -34,16 +34,16 @@ When entering parameters in method call use groupname for collection of variable
 * end = date in the form YYYYMMDD
 
 = Method calls
-response =  KNMI.get_station(station_number, vars)
+	response =  KNMI.get_station(station_number, vars)
 this will return all daily values from the begining of the month to current for selected vars
 
-response =  KNMI.get_station_start_to_current(station_number, start, vars)
+	response =  KNMI.get_station_start_to_current(station_number, start, vars)
 this will return all daily values from defined start date to current
 
-response =  KNMI.get_station_range(station_number, start, end, vars)
+	response =  KNMI.get_station_range(station_number, start, end, vars)
 this will return all daily values from defined start date to defined end date
 
-response =  KNMI.get_station_seasonal(station_number, start, end, vars)
+	response =  KNMI.get_station_seasonal(station_number, start, end, vars)
 this will return all daily values from seasonally defined start date to defined end date
 eg start = 19800123, end = 19840427 will return data between January 23 and April 27th for 1980 to 1984
 
