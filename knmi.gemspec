@@ -22,10 +22,12 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "knmi.gemspec",
     "lib/knmi.rb",
     "test/helper.rb",
     "test/test_knmi.rb"
