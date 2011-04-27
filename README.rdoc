@@ -8,6 +8,15 @@ station list here http://www.knmi.nl/climatology/daily_data/scriptxs-en.html, da
 with keys for each element { [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ] }
 
 = List of Recorded Parameters and group name
+* WIND = DDVEC:FG:FHX:FHX:FX	wind
+* TEMP = TG:TN:TX:T10N			temperature
+* SUNR = SQ:SP:Q	            Sunshine and global radiation
+* PRCP = DR:RH:EV24				precipitation and potential evaporation
+* PRES = PG:PGX:PGN				sea-level pressure
+* VICL = VVN:VVX:NG				visibility and cloud cover
+* MSTR = UG:UX:UN				humidity
+
+= List of Method Parameters
 
 * station_number = number or array of numbers eg 210 or [210, 225]
 * vars = optional parameters to select measure parameters of interest if not defined all recorded parameters will be returned
