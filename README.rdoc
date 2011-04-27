@@ -59,6 +59,6 @@ convenience function for writing response array to a csv
 
 == Copyright
 
-Copyright (c) 2011 bullfight. See LICENSE.txt for
+Copyright (c) 2011 Patrick Galvin Schmitz p.schmitz@gmail.com. See LICENSE.txt for
 further details.
 
