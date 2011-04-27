@@ -8,13 +8,22 @@ station list here http://www.knmi.nl/climatology/daily_data/scriptxs-en.html, da
 with keys for each element { [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ] }
 
 = List of Recorded Parameters and group name
-* WIND = DDVEC:FG:FHX:FHX:FX	wind
-* TEMP = TG:TN:TX:T10N			temperature
-* SUNR = SQ:SP:Q	            Sunshine and global radiation
-* PRCP = DR:RH:EV24				precipitation and potential evaporation
-* PRES = PG:PGX:PGN				sea-level pressure
-* VICL = VVN:VVX:NG				visibility and cloud cover
-* MSTR = UG:UX:UN				humidity
+When entering parameters in method call use groupname for collection of variables of use individual parameter names
+# Name - GroupName => ["Parameter"]
+* Wind - "WIND" => ["DDVEC", "FG", "FHX", "FHX", "FX"]
+* Temperature - "TEMP" => ["TG", "TN", "TX", "T10N"]
+* Sunshine and global radiation - "SUNR" => ["SQ", "SP", "Q"]
+* Precipitation - "PRCP" => ["DR", "RH", "EV24"]
+* Sea-Level Pressure - "PRES" => ["PG", "PGX", "PGN"]
+* Visibility and Cloud Cover - "VICL" => ["VVN", "VVX", "NG"]
+* Humidity - "MSTR" => ["VVN", "VVX", "NG"]
+* "ALL"  => ["DDVEC", "FHVEC", "FG", "FHX", 
+      "FHXH", "FHN", "FHNH", "FXX", "FXXH", "TG", "TN", 
+      "TNH", "TX", "TXH", "T10N", "T10NH", "SQ", "SP", 
+      "Q", "DR", "RH", "RHX", "RHXH", "EV24", "PG", "PX", 
+      "PXH", "PN", "PNH", "VVN", "VVNH", "VVX", "VVXH", 
+      "NG", "UG", "UX", "UXH", "UN", "UNH"]
+
 
 = List of Method Parameters
 
