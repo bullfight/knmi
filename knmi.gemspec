@@ -5,15 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{knmi}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["bullfight"]
-  s.date = %q{2011-04-27}
-  s.description = %q{Access climatalogical data as provided by the ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
-    through their http get form details of data here (http://www.knmi.nl/climatology/daily_data/scriptxs-en.html) and
-    station list here http://www.knmi.nl/climatology/daily_data/scriptxs-en.html, data is parsed into a array of hashes
-    with keys for each element { [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ] } }
+  s.date = %q{2011-04-28}
   s.email = %q{p.schmitz@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -36,7 +32,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.7.2}
-  s.summary = %q{Ruby API to access ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE daily climate data}
+  s.summary = %q{Ruby API to access daily climate data from the Royal Netherlands Meteorological Institute}
   s.test_files = [
     "test/helper.rb",
     "test/test_knmi.rb"
