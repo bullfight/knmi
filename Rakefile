@@ -16,6 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/bullfight/knmi"
   gem.license = "MIT"
   gem.summary = %Q{Ruby API to access daily climate data from the Royal Netherlands Meteorological Institute }
+  gem.description = %Q{A set of methods to query the KNMI HTTP get form for daily climate data and select a variety of measured parameters, from available stations, in a json style array of hashes, and if necessary convert to csv.}
   gem.email = "p.schmitz@gmail.com"
   gem.authors = ["bullfight"]
   gem.add_runtime_dependency 'httparty', '>= 0.7.4'
