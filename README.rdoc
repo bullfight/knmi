@@ -1,11 +1,23 @@
 = knmi
 
-Ruby API to access ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE daily climate data
+Ruby API to access Royal Netherlands Meteorological Institute daily climate data
 
-Access climatological data as provided by the ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
-through their http get form details of data here (http://www.knmi.nl/climatology/daily_data/scriptxs-en.html) and
-station list here http://www.knmi.nl/climatology/daily_data/scriptxs-en.html, data is parsed into a array of hashes
-with keys for each element { [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ] }
+Access climatological data as provided by the Royal Netherlands Meteorological Institute through the http get form. 
+	http://www.knmi.nl/climatology/daily_data/getdata_day.cgi 
+
+Please Note the disclaimer included in the header!
+	# DEZE GEGEVENS MOGEN VRIJ WORDEN GEBRUIKT MITS DE VOLGENDE BRONVERMELDING WORDT GEGEVEN:
+	# KONINKLIJK NEDERLANDS METEOROLOGISCH INSTITUUT (KNMI)
+	#
+	# THESE DATA CAN BE USED FREELY PROVIDED THAT THE FOLLOWING SOURCE IS ACKNOWLEDGED:
+	# ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
+
+* Details about data here 	
+	http://www.knmi.nl/climatology/daily_data/scriptxs-en.html)
+* Station list here 
+	http://www.knmi.nl/climatology/daily_data/scriptxs-en.html
+*  data is parsed into a array of hashes with keys for each element 
+	{ [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ] }
 
 = Installation
 	gem install knmi
