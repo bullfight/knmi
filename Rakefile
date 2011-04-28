@@ -15,11 +15,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "knmi"
   gem.homepage = "http://github.com/bullfight/knmi"
   gem.license = "MIT"
-  gem.summary = %Q{Ruby API to access ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE daily climate data}
-  gem.description = %Q{Access climatalogical data as provided by the ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
-    through their http get form details of data here (http://www.knmi.nl/climatology/daily_data/scriptxs-en.html) and
-    station list here http://www.knmi.nl/climatology/daily_data/scriptxs-en.html, data is parsed into a array of hashes
-    with keys for each element { [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ] } }
+  gem.summary = %Q{Ruby API to access daily climate data from the Royal Netherlands Meteorological Institute }
   gem.email = "p.schmitz@gmail.com"
   gem.authors = ["bullfight"]
   gem.add_runtime_dependency 'httparty', '>= 0.7.4'
