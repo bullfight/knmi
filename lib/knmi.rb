@@ -116,7 +116,7 @@ class KNMI
       stations = stations.tr(":", "")
       stations = CSV.parse( stations, {:col_sep => "\s"} )
       stations = stations.map {|row| row.map {|cell| cell.to_s } }
-      st_header = [:station_code, :lng, :lat, :name]
+      st_header = [:station_code, :lng, :lat, :elev, :name]
       stations = stations.map {|row| Hash[*st_header.zip(row).flatten] }
 
       # Get Variable Details
@@ -151,6 +151,7 @@ class KNMI
   # station_number = [210, 212]
   # vars = "TG"
   # res = KNMIdaily.get_station( station_number, vars )
+  # output {:stations => {:}}
   def self.get_station(station_number, vars = "")
     query = station(station_number) + "&" + variables(vars)
     puts query 
