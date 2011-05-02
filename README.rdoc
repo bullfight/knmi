@@ -110,6 +110,7 @@ this will return all daily values from seasonally defined start date to defined 
 eg start = 19800123, end = 19840427 will return data between January 23 and April 27th for 1980 to 1984
 
 	KNMI.to_csv("path/to/filename", response)
+	# NOTE: I am currently working on this, it isn't working as I add features, when I finished I rewrite it.
 convenience function for writing response array to a csv
 
 == Copyright

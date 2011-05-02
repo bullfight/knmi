@@ -192,8 +192,8 @@ class KNMI
   def self.to_csv(filename, response)
     CSV.open(filename, "wb") do |csv|
       response[:data]
-      csv << response[0].keys
-      response[(1..(response.length - 1))].each do |line|
+      csv << response[:data][0].keys
+      response[(1..(response[:data].length - 1))].each do |line|
         csv << line.values
       end
     end
