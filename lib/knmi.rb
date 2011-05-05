@@ -131,6 +131,7 @@ class KNMI
 
       # Get and clean data
       response = response[(8 + nstn + nvars)..response.length]
+      response[0] = response[0].sub(/\r/, "")
       response = response.join.tr("\s+", "")
       response = response.tr("#", "")
 
