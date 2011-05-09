@@ -47,7 +47,7 @@ current_stations = [210,225,235,240,242,249,251,257,260,265,267,269,
 
 
 
-res = KNMI.get_station(235, "TX")
+res = KNMI.new(235, "TX")
 x= res.parse
 
 stations = res[:stations]
