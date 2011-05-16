@@ -13,7 +13,7 @@ module KNMI
           daily.find { |daily| daily.parameter == parameter }
         elsif parameter.kind_of?(Array)
           list = []
-          parameter.uniq.each do |p|
+          parameter.each do |p|
             list << daily.find { |daily| daily.parameter == p }
           end
           return list
@@ -31,7 +31,7 @@ module KNMI
           daily.select { |daily| daily.category == category }
         elsif category.kind_of?(Array)
           list = []
-          category.uniq.each do |c|
+          category.each do |c|
             list << daily.select { |daily| daily.category == c }
             list.flatten!            
           end
@@ -86,10 +86,14 @@ module KNMI
         properties[p]
       end
       
+      @period = "daily"
     end
     
     def detail
-      {:parameter => @parameter, :category => @category, :description => @description, :validate => @validate, :conversion => @conversion. :units => @units}
+      {:parameter => @parameter, :category => @category, 
+       :description => @description, :validate => @validate, 
+       :conversion => @conversion, :units => @units}
     end
+
   end
 end

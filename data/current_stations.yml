@@ -1,0 +1,1584 @@
+--- 
+- id: 210
+  lng: 4.419
+  lat: 52.165
+  elevation: -0.20
+  name: Valkenburg
+  photo: http://www.knmi.nl/klimatologie/metadata/210_valkenburg_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_210.gif
+  web: http://www.knmi.nl/klimatologie/metadata/valkenburg.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19510101
+      end: 19680510
+      instrument: Thermograaf in hut
+    - epoch: 1
+      start: 19630415
+      end: 19921201
+      instrument: Weerstandmeting in hut
+    - epoch: 2
+      start: 19921201
+      end: heden
+      instrument: AWS, elektrische sensoren in schotelhut (op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 19520501
+      end: 19821201
+      instrument: Pluviograaf
+    - epoch: 1
+      start: 19821201
+      end: heden
+      instrument: Elektrische regenmeter
+    pressure: 
+    - epoch: 0
+      start: 19510101 -19840711
+      end: 
+      instrument: Barograaf en kwikbarometer
+    - epoch: 1
+      start: 19821116
+      end: 19921201
+      instrument: Anero\xEFde barometer
+    - epoch: 2
+      start: 19921201
+      end: heden
+      instrument: Paroscientific barometer
+    wind: 
+    - epoch: 0
+      start: 19510101
+      end: 19620425
+      instrument: Dines anemometer, meethoogte 13 meter
+    - epoch: 1
+      start: 19620425
+      end: 19921201
+      instrument: Dynamo anemometer, meethoogte 11 meter
+    - epoch: 2
+      start: 19921201
+      end: heden
+      instrument: AWS (digitale registratie), meethoogte 10 meter
+- id: 225
+  lng: 4.575
+  lat: 52.463
+  elevation: 4.40
+  name: Ijmuiden
+  photo: 
+  map: 
+  web: 
+- id: 235
+  lng: 4.785
+  lat: 52.924
+  elevation: 0.50
+  name: De kooy
+  photo: http://www.knmi.nl/klimatologie/metadata/235_dekooy_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_235.gif
+  web: http://www.knmi.nl/klimatologie/metadata/dekooy.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19060101
+      end: 19611123
+      instrument: thermograaf in Stevensonhut (op 2,20 meter boven maaiveld)
+    - epoch: 1
+      start: 19611124
+      end: 19720731
+      instrument: thermograaf in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 2
+      start: 19720801
+      end: 19921231
+      instrument: weerstandsmeting in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 3
+      start: 19930101
+      end: heden
+      instrument: elektrische sensoren in schotelhut (op 1,50 meter boven maaiveld)
+    precipitation: 
+    - epoch: 0
+      start: 19570101
+      end: 19720731
+      instrument: pluviograaf (vangoppervlak 4 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 1
+      start: 19720801
+      end: 19921231
+      instrument: pluviograaf (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 2
+      start: 19930101
+      end: heden
+      instrument: elektrische meting (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    pressure: 
+    - epoch: 0
+      start: 19060101
+      end: 19841231
+      instrument: barograaf en kwikbarometer
+    - epoch: 1
+      start: 19850101
+      end: 19921231
+      instrument: barograaf en digitale anero\xEFde barometer
+    - epoch: 2
+      start: 19930101
+      end: heden
+      instrument: elektrische meting
+    wind: 
+    - epoch: 0
+      start: 19060101
+      end: 19080901
+      instrument: Dines op kastvormige toren van 11,0 m hoogte; windrichting in streken m.b.v. mechanische registratie. Meethoogte 12,4 m.
+    - epoch: 1
+      start: 19080905
+      end: 19220630
+      instrument: Dines op 11,0 meter hoge gesloten houten toren; windrichting anemograaf Sass en Co systeem Steffens. Meethoogte 13,0 m.
+    - epoch: 2
+      start: 19220601
+      end: 1923????
+      instrument: idem; op 11,0 meter hoge open betonnen toren. Meethoogte 14,0 m.
+    - epoch: 3
+      start: 1923????
+      end: 19541121
+      instrument: Dines op 11,0 meter hoge open betonnen toren; windrichting patent Halliwell (aangepast door Dr. Schoute). Meethoogte 14,0 m.
+    - epoch: 4
+      start: 19541122
+      end: 19720731
+      instrument: nieuw type Dines met richtingsregistratie. Meethoogte 13,9 m.
+    - epoch: 5
+      start: 19720801
+      end: 19841211
+      instrument: cup anemometer met frequentiemeter en elektrische windvaan; Heath recorder; op 19720925 en 19800826 kleine verplaatsingen. Meethoogte 10,0 m.
+    - epoch: 6
+      start: 19841212
+      end: 19921231
+      instrument: idem; Camille Bauer recorder. Meethoogte 10,0 m.
+    - epoch: 7
+      start: 19930101
+      end: heden
+      instrument: AWS (digitale registratie). Meethoogte 10,0 m.
+- id: 240
+  lng: 4.774
+  lat: 52.301
+  elevation: -4.40
+  name: Schiphol
+  photo: http://www.knmi.nl/klimatologie/metadata/240_schiphol_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_240.gif
+  web: http://www.knmi.nl/klimatologie/metadata/schiphol.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19510101
+      end: 19550414
+      instrument: thermograaf in Stevensonhut (op 2,20 meter boven maaiveld)
+    - epoch: 1
+      start: 19550415
+      end: 19590625
+      instrument: thermograaf in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 2
+      start: 19590626
+      end: 19901104
+      instrument: weerstandsmeting in Stevensonhut Brown recorder (op 1,50 meter boven maaiveld) verplaatsingen waarnemingsterrein op 19631010; 19650504
+    - epoch: 3
+      start: 19911105
+      end: 19910912
+      instrument: AMIS in gebruik genomen
+    - epoch: 4
+      start: 19910913
+      end: heden
+      instrument: elektrische sensoren in schotelhut (op 1,50 meter boven maaiveld) verplaatsing waarnemingsterrein op 19941109 naar baan 19R
+    precipitation: 
+    - epoch: 0
+      start: 19710101
+      end: 19910912
+      instrument: pluviograaf (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 1
+      start: 19910913
+      end: heden
+      instrument: belektrische meting (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld) verplaatsing waarnemingsterrein op 19941109 naar baan 19R
+    pressure: 
+    - epoch: 0
+      start: 19510101
+      end: 19930630
+      instrument: barograaf en kwikbarometer
+    - epoch: 1
+      start: 19810610
+      end: 19910912
+      instrument: barograaf en digitale an.barometer
+    - epoch: 2
+      start: 19910913
+      end: heden
+      instrument: elektrische meting verplaatsing waarnemingsterrein op 19941109 naar baan 19R
+    wind: 
+    - epoch: 0
+      start: 19710101
+      end: 19761231
+      instrument: 45 meter mast metingen op 10,20 en 40 meter cup anemometer met Nieaf recorder. Meethoogte 10 m.
+    - epoch: 1
+      start: 19770101
+      end: 19851231
+      instrument: cup anemeometer; verplaatsing naar 19R; met Heath recorder. Meethoogte 10 m.
+    - epoch: 2
+      start: 19860101
+      end: 19910605
+      instrument: idem; Camille Bauer recorder. Meethoogte 10 m.
+    - epoch: 3
+      start: 19910606
+      end: heden
+      instrument: idem; AWS (digitale registratie). Meethoogte 10 m.
+- id: 242
+  lng: 4.942
+  lat: 53.255
+  elevation: 0.90
+  name: Vlieland
+  photo: http://www.knmi.nl/klimatologie/metadata/242_vlieland_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_242.gif
+  web: http://www.knmi.nl/klimatologie/metadata/vlieland.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19960101
+      end: 20040630
+      instrument: Elektrische meting (Vaisala)
+    - epoch: 1
+      start: 20040609
+      end: heden
+      instrument: AWS, elektrische sensoren in schotelhut (op 1,50 meter)
+    pressure: 
+    - epoch: 0
+      start: 19960101
+      end: heden
+      instrument: Paroscientific barometer
+    wind: 
+    - epoch: 0
+      start: 19960101
+      end: 20040630
+      instrument: anemometer en windvaan; elektrische meting
+    - epoch: 1
+      start: 20040609
+      end: heden
+      instrument: idem; AWS (digitale registratie) 10 meter
+- id: 249
+  lng: 4.979
+  lat: 52.644
+  elevation: -2.50
+  name: Berkhout
+  photo: http://www.knmi.nl/klimatologie/metadata/249_berkhout_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_249.gif
+  web: http://www.knmi.nl/klimatologie/metadata/berkhout.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19990317
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut(op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 19990317
+      end: heden
+      instrument: Elektrische meting (Engelse opstelling)
+    wind: 
+    - epoch: 0
+      start: 19990317
+      end: heden
+      instrument: AWS (digitale regstratie) meethoogte 10 meter
+- id: 251
+  lng: 5.346
+  lat: 53.393
+  elevation: 0.50
+  name: Hoorn (terschelling)
+  photo: 
+  map: 
+  web: 
+- id: 257
+  lng: 4.603
+  lat: 52.506
+  elevation: 10.00
+  name: Wijk aan zee
+  photo: http://www.knmi.nl/klimatologie/metadata/257_wijkaanzee_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_257.gif
+  web: http://www.knmi.nl/klimatologie/metadata/wijkaanzee.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 20010430
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut(op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 20010430
+      end: heden
+      instrument: Elektrische meting (opstelling Ott scherm)
+- id: 260
+  lng: 5.177
+  lat: 52.101
+  elevation: 2.00
+  name: De bilt
+  photo: http://www.knmi.nl/klimatologie/metadata/260_debilt_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_260.gif
+  web: http://www.knmi.nl/klimatologie/metadata/debilt.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19010101
+      end: 19500516
+      instrument: thermograaf in grote pagodehut (op 2,20 meter boven maaiveld
+    - epoch: 1
+      start: 19500517
+      end: 19610628
+      instrument: thermograaf in Stevensonhut (op 2,20 meter boven maaiveld)
+    - epoch: 2
+      start: 19610629
+      end: 19930625
+      instrument: weerstandsmeting in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 3
+      start: 19930326
+      end: heden
+      instrument: elektrische sensoren in schotelhut (op 1,50 meter boven maaiveld)
+    precipitation: 
+    - epoch: 0
+      start: 19060101
+      end: 19460111
+      instrument: pluviograaf(vangoppervlak 4 dm2 op 1,50 meter boven maaiveld)
+    - epoch: 1
+      start: 19460112
+      end: 19810331
+      instrument: pluviograaf(vangoppervlak 4 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 2
+      start: 19810401
+      end: 19930228
+      instrument: pluviograaf(vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 3
+      start: 19930301
+      end: heden
+      instrument: elektrische meting(vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    pressure: 
+    - epoch: 0
+      start: 19020101
+      end: 19731015
+      instrument: barograaf en kwikbarometer
+    - epoch: 1
+      start: 19731016
+      end: 19930625
+      instrument: barograaf en digitale anero\xEFde barometer
+    - epoch: 2
+      start: 19930626
+      end: heden
+      instrument: elektrische meting
+    wind: 
+    - epoch: 0
+      start: 19040101
+      end: 19150823
+      instrument: Molentje van Robinson op houten toren op hoofdgebouw; windrichting anemograaf Sass en Co systeem Steffens. Meethoogte 37,0 m.
+    - epoch: 1
+      start: 19150901
+      end: 19161031
+      instrument: idem; tijdelijke meting op 18,0 m; herleid naar 37,0 m met de factoren NO 2.02; W 1.81; NNW 1.55 en ZZO 1.26. Meethoogte 18,0 m.
+    - epoch: 2
+      start: 19161101
+      end: 19530216
+      instrument: idem; op betonnen toren op hoofdgebouw; ter vergelijking ook een Dines aanwezig op de toren. Meethoogte 37,5 m.
+    - epoch: 3
+      start: 19530217
+      end: 19601231
+      instrument: idem; op nieuwe toren (de spijker) diverse molentjes. Meethoogte 38,3 m.
+    - epoch: 4
+      start: 19610101
+      end: 19820731
+      instrument: cup anemometer met frequentiemeter en elektrische windvaan; Nieaf recorder. Meethoogte 10,0 m .
+    - epoch: 5
+      start: 19820801
+      end: 19930524
+      instrument: idem; Camille Bauer recorder (er was een back-up mast van 20,0 m hoog). Meethoogte 10,0 m.
+    - epoch: 6
+      start: 19930525
+      end: 19930625
+      instrument: idem; AWS (digitale registratie). Meethoogte 10,0 m.
+    - epoch: 7
+      start: 19930626
+      end: heden
+      instrument: idem; AWS (digitale registratie). Meethoogte 20,0 m.
+- id: 265
+  lng: 5.274
+  lat: 52.130
+  elevation: 13.90
+  name: Soesterberg
+  photo: http://www.knmi.nl/klimatologie/metadata/265_soesterberg_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_265.gif
+  web: http://www.knmi.nl/klimatologie/metadata/soesterberg.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19540101
+      end: 19641101
+      instrument: Thermograaf in Stevensonhut (op 2,20 meter, vanaf 1957 op1,60 meter, vanaf 1959 op 1,50 meter) boven maaiveld.
+    - epoch: 1
+      start: 19641031
+      end: 19920630
+      instrument: Weerstandsmeting in Stevensonhut Brown recorder (op 1,50 meter boven maaiveld)
+    - epoch: 2
+      start: 19920701
+      end: 20081115
+      instrument: AWS, elektrische sensoren in schotelhut (op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 19740601
+      end: 19920630
+      instrument: Pluviograaf (vangbak 2 dm2 op 0,40 cm boven maaiveld)
+    - epoch: 1
+      start: 19920701
+      end: 20081115
+      instrument: Elektrische meting
+    pressure: 
+    - epoch: 0
+      start: 19510910
+      end: 19570620
+      instrument: Barograaf en kwikbarometer
+    - epoch: 1
+      start: 19570701
+      end: 19891231
+      instrument: Microbarograaf Fuess
+    - epoch: 2
+      start: 19900101
+      end: 20081115
+      instrument: Elektrische meting
+    wind: 
+    - epoch: 0
+      start: 19710101
+      end: 19920630
+      instrument: cup anemometer, met Van Doorn recorder
+    - epoch: 1
+      start: 19920701
+      end: 20081115
+      instrument: .idem; AWS (digitale registratie) 10 meter
+- id: 267
+  lng: 5.384
+  lat: 52.896
+  elevation: 2.60
+  name: Stavoren
+  photo: http://www.knmi.nl/klimatologie/metadata/267_stavoren_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_267.gif
+  web: http://www.knmi.nl/klimatologie/metadata/stavoren.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19910101
+      end: 19990831
+      instrument: AWS, elektronische sensoren in schotelhut op 1,50 meter (oude locatie)
+    - epoch: 1
+      start: 20000101
+      end: heden
+      instrument: idem; nieuwe locatie(ruim 2 km NO van vorige)
+    precipitation: 
+    - epoch: 0
+      start: 19911201
+      end: 19990831
+      instrument: Elektrische meting in engelse opstelling(oude locatie)
+    - epoch: 1
+      start: 20000101
+      end: 20050504
+      instrument: idem; nieuwe locatie(ruim 2 km NO van vorige)
+    - epoch: 2
+      start: 20050505
+      end: heden
+      instrument: Elektrische meting met ott scherm
+    wind: 
+    - epoch: 0
+      start: 19910101
+      end: 19990831
+      instrument: Cup-anemometer, AWS (digitale registratie) meethoogte 10 meter(oude locatie)
+    - epoch: 1
+      start: 20000101
+      end: heden
+      instrument: idem; nieuwe locatie(ruim 2 km NO van vorige)
+- id: 269
+  lng: 5.526
+  lat: 52.458
+  elevation: -4.00
+  name: Lelystad
+  photo: http://www.knmi.nl/klimatologie/metadata/269_lelystad_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_269.gif
+  web: http://www.knmi.nl/klimatologie/metadata/lelystad.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut op 1,50 meter (verplaatst op 20020218)
+    precipitation: 
+    - epoch: 0
+      start: 19910901
+      end: heden
+      instrument: Elektrische meting (engelse opstelling)
+    pressure: 
+    - epoch: 0
+      start: 19920801
+      end: heden
+      instrument: Paroscientific barometer aan windmast (verplaatst op 20010419)
+    wind: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: Cup-anemometer, AWS (digitale registratie) meethoogte 10 meter (verplaatst op 20010419)
+- id: 270
+  lng: 5.755
+  lat: 53.225
+  elevation: 1.50
+  name: Leeuwarden
+  photo: http://www.knmi.nl/klimatologie/metadata/270_leeuwarden_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_270.gif
+  web: http://www.knmi.nl/klimatologie/metadata/leeuwarden.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19510101
+      end: 19571217
+      instrument: thermograaf in Stevensonhut (op 2,20 meter boven maaiveld)
+    - epoch: 1
+      start: 19571218
+      end: 19711130
+      instrument: thermograaf in Stevensonhut (op 1,50 meter boven maaiveld), nieuw waarneemterrein 100 m naar het zuiden verplaatst.
+    - epoch: 2
+      start: 19711201
+      end: 19920703
+      instrument: weerstandsmeting in Stevensonhut Brown recorder (op 1,50 meter boven maaiveld)
+    - epoch: 3
+      start: 19920704
+      end: heden
+      instrument: AWS, elektrische sensoren in schotelhut (op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 19740101
+      end: 19920730
+      instrument: pluviograaf (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 1
+      start: 19920801
+      end: heden
+      instrument: elektrische meting
+    pressure: 
+    - epoch: 0
+      start: 19510101
+      end: 19930627
+      instrument: barograaf Fuess en kwikbarometer
+    - epoch: 1
+      start: 19930628- heden
+      end: 
+      instrument: elektrische meting
+    wind: 
+    - epoch: 0
+      start: 19510101
+      end: 19520409
+      instrument: dynamo-anemometer KLU, geen recorder, werd uurlijks afgelezen (mA-meters). Opgesteld op houten mast ca. 10 m.
+    - epoch: 1
+      start: 19520409
+      end: 19580731
+      instrument: dynamo-anemeometer; met Inkwell recorder. Meethoogte 10 m.
+    - epoch: 2
+      start: 19580801
+      end: 19840731
+      instrument: nieuwe cup-anemometer, windvaan (van Doorne) en mast geplaatst ca. 500 m ten noorden van het meteogebouw. (recorder van Doorne) De mast werd op 19610309, 19670418 en 19711208 verplaatst.
+    - epoch: 3
+      start: 19840801
+      end: 19920731
+      instrument: idem;met Camille-Bauer recorder
+    - epoch: 4
+      start: 19920801
+      end: heden
+      instrument: idem; AWS (digitale registratie). Meethoogte 10 m.
+- id: 273
+  lng: 5.889
+  lat: 52.703
+  elevation: -3.10
+  name: Marknesse
+  photo: http://www.knmi.nl/klimatologie/metadata/273_marknesse_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_273.gif
+  web: http://www.knmi.nl/klimatologie/metadata/marknesse.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut(op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: Elektrische meting in Engelse opstelling
+    wind: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: AWS (digitale regstratie) meethoogte 10 meter
+- id: 275
+  lng: 5.888
+  lat: 52.061
+  elevation: 50.00
+  name: Deelen
+  photo: http://www.knmi.nl/klimatologie/metadata/275_deelen_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_275.gif
+  web: http://www.knmi.nl/klimatologie/metadata/deelen.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19510103
+      end: najaar 1957
+      instrument: Thermometers in hut
+    - epoch: 1
+      start: najaar 1957
+      end: 19921201
+      instrument: Thermometers in hut op 1,50 meter
+    - epoch: 2
+      start: 19921201
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut op 1,50 meter
+    precipitation: 
+    - epoch: 0
+      start: 19710101
+      end: 19820331
+      instrument: regenmeter
+    - epoch: 1
+      start: 19820401
+      end: heden
+      instrument: Elektrische meting in engelse opstelling
+    pressure: 
+    - epoch: 0
+      start: 19510103
+      end: 19921201
+      instrument: barograaf en kwikbarometer
+    - epoch: 1
+      start: 19921201
+      end: heden
+      instrument: Paroscientific barometer in kast aan windmast
+    wind: 
+    - epoch: 0
+      start: 19510103
+      end: 19590807
+      instrument: vaan en anemometer
+    - epoch: 1
+      start: 19590807
+      end: 19921201
+      instrument: dynamo-anemometer en vaan met registratie
+    - epoch: 2
+      start: 19921201
+      end: heden
+      instrument: Cup-anemometer en vaan AWS (digitale registratie) meethoogte 10 meter (op nieuwe locatie)
+- id: 277
+  lng: 6.196
+  lat: 53.409
+  elevation: 3.00
+  name: Lauwersoog
+  photo: http://www.knmi.nl/klimatologie/metadata/277_lauwersoog_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_277.gif
+  web: http://www.knmi.nl/klimatologie/metadata/lauwersoog.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19910401
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut op 1,50 meter
+    precipitation: 
+    - epoch: 0
+      start: 19920401
+      end: heden
+      instrument: Elektrische meting in engelse opstelling
+    wind: 
+    - epoch: 0
+      start: 19910401- heden
+      end: 
+      instrument: Cup-anemometer en vaan AWS (digitale registratie) meethoogte 10 meter. Mast staat op strekdam
+- id: 278
+  lng: 6.263
+  lat: 52.437
+  elevation: 4.00
+  name: Heino
+  photo: http://www.knmi.nl/klimatologie/metadata/278_heino_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_278.gif
+  web: http://www.knmi.nl/klimatologie/metadata/heino.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut(op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 19920401
+      end: heden
+      instrument: Elektrische meting (engelse opstelling)
+    wind: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: Cup-anemometer, AWS (digitale registratie) meethoogte 10 meter
+- id: 279
+  lng: 6.575
+  lat: 52.750
+  elevation: 15.60
+  name: Hoogeveen
+  photo: http://www.knmi.nl/klimatologie/metadata/279_hoogeveen_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_279.gif
+  web: http://www.knmi.nl/klimatologie/metadata/hoogeveen.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19900601- heden
+      end: 
+      instrument: AWS, elektronische sensoren in schotelhut(op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 19930301
+      end: heden
+      instrument: Elektrische meting in engelse opstelling
+    pressure: 
+    - epoch: 0
+      start: 19900221
+      end: heden
+      instrument: Paroscientific barometer
+    wind: 
+    - epoch: 0
+      start: 19900601
+      end: heden
+      instrument: Cup-anemometer, AWS (digitale registratie) meethoogte 10 meter
+- id: 280
+  lng: 6.586
+  lat: 53.125
+  elevation: 3.50
+  name: Eelde
+  photo: http://www.knmi.nl/klimatologie/metadata/280_eelde_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_280.gif
+  web: http://www.knmi.nl/klimatologie/metadata/eelde.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19060101
+      end: 19590730
+      instrument: thermograaf in Stevensonhut (op 2,20 meter boven maaiveld)
+    - epoch: 1
+      start: 19590731
+      end: 19730228
+      instrument: thermograaf in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 2
+      start: 19730301
+      end: 19910315
+      instrument: weerstandsmeting in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 3
+      start: 19910316
+      end: heden
+      instrument: elektrische sensoren in schotelhut (op 1,50 meter boven maaiveld)
+    precipitation: 
+    - epoch: 0
+      start: 19570101
+      end: 19730501
+      instrument: pluviograaf (vangoppervlak 4 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 1
+      start: 19730502
+      end: 19910315
+      instrument: pluviograaf (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 2
+      start: 19910316
+      end: heden
+      instrument: elektrische meting (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    pressure: 
+    - epoch: 0
+      start: 19060101
+      end: 19860909
+      instrument: barograaf en kwikbarometer
+    - epoch: 1
+      start: 19860910
+      end: 19910315
+      instrument: barograaf en digitale anero\xEFde barometer
+    - epoch: 2
+      start: 19910316
+      end: heden
+      instrument: elektrische meting
+    wind: 
+    - epoch: 0
+      start: 19060301
+      end: 19460131
+      instrument: molentje van Robinson; windrichting anemograaf Sass en Co systeem Steffens. Meethoogte 31,0 m.
+    - epoch: 1
+      start: 19460201
+      end: 19471114
+      instrument: Dines Groningen op dak HBS van 20 m hoog. Meethoogte 31,0 m.
+    - epoch: 2
+      start: 19471115
+      end: 19540920
+      instrument: idem; Eelde op dak stationsgebouw van 9,8 meter hoog. Meethoogte 14,8 m.
+    - epoch: 3
+      start: 19540921
+      end: 19541228
+      instrument: cup anemometer met frequentiemeter en elektrische windvaan; Metrawatt recorder. Meethoogte 14,8 m.
+    - epoch: 4
+      start: 19541229
+      end: 19560712
+      instrument: idem; windmeetmast stond 1 graad scheef in NNW richting. Meethoogte 10,7 m.
+    - epoch: 5
+      start: 19560713
+      end: 19600829
+      instrument: idem; windmeetmast. Meethoogte 10,0 m.
+    - epoch: 6
+      start: 19600830
+      end: 19660526
+      instrument: idem; antennemast (ILS). Meethoogte 12,0 m.
+    - epoch: 7
+      start: 19660527
+      end: 19880628
+      instrument: idem; windmeetmast, op 19730323 kleine verplaatsing. Meethoogte 10,0 m.
+    - epoch: 8
+      start: 19880629
+      end: 19901009
+      instrument: idem; Camille Bauer recorder. Meethoogte 10,0 m.
+    - epoch: 9
+      start: 19901010
+      end: heden
+      instrument: idem; AWS (digitale registratie). Meethoogte 10,0 m.
+- id: 283
+  lng: 6.650
+  lat: 52.073
+  elevation: 29.00
+  name: Hupsel
+  photo: http://www.knmi.nl/klimatologie/metadata/283_hupsel_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_283.gif
+  web: http://www.knmi.nl/klimatologie/metadata/hupsel.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut op 1,50 meter
+    precipitation: 
+    - epoch: 0
+      start: 19920301
+      end: heden
+      instrument: Elektrische meting in engelse opstelling
+    wind: 
+    - epoch: 0
+      start: 19910101- heden
+      end: 
+      instrument: Cup-anemometer en vaan AWS (digitale registratie) meethoogte 10 meter.
+- id: 286
+  lng: 7.150
+  lat: 53.196
+  elevation: 0.20
+  name: Nieuw beerta
+  photo: http://www.knmi.nl/klimatologie/metadata/286_nieuwbeerta_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_286.gif
+  web: http://www.knmi.nl/klimatologie/metadata/nieuwbeerta.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut(op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: Elektrische meting (engelse opstelling)
+    wind: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: Cup-anemometer, AWS (digitale registratie) meethoogte 10 meter
+- id: 290
+  lng: 6.897
+  lat: 52.273
+  elevation: 34.50
+  name: Twenthe
+  photo: http://www.knmi.nl/klimatologie/metadata/290_twenthe_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_290.gif
+  web: http://www.knmi.nl/klimatologie/metadata/twenthe.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19510101
+      end: 19671221
+      instrument: thermograaf in Stevensonhut (op 2,20 meter boven maaiveld)
+    - epoch: 1
+      start: 19671222
+      end: 19680228
+      instrument: thermograaf in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 2
+      start: 19680301
+      end: 19930630
+      instrument: weerstandsmeting in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 3
+      start: 19930701
+      end: heden
+      instrument: elektrische sensoren in schotelhut (op 1,50 meter boven maaiveld)
+    precipitation: 
+    - epoch: 0
+      start: 19740601
+      end: 19930630
+      instrument: pluviograaf (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 1
+      start: 19930701
+      end: heden
+      instrument: elektrische meting (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    pressure: 
+    - epoch: 0
+      start: 19510101
+      end: 19930630
+      instrument: barograaf en kwikbarometer
+    - epoch: 1
+      start: 19930701
+      end: heden
+      instrument: elektrische meting
+    wind: 
+    - epoch: 0
+      start: 19510101
+      end: 19510830
+      instrument: Dines door vliegtuigongeluk niet bruikbaar.
+    - epoch: 1
+      start: 19510901
+      end: 19580715
+      instrument: Dines, mast van 6,0 m op gebouw van 15,0 m. Meethoogte 21,0 m.
+    - epoch: 2
+      start: 19580716
+      end: 19841031
+      instrument: cup anemometer van Doorn apparatuur op windmeetmast; kleine verplaatsingen op 19671221 en 19680103. Meethoogte 10,0 m.
+    - epoch: 3
+      start: 19841101
+      end: 19930630
+      instrument: cup anemometer en windvaan KNMI, Camille Bauer recorder. Meethoogte 10,0 m.
+    - epoch: 4
+      start: 19930701
+      end: heden
+      instrument: idem; AWS (digitale registratie). Meethoogte 10,0 m.
+- id: 310
+  lng: 3.596
+  lat: 51.442
+  elevation: 8.00
+  name: Vlissingen
+  photo: http://www.knmi.nl/klimatologie/metadata/310_vlissingen_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_310.gif
+  web: http://www.knmi.nl/klimatologie/metadata/vlissingen.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19060101
+      end: 19300114
+      instrument: thermograaf in een soort kooi (op 2,20 meter boven maaiveld)
+    - epoch: 1
+      start: 19300115
+      end: 19431102
+      instrument: thermograaf in Stevensonhut (op 2,20 meter boven maaiveld)
+    - epoch: 2
+      start: 19431103
+      end: 19450731
+      instrument: thermograaf in Stevensonhut (op 8,80 meter boven maaiveld)
+    - epoch: 3
+      start: 19450801
+      end: 19611012
+      instrument: thermograaf in Stevensonhut (op 2,20 meter boven maaiveld)
+    - epoch: 4
+      start: 19611013
+      end: 19740930
+      instrument: thermograaf in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 5
+      start: 19741001
+      end: 19930430
+      instrument: weerstandsmeting in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 6
+      start: 19930501
+      end: heden
+      instrument: elektrische sensoren in schotelhut (op 1,50 meter boven maaiveld)
+    precipitation: 
+    - epoch: 0
+      start: 19570101
+      end: 19620409
+      instrument: pluviograaf (vangoppervlak 4 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 1
+      start: 19620410
+      end: 19930430
+      instrument: pluviograaf (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 2
+      start: 19930501
+      end: heden
+      instrument: elektrische meting (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    pressure: 
+    - epoch: 0
+      start: 19060101
+      end: 19840917
+      instrument: barograaf en kwikbarometer
+    - epoch: 1
+      start: 19840918
+      end: 19930430
+      instrument: barograaf en digitale anero\xEFde barometer
+    - epoch: 2
+      start: 19930501
+      end: heden
+      instrument: elektrische meting
+    wind: 
+    - epoch: 0
+      start: 19080401
+      end: 19100630
+      instrument: molentje van Robinson (niet erg betrouwbaar); windrichting anemograaf Olland. Meethoogte 13,0 m.
+    - epoch: 1
+      start: 19100701
+      end: 19291024
+      instrument: idem; (verbeterde constructie molentjes'. Meethoogte 13,0 m.
+    - epoch: 2
+      start: 19291025
+      end: 19440931
+      instrument: idem; waarneemterrein opgehoogd naar dijkhoogte. Meethoogte 13,4 m.
+    - epoch: 3
+      start: 19450801
+      end: 19470815
+      instrument: idem; op het dak Hotel Noordzee Boulevard. Meethoogte 23,0 m.
+    - epoch: 4
+      start: 19470816
+      end: 19580430
+      instrument: idem; te West Souburg. Meethoogte 9,0 m.
+    - epoch: 5
+      start: 19580430
+      end: 19591120
+      instrument: Dines op meteogebouw. Meethoogte 16,4 m.
+    - epoch: 6
+      start: 19591121
+      end: 19670308
+      instrument: cup anemometer met frequentiemeter en elektrische windvaan; Metrawatt recorder; op havendam. Meethoogte 10 m.
+    - epoch: 7
+      start: 19670310
+      end: 19680702
+      instrument: idem; op dienstgebouw. Meethoogte 15,0 m.
+    - epoch: 8
+      start: 19680703
+      end: 19720130
+      instrument: idem; windmeetmast op havendam. Meethoogte 10,0 m.
+    - epoch: 9
+      start: 19720131
+      end: 19821001
+      instrument: idem; op dienstgebouw met Nieaf recorder. Meethoogte 15,0 m.
+    - epoch: 10
+      start: 19821002
+      end: 19930431
+      instrument: idem; Camille Bauer recorder. Meethoogte 15,0 m.
+    - epoch: 11
+      start: 19930501
+      end: heden
+      instrument: idem; AWS (digitale registratie). Meethoogte 15,0 m.
+- id: 319
+  lng: 3.862
+  lat: 51.226
+  elevation: 1.40
+  name: Westdorpe
+  photo: http://www.knmi.nl/klimatologie/metadata/319_westdorpe_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_319.gif
+  web: http://www.knmi.nl/klimatologie/metadata/westdorpe.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19910701
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut op 1,50 meter
+    precipitation: 
+    - epoch: 0
+      start: 19930701
+      end: heden
+      instrument: Elektrische meting in engelse opstelling
+    pressure: 
+    - epoch: 0
+      start: 20081010
+      end: heden
+      instrument: Paroscientific barometer in kast aan windmast
+    wind: 
+    - epoch: 0
+      start: 19910701
+      end: heden
+      instrument: Cup-anemometer en vaan AWS (digitale registratie) meethoogte 10 meter
+- id: 323
+  lng: 3.884
+  lat: 51.527
+  elevation: 1.40
+  name: Wilhelminadorp
+  photo: http://www.knmi.nl/klimatologie/metadata/323_wilhelminadorp_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_323.gif
+  web: http://www.knmi.nl/klimatologie/metadata/wilhelminadorp.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut op 1,50 meter (op 20000601 ca 200 m naar ZW verplaatst)
+    precipitation: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: Elektrische meting in engelse opstelling (op 20000601 ca 200 m naar ZW verplaatst)
+    pressure: 
+    - epoch: 0
+      start: 20080101
+      end: heden
+      instrument: Paroscientific barometer
+    wind: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: Cup-anemometer en vaan AWS (digitale registratie) meethoogte 10 meter
+- id: 330
+  lng: 4.124
+  lat: 51.993
+  elevation: 12.50
+  name: Hoek van holland
+  photo: http://www.knmi.nl/klimatologie/metadata/330_hoekvanholland_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_330.gif
+  web: http://www.knmi.nl/klimatologie/metadata/hoekvanholland.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19710101
+      end: 19830817
+      instrument: Weerstandsmeting in hut
+    - epoch: 1
+      start: 19830817
+      end: 19950503
+      instrument: Weerstandsmeting in hut (op nieuwe locatie)
+    - epoch: 2
+      start: 19950503
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut op 1,50 meter
+    precipitation: 
+    - epoch: 0
+      start: 19950801
+      end: heden
+      instrument: Elektrische meting in engelse opstelling
+    pressure: 
+    - epoch: 0
+      start: 19710101
+      end: 19830817
+      instrument: Barograaf, kwikbarometer en anero\xEFde barometer
+    - epoch: 1
+      start: 19830817
+      end: 19910901
+      instrument: Anero\xEFde barometer op 13,04 m (op nieuwe locatie)
+    - epoch: 2
+      start: 19910901
+      end: 20050131
+      instrument: Paroscientific barometer
+    - epoch: 3
+      start: 20050131
+      end: heden
+      instrument: Paroscientific barometerop 12,1 m (op AWS terrein)
+    wind: 
+    - epoch: 0
+      start: 19710101
+      end: 19770516
+      instrument: Vaan en anemometer (10 meter mast)
+    - epoch: 1
+      start: 19770516
+      end: 20050131
+      instrument: Vaan en anemometer op pier Noorderhoofd
+    - epoch: 2
+      start: 20050131
+      end: heden
+      instrument: Cup-anemometer en vaan AWS (digitale registratie) op pier Noorderhoofd
+- id: 340
+  lng: 4.349
+  lat: 51.448
+  elevation: 14.90
+  name: Woensdrecht
+  photo: http://www.knmi.nl/klimatologie/metadata/340_woensdrecht_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_340.gif
+  web: http://www.knmi.nl/klimatologie/metadata/woensdrecht.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19930407- heden
+      end: 
+      instrument: AWS, elektronische sensoren in schotelhut(op 1,50 meter)
+    pressure: 
+    - epoch: 0
+      start: 19930407- heden
+      end: 
+      instrument: Paroscientific barometer in kast aan 10 m mast
+    wind: 
+    - epoch: 0
+      start: 19930407- heden
+      end: 
+      instrument: Cup-anemometer, AWS (digitale registratie) meethoogte 10 meter
+- id: 344
+  lng: 4.444
+  lat: 51.955
+  elevation: -4.80
+  name: Rotterdam
+  photo: http://www.knmi.nl/klimatologie/metadata/344_rotterdam_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_344.gif
+  web: http://www.knmi.nl/klimatologie/metadata/rotterdam.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19561001
+      end: 19641231
+      instrument: thermograaf in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 1
+      start: 19650101
+      end: 19881030
+      instrument: weerstandsmeting in Stevensonhut (op 1,50 meter boven maaiveld); tevens vanaf nieuwe lokatie verplaatsing waarnemingsterrein 19851231
+    - epoch: 2
+      start: 19881101
+      end: 19930808
+      instrument: elektrische sensoren (op 1,50 meter boven maaiveld) t.b.v. AMIS
+    - epoch: 3
+      start: 19930809
+      end: heden
+      instrument: elektrische sensoren in schotelhut (op 1,50 meter boven maaiveld)
+    precipitation: 
+    - epoch: 0
+      start: 19740101
+      end: 19841231
+      instrument: elektrische regenmeter type LMD (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 1
+      start: 19850101
+      end: 19881030
+      instrument: pluviograaf (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 2
+      start: 19881101
+      end: 19930808
+      instrument: elektrische meting (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld) tbv AMIS
+    - epoch: 3
+      start: 19930809
+      end: heden
+      instrument: elektrische meting (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    pressure: 
+    - epoch: 0
+      start: 19561001
+      end: 19641231
+      instrument: barograaf en kwikbarometer
+    - epoch: 1
+      start: 19650101
+      end: 19771024
+      instrument: barograaf en kwikbarometer; vanaf nieuwe lokatie
+    - epoch: 2
+      start: 19771025
+      end: 19881030
+      instrument: barograaf en digitale an.barometer
+    - epoch: 3
+      start: 19881101
+      end: 19930808
+      instrument: barograaf en digitale an.barometer tbv AMIS
+    - epoch: 4
+      start: 19930809
+      end: heden
+      instrument: elektrische meting; verplaatsing waarnemingsterrein 19971015 naar windmast 24
+    wind: 
+    - epoch: 0
+      start: 19710101
+      end: 19881030
+      instrument: cup anemometer met frequentiemeter en elek. windvaan; Nieaf recorder; verplaatsing 19710824. Meethoogte 10 meter.
+    - epoch: 1
+      start: 19881101
+      end: 19930808
+      instrument: cup anemometer met frequentiemeter en elek. windvaan; Nieaf recorder tbv AMIS. Meethoogte 10 meter.
+    - epoch: 2
+      start: 19930809
+      end: heden
+      instrument: idem; AWS (digitale registratie); verplaatsing 19971001 (lokatie 06) en 19980107 (lokatie 24). Meethoogte 10 meter.
+- id: 348
+  lng: 4.927
+  lat: 51.972
+  elevation: -0.70
+  name: Cabauw
+  photo: http://www.knmi.nl/klimatologie/metadata/348_cabauw_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_348.gif
+  web: http://www.knmi.nl/klimatologie/metadata/cabauw.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19970101
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut op 1,50 meter
+    precipitation: 
+    - epoch: 0
+      start: 19970101
+      end: 20020715
+      instrument: Elektrische meting in engelse opstelling
+    - epoch: 1
+      start: 20020715
+      end: heden
+      instrument: Elektrische meting in Ott opstelling
+    pressure: 
+    - epoch: 0
+      start: 19970101
+      end: heden
+      instrument: Paroscientific barometer in kast aan windmast
+    wind: 
+    - epoch: 0
+      start: 19970101
+      end: heden
+      instrument: Cup-anemometer en vaan AWS (digitale registratie) meethoogte 10 meter
+- id: 350
+  lng: 4.933
+  lat: 51.568
+  elevation: 11.10
+  name: Gilze-rijen
+  photo: 
+  map: 
+  web: 
+- id: 356
+  lng: 5.145
+  lat: 51.858
+  elevation: 0.90
+  name: Herwijnen
+  photo: http://www.knmi.nl/klimatologie/metadata/356_herwijnen_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_356.gif
+  web: http://www.knmi.nl/klimatologie/metadata/herwijnen.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut(op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 19940101
+      end: heden
+      instrument: Elektrische meting (engelse opstelling)
+    wind: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: Cup-anemometer, AWS (digitale registratie) meethoogte 10 meter
+- id: 370
+  lng: 5.414
+  lat: 51.446
+  elevation: 20.30
+  name: Eindhoven
+  photo: http://www.knmi.nl/klimatologie/metadata/370_eindhoven_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_370.gif
+  web: http://www.knmi.nl/klimatologie/metadata/eindhoven.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19510101
+      end: 19580912
+      instrument: thermograaf in Stevensonhut (op 2,20 meter boven maaiveld)
+    - epoch: 1
+      start: 19580912
+      end: 19840621
+      instrument: thermograaf in Stevensonhut (op 1,50 meter boven maaiveld), nieuw waarneemterrein 100 m naar het zuiden verplaatst.
+    - epoch: 2
+      start: 19840622
+      end: 19920915
+      instrument: weerstandsmeting in Stevensonhut Brown recorder (op 1,50 meter boven maaiveld)
+    - epoch: 3
+      start: 19921001
+      end: heden
+      instrument: AWS, elektrische sensoren in schotelhut (op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 19710101
+      end: 19921001
+      instrument: pluviograaf (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 1
+      start: 19921001
+      end: heden
+      instrument: elektrische meting
+    pressure: 
+    - epoch: 0
+      start: 19510101
+      end: 19930627
+      instrument: barograaf en kwikbarometer
+    - epoch: 1
+      start: 19930628- heden
+      end: 
+      instrument: elektrische meting
+    wind: 
+    - epoch: 0
+      start: 19510101
+      end: 19581017
+      instrument: dynamo-anemometer KLU, geen recorder, werd uurlijks afgelezen (mA-meters). Opgesteld op schoorsteen stationsgebouw ca. 12 m.
+    - epoch: 1
+      start: 19581017
+      end: 19840621
+      instrument: cup anemeometer; met Van Doorn recorder. nieuwe mast geplaatst op ca 200 m. van de meteo. Meethoogte 10 m.
+    - epoch: 2
+      start: 19840621
+      end: 19920906
+      instrument: idem; Camille Bauer recorder. Meethoogte 10 m.
+    - epoch: 3
+      start: 19920906
+      end: heden
+      instrument: idem; AWS (digitale registratie). Meethoogte 10 m.
+- id: 375
+  lng: 5.706
+  lat: 51.657
+  elevation: 21.10
+  name: Volkel
+  photo: http://www.knmi.nl/klimatologie/metadata/375_volkel_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_375.gif
+  web: http://www.knmi.nl/klimatologie/metadata/volkel.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19510301
+      end: 19710301
+      instrument: Thermometers in hut
+    - epoch: 1
+      start: 19710301
+      end: 19921101
+      instrument: Weerstandsmeting in hut
+    - epoch: 2
+      start: 19921101
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut op 1,50 meter
+    precipitation: 
+    - epoch: 0
+      start: 19710101
+      end: 19740601
+      instrument: Regenmeter
+    - epoch: 1
+      start: 19740601
+      end: 19921101
+      instrument: Elektrische regenmeter
+    - epoch: 2
+      start: 19921101
+      end: heden
+      instrument: Elektrische meting in engelse opstelling
+    pressure: 
+    - epoch: 0
+      start: 19510301
+      end: 19921101
+      instrument: Barograaf en kwikbarometer
+    - epoch: 1
+      start: 19921101
+      end: heden
+      instrument: Paroscientific barometer in kast aan 10 meter windmast
+    wind: 
+    - epoch: 0
+      start: 195100301
+      end: 19611208
+      instrument: Vaan en anemometer met aflezing
+    - epoch: 1
+      start: 19611208
+      end: 19921101
+      instrument: Vaan en anemometer met registratie
+    - epoch: 2
+      start: 19921101
+      end: heden
+      instrument: Cup-anemometer en vaan AWS (digitale registratie) meethoogte 10 meter
+- id: 377
+  lng: 5.764
+  lat: 51.197
+  elevation: 30.00
+  name: Ell
+  photo: http://www.knmi.nl/klimatologie/metadata/377_ell_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_377.gif
+  web: http://www.knmi.nl/klimatologie/metadata/ell.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19990715
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut op 1,50 meter
+    precipitation: 
+    - epoch: 0
+      start: 19990715
+      end: heden
+      instrument: Elektrische meting in engelse opstelling
+    wind: 
+    - epoch: 0
+      start: 19990715
+      end: heden
+      instrument: Cup-anemometer en vaan AWS (digitale registratie) meethoogte 10 meter
+- id: 380
+  lng: 5.768
+  lat: 50.910
+  elevation: 114.00
+  name: Maastricht
+  photo: http://www.knmi.nl/klimatologie/metadata/380_maastricht_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_380.gif
+  web: http://www.knmi.nl/klimatologie/metadata/maastricht.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19060101
+      end: 19451130
+      instrument: thermograaf in Stevensonhut (op 20,10 meter boven maaiveld)
+    - epoch: 1
+      start: 19451201
+      end: 19610413
+      instrument: thermograaf in Stevensonhut (op 2,20 meter boven maaiveld)
+    - epoch: 2
+      start: 19610414
+      end: 19760131
+      instrument: thermograaf in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 3
+      start: 19760201
+      end: 19910228
+      instrument: weerstandsmeting in Stevensonhut (op 1,50 meter boven maaiveld)
+    - epoch: 4
+      start: 19910301
+      end: heden
+      instrument: elektrische sensoren in schotelhut (op 1,50 meter boven maaiveld)
+    precipitation: 
+    - epoch: 0
+      start: 19570101
+      end: 19660630
+      instrument: pluviograaf (vangoppervlak 4 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 1
+      start: 19760701
+      end: 19910228
+      instrument: pluviograaf (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    - epoch: 2
+      start: 19910301
+      end: heden
+      instrument: elektrische meting (vangoppervlak 2 dm2 op 0,40 meter boven maaiveld)
+    pressure: 
+    - epoch: 0
+      start: 19060101
+      end: 19800708
+      instrument: barograaf en kwikbarometer
+    - epoch: 1
+      start: 19800709
+      end: 19910228
+      instrument: barograaf en digitale anero\xEFde barometer
+    - epoch: 2
+      start: 19910301
+      end: heden
+      instrument: elektrische meting
+    wind: 
+    - epoch: 0
+      start: 19060101
+      end: 19160630
+      instrument: Dines op betonnen bordes op dak HBS (20,0 m); windrichting anemograaf Sass en Co systeem Steffens. Meethoogte 32,0 m.
+    - epoch: 1
+      start: 19160701
+      end: 19241231
+      instrument: idem; windsnelheid bleek belangrijk te laag (jaarboek 1926). Meethoogte 32,0 m.
+    - epoch: 2
+      start: 19240101
+      end: 19500815
+      instrument: idem
+    - epoch: 3
+      start: 19500816
+      end: 19610731
+      instrument: Dines op verkeerstoren (Beek van 9,0 m). Meethoogte 12,5 m.
+    - epoch: 4
+      start: 19610801
+      end: 19880715
+      instrument: cup anemometer met frequentiemeter en elektrische windvaan; Nieaf recorder; kleine verplaatsingen op 19850529 en 19880420. Meethoogte 10,0 m.
+    - epoch: 5
+      start: 19880716
+      end: 19911107
+      instrument: idem; Camille Bauer recorder. Meethoogte 10,0 m.
+    - epoch: 6
+      start: 19911107
+      end: heden
+      instrument: idem; AWS (digitale registratie). Meethoogte 10,0 m.
+- id: 391
+  lng: 6.196
+  lat: 51.498
+  elevation: 19.00
+  name: Arcen
+  photo: http://www.knmi.nl/klimatologie/metadata/391_arcen_big.jpg
+  map: http://www.knmi.nl/klimatologie/metadata/stn_391.gif
+  web: http://www.knmi.nl/klimatologie/metadata/arcen.html
+  instrumentation: 
+    temperature: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: AWS, elektronische sensoren in schotelhut(op 1,50 meter)
+    precipitation: 
+    - epoch: 0
+      start: 19920226
+      end: heden
+      instrument: Elektrische meting (engelse opstelling)
+    wind: 
+    - epoch: 0
+      start: 19910101
+      end: heden
+      instrument: Cup-anemometer, AWS (digitale registratie) meethoogte 10 meter

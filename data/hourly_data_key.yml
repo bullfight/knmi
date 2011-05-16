@@ -1,0 +1,158 @@
+--- 
+- parameter: YYYYMMDD
+  category: 
+  description: Time Stamp
+  validate: 
+  conversion: |-
+   Time.utc(
+     year = n.to_s[(0..3)],
+     month = n.to_s[(4..5)],
+     day = n.to_s[(6..7)]
+   )
+  units: Time
+- parameter: HH
+  category: 
+  description: Hour
+  validate: (1..24).include?(n)
+  conversion: 
+  units: hour
+- parameter: DD
+  category: WIND
+  description: Mean Wind Direction During the 10-Minute Period Preceding the Time of Observation
+  validate: (0..360).to_a.push(990).include?(n)
+  conversion: 
+  units: Polar Coordinates (360=north, 90=east, 180=south, 270=west,0=calm, 990=variable)
+- parameter: FH
+  category: WIND
+  description: Hourly Mean Wind Speed
+  validate: n.integer?
+  conversion: n / 10
+  units: m/s
+- parameter: FF
+  category: WIND
+  description: Mean Wind Speed
+  validate: n.integer?
+  conversion: n / 10
+  units: m/s
+- parameter: FX
+  category: WIND
+  description: Maximum Wind Gust
+  validate: n.integer?
+  conversion: n / 10
+  units: m/s
+- parameter: T
+  category: TEMP
+  description: Air Temperature at 1.5 m
+  validate: n.integer?
+  conversion: n / 10
+  units: C
+- parameter: T10N
+  category: TEMP
+  description: Minimum Air Temperature at 10 cm in the Preceding 6 Hours
+  validate: n.integer?
+  conversion: n / 10
+  units: C
+- parameter: TD
+  category: TEMP
+  description: Dew Point Temperature
+  validate: n.integer?
+  conversion: n / 10
+  units: C
+- parameter: SQ
+  category: RDTN
+  description: Sunshine Duration
+  validate: (-1..240).include?(n)
+  conversion: "n == -1 ? 0.05 : (n / 10) * 60"
+  units: minutes
+- parameter: Q
+  category: RDTN
+  description: Golbal Radiation
+  validate: n.integer?
+  conversion: 
+  units: J/cm^2
+- parameter: DR
+  category: PRCP
+  description: Precipitation Duration
+  validate: (0..240).include?(n)
+  conversion:  (n / 10) * 60
+  units: minutes
+- parameter: RH
+  category: PRCP
+  description: Precipitation
+  validate: n.integer?
+  conversion: n / 10
+  units: mm
+- parameter: P
+  category: ATMS
+  description: Air Pressure
+  validate: n.integer?
+  conversion: n / 10
+  units: hPa
+- parameter: VV
+  category: VISB
+  description: Visibility
+  validate: 
+  conversion: |-
+   if n == 0 
+     '< 100 meters'
+   elsif (1..49).include?(n)
+     (n * 100).to_s + '-' + ((n+1) * 100).to_s + ' meters'
+   elsif n == 50
+     '5-6 kilometers'
+   elsif (56..79).include?(n)
+     (n - 50).to_s + '-' + (n - 49).to_s + ' kilometers'
+   elsif (80..88).include?(n)
+     (n - 50).to_s + '-' + (n - 45).to_s + ' kilometers'
+   elsif n == 89
+     '> 70 kilometers'
+   end
+  units: 
+- parameter: N
+  category: VISB
+  description: Cloud Cover
+  validate: (0..9).include?(n)
+  conversion: 
+  units: 
+- parameter: U
+  category: ATMS
+  description: Relative Humidity
+  validate: (0..100).include?(n)
+  conversion: 
+  units: %
+- parameter: M
+  category: WTHR
+  description: Fog
+  validate: (0..1).include?(n)
+  conversion: 
+  units: boolean
+- parameter: R
+  category: WTHR
+  description: Rainfall
+  validate: (0..1).include?(n)
+  conversion: 
+  units: boolean
+- parameter: S
+  category: WTHR
+  description: Snow
+  validate: (0..1).include?(n)
+  conversion: 
+  units: boolean
+- parameter: O
+  category: WTHR
+  description: Thunder
+  validate: (0..1).include?(n)
+  conversion: 
+  units: boolean
+- parameter: Y
+  category: WTHR
+  description: Ice
+  validate: (0..1).include?(n)
+  conversion: 
+  units: boolean
+- parameter: WW
+  category: WTHR
+  description: Weather Code
+  validate: (0..99).include?(n)
+  conversion: 
+  units: code
+  
