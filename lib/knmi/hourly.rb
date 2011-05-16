@@ -56,11 +56,17 @@ module KNMI
     # Unit of converted format
     attr_reader :units 
     
+    # Time Period
+    attr_reader :period
+    
+    
     def initialize(properties)
       @parameter, @category, @description, @validate, @conversion, @units = %w(parameter category description validate conversion units).map do |p|
         properties[p]
       end
-    end
+      
+      @period = "hourly"
+    end    
     
   end
 end

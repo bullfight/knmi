@@ -13,9 +13,10 @@ module KNMI
           daily.find { |daily| daily.parameter == parameter }
         elsif parameter.kind_of?(Array)
           list = []
-          parameter.each do |p|
+          parameter.uniq.each do |p|
             list << daily.find { |daily| daily.parameter == p }
           end
+          return list
         end
       end     
       
@@ -26,14 +27,15 @@ module KNMI
       # KNMI.Daily.category("WIND") #=> [#<Daily:0x00000100b433f8 @parameter="SQ", @category="RADT", @description="Sunshine Duration", @validate="(-1..6).include?(n)", @conversion="n == -1 ? 0.05 : (n / 10) * 60", @units="minutes">, #<Daily:0x00000100b43290 @parameter="SP", @category="RADT", @description="Percent of Maximum Sunshine Duration", @validate="(0..100).include?(n)", @conversion=nil, @units="%">, #<Daily:0x00000100b43128 @parameter="Q", @category="RADT", @description="Global Radiation", @validate="n.integer?", @conversion=nil, @units="J/cm^2">]
       # KNMI.Daily.category(["WIND", "TEMP"]) 
       def category(category)
-        if category.kind_of(String)
+        if category.kind_of?(String)
           daily.select { |daily| daily.category == category }
-        elsif category.kind_of(Array)
+        elsif category.kind_of?(Array)
           list = []
-          category.each do |c|
+          category.uniq.each do |c|
             list << daily.select { |daily| daily.category == c }
             list.flatten!            
           end
+          return list
         end            
       end
       
@@ -76,11 +78,18 @@ module KNMI
     # Unit of converted format
     attr_reader :units 
     
+    # Time Period
+    attr_reader :period
+    
     def initialize(properties)
       @parameter, @category, @description, @validate, @conversion, @units = %w(parameter category description validate conversion units).map do |p|
         properties[p]
       end
+      
+      @period = "daily"
     end
+    
+    
     
   end
 end

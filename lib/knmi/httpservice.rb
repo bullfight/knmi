@@ -3,6 +3,8 @@ module KNMI
   class HttpService 
     include HTTParty
     
+    class << self
+    
     #
     # Returns query string used in HTTP get request
     # KNMI::HttpService.get_daily(210) #=> @ query =>[ "stns=210", "vars=ALL", "start=2011051500", "end=2011051613"]
@@ -12,17 +14,13 @@ module KNMI
     # Returns result of HTTP get request
     # This is a text file with station and variable metadata as well as a csv of recorded values
     
-    ## Example Response
-    ## DEZE GEGEVENS MOGEN VRIJ WORDEN GEBRUIKT MITS DE VOLGENDE BRONVERMELDING WORDT GEGEVEN:
-    ## KONINKLIJK NEDERLANDS METEOROLOGISCH INSTITUUT (KNMI)
-    ##
+    # Example Response
+    
     ## THESE DATA CAN BE USED FREELY PROVIDED THAT THE FOLLOWING SOURCE IS ACKNOWLEDGED:
     ## ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
     ##
     ## STN          LON         LAT       ALT  NAME
-    ## 235:        4.79       52.92         5  DE KOOY
-    ## 280:        6.59       53.13        35  EELDE
-    ## 260:        5.18       52.10        20  DE BILT
+    ## 235:        4.79       52.92         5  DE KOOY    
     ##
     ## VVN   = Minimum opgetreden zicht / minimum visibility ...
     ## VVX   = Maximum opgetreden zicht / maximum visibility ...
@@ -38,21 +36,20 @@ module KNMI
     #  235,19700103,   60,   70,    5,    2,    5,    3    
     attr_reader :result
         
-    def self.get_daily(station_object, parameter_object = "", start_at = "", end_at = "", seasonal = false)
+    def get_daily(station_object, parameter_object = "", start_at = "", end_at = "", seasonal = false)
       @query = [station(station_object),  parameters(parameter_object), 
                start_date(start_at)[0..13], end_date(end_at)[0..11],  # select YYYYMMDD (drops hour term)
                seasonal(seasonal)].compact
       @result = get('http://www.knmi.nl/climatology/daily_data/getdata_day.cgi', { :query => "#{query * "&"}" } )
     end
   
-    def self.get_hourly(station_number, params = "", start_at = "", end_at = "", seasonal = false)
+    def get_hourly(station_number, params = "", start_at = "", end_at = "", seasonal = false)
       @query = [station(station_number),  parameters(params), 
                start_date(start_at), end_date(end_at), 
                seasonal(seasonal)].compact
       @result = get('http://www.knmi.nl/klimatologie/uurgegevens/getdata_uur.cgi', { :query => "#{query * "&"}" } )
     end
-    
-    class << self
+        
       private :new
     
       # Generates string for station 
