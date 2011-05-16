@@ -66,7 +66,7 @@ module KNMI
     # Station ID (e.g., 210)
     attr_reader :id
 
-    # Station name (e.g., "New York City, Central Park")
+    # Station name (e.g., "Valkenburg")
     attr_reader :name
     
     # Station Elevation

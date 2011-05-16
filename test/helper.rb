@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'bundler'
+require 'pry'
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
@@ -8,7 +9,6 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 require 'test/unit'
-require 'shoulda'
 require 'shoulda-context'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
@@ -16,6 +16,6 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'knmi'
 
 module KNMI
-  class Test::Unit::TestCase
+  class TestCase < Test::Unit::TestCase
   end
 end

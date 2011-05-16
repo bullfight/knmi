@@ -1,20 +1,41 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    coderay (0.9.8)
+    crack (0.1.8)
+    geokit (1.5.0)
     git (1.2.5)
+    httparty (0.7.7)
+      crack (= 0.1.8)
     jeweler (1.5.2)
       bundler (~> 1.0.0)
       git (>= 1.2.5)
       rake
+    method_source (0.4.1)
+      ruby_parser (>= 2.0.5)
+    pry (0.8.3)
+      coderay (>= 0.9.7)
+      method_source (>= 0.4.0)
+      ruby_parser (>= 2.0.5)
+      slop (>= 1.5.3)
     rake (0.8.7)
     rcov (0.9.9)
+    ruby_parser (2.0.6)
+      sexp_processor (~> 3.0)
+    sexp_processor (3.0.5)
     shoulda (2.11.3)
+    shoulda-context (1.0.0.beta1)
+    slop (1.5.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bundler (~> 1.0.0)
+  geokit (~> 1.5.0)
+  httparty (~> 0.7.7)
   jeweler (~> 1.5.2)
+  pry (~> 0.8.3)
   rcov
-  shoulda
+  shoulda (~> 2.11.3)
+  shoulda-context (~> 1.0.0.beta1)
