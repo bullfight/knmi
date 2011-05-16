@@ -66,7 +66,12 @@ module KNMI
       end
       
       @period = "hourly"
-    end    
+    end
+    
+    def detail
+      {:parameter => @parameter, :category => @category, :description => @description, :validate => @validate, :conversion => @conversion. :units => @units}
+    end
+    
     
   end
 end

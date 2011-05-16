@@ -37,10 +37,12 @@ module KNMI
       header = data.shift.map {|i| i.to_s.intern }
       string_data = data.map {|row| row.map {|cell| cell.to_s } }
       data = string_data.map {|row| Hash[*header.zip(row).flatten] }
-
-      return data
+      
+      # Parameter object array to hash
+      p = []
+      parameter_object.each {|e| p << e.detail }
+            
+      return {:station => station_object.detail, :parameters => p, :data => data}
     end
-                    
-    end    
   end
 end

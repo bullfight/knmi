@@ -105,5 +105,9 @@ module KNMI
     end
     alias_method :lng, :longitude
     alias_method :lon, :longitude
+    
+    def detail
+      {:id => @id, :name => @name, :elev => @elevation, :lat => latitude, :lng => longitude}    
+    end
   end
 end

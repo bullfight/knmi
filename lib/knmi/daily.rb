@@ -86,10 +86,10 @@ module KNMI
         properties[p]
       end
       
-      @period = "daily"
     end
     
-    
-    
+    def detail
+      {:parameter => @parameter, :category => @category, :description => @description, :validate => @validate, :conversion => @conversion. :units => @units}
+    end
   end
 end

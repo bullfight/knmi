@@ -82,7 +82,9 @@ module KNMI
       end
     end
     
-    def parse_data(station_object, parameter_object, data)
+    #
+    # Parse data response to json
+    def json(station_object, parameter_object, data)
       Parse.json(station_object, parameter_object, data)
     end
     
