@@ -8,7 +8,7 @@ rescue LoadError => e
   end
 end
 
-%w(station hourly daily httpservice).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
+%w(station hourly daily httpservice parse).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
 
 module KNMI
 
@@ -82,6 +82,9 @@ module KNMI
       end
     end
     
+    def parse_data(station_object, parameter_object, data)
+      Parse.json(station_object, parameter_object, data)
+    end
     
     private
     
