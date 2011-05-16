@@ -3,21 +3,41 @@ module KNMI
     class << self
       attr_writer :daily_key
       
-      # Retrieve information about Parameter
+      #
+      # Retrieve information about Parameter can be string or array
       #
       # KNMI::Daily.find("TA")  #=> KNMI::Station object for TG (Daily Max temperature)
+      # KNMI::Daily.find(["TG", "TX"])  #=> KNMI::Daily array of objects TG (Daily Mean temperature) and TX (Daily Max Temperature)
       def find(parameter)
-        daily.find { |daily| daily.parameter == parameter }
-      end
+        if parameter.kind_of?(String)
+          daily.find { |daily| daily.parameter == parameter }
+        elsif parameter.kind_of?(Array)
+          list = []
+          parameter.each do |p|
+            list << daily.find { |daily| daily.parameter == p }
+          end
+        end
+      end     
       
+      #
       # Retrieve each parameter within a category
       # an Array of structs
       #
       # KNMI.Daily.category("WIND") #=> [#<Daily:0x00000100b433f8 @parameter="SQ", @category="RADT", @description="Sunshine Duration", @validate="(-1..6).include?(n)", @conversion="n == -1 ? 0.05 : (n / 10) * 60", @units="minutes">, #<Daily:0x00000100b43290 @parameter="SP", @category="RADT", @description="Percent of Maximum Sunshine Duration", @validate="(0..100).include?(n)", @conversion=nil, @units="%">, #<Daily:0x00000100b43128 @parameter="Q", @category="RADT", @description="Global Radiation", @validate="n.integer?", @conversion=nil, @units="J/cm^2">]
+      # KNMI.Daily.category(["WIND", "TEMP"]) 
       def category(category)
-        daily.select { |daily| daily.category == category }
+        if category.kind_of(String)
+          daily.select { |daily| daily.category == category }
+        elsif category.kind_of(Array)
+          list = []
+          category.each do |c|
+            list << daily.select { |daily| daily.category == c }
+            list.flatten!            
+          end
+        end            
       end
       
+      #
       # Retrieve all Parameters
       # an Array of structs
       def all

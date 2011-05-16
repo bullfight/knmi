@@ -8,7 +8,7 @@ rescue LoadError => e
   end
 end
 
-%w(station hourly daily).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
+%w(station hourly daily httpservice).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
 
 module KNMI
 
@@ -18,7 +18,16 @@ module KNMI
     end
     
     def station_by_id(station_id)
-      Station.find(station_id)
+      Station.select(station_id)
     end
+    
+    def daily_parameters(params = "", categories = "")
+      if params.blank? and categories.blank?
+        Daily.all
+      else      
+        Daily.find(params)
+        Daily.category(categories)
+    end
+    
   end
 end
