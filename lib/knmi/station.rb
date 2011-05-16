@@ -1,211 +1,109 @@
-class KNMI
-  include HTTParty
-  base_uri 'http://www.knmi.nl/climatology/daily_data/getdata_day.cgi'
-    
-  class << self
-    private :new
-    
-    # station1:station2:station15 requires station or list of stations NO DEFAULT
-    def station(station_number) 
-      if station_number.nil? == true
-        raise "Station Number Required" # doesn't work look into this
-      elsif station_number.kind_of?(Array)
-        "stns=#{station_number * ":"}"
-      else
-        "stns=#{station_number}"
+module KNMI
+  class Station
+    class <<self
+      attr_writer :stations_file #:nodoc:
+
+      #
+      # Retrieve information about a station given a station ID
+      #
+      #   KNMI::Station.find(210)  #=> KNMI::Station object for Valkenburg
+      def find(id)
+        stations.find { |station| station.id == id }
+      end
+
+      # 
+      # Find the station closest to a given location. Can accept arguments in any of the following
+      # three forms (all are equivalent):
+      #
+      #   KNMI::Station.closest_to(52.165, 4.419)
+      #   KNMI::Station.closest_to([52.165, 4.419])
+      #   KNMI::Station.closest_to(GeoKit::LatLng.new(52.165, 4.419))
+      def closest_to(*args)
+        if args.length == 1
+          if args.first.respond_to?(:distance_to)
+            closest_to_coordinates(args.first)
+          elsif %w(first last).all? { |m| args.first.respond_to?(m) }
+            closest_to_lat_lng(args.first)
+          else
+            raise ArgumentError, "expected two-element Array or GeoKit::LatLng"
+          end
+        elsif args.length == 2
+          closest_to_lat_lng(args)
+        else
+          raise ArgumentError, "closest_to() will accept one Array argument, one GeoKit::LatLng argument, or two FixNum arguments"
+        end
+      end
+
+      private
+
+      def closest_to_lat_lng(pair)
+        closest_to_coordinates(GeoKit::LatLng.new(pair.first, pair.last))
+      end
+
+      def closest_to_coordinates(coordinates)
+        stations.map do |station|
+          [coordinates.distance_to(station.coordinates), station]
+        end.min do |p1, p2|
+          p1.first <=> p2.first # compare distance
+        end[1]
+      end
+
+      def stations
+        File.open(stations_file) do |file|
+          yaml = YAML.load(file) || raise("Can't parse #{file.path} - be sure to run noaa-update-stations")
+          yaml.map { |station_hash| new(station_hash) }
+        end
+      end
+
+      def stations_file
+        @stations_file ||= File.join(File.dirname(__FILE__), '..', '..', 'data', 'current_stations.yml')
       end
     end
-    
-    def check_stations
-      # stubbed out complete later
-    end
-    
-    # YYYYMMDD Default is first day of current month
-    def start_date(_start)
-      "start=#{_start}"
-    end
-    
-    # YYYYMMDD Default is current or last recorded day
-    def end_date(_end)
-      "end=#{_end}"
-    end
 
-    def variables(vars)
-            
-      if vars.empty? == true
-        "vars=ALL"
-      else      
-        vars, nvars = check_variables(vars)
-        "vars=#{vars * ":"}"        
-      end    
-    end
-  
-	  # Delete Invalid Variables and keep those valid, if none are valid replace with all
-    def check_variables(vars)
+    # GeoKit::LatLng containing the station's coordinates
+    attr_reader :coordinates
 
-      if vars.kind_of?(Array) == false 
-        vars = [vars]
+    # Station ID (e.g., 210)
+    attr_reader :id
+
+    # Station name (e.g., "New York City, Central Park")
+    attr_reader :name
+    
+    # Station Elevation
+    attr_reader :elevation
+    alias_method :elev, :elevation
+    alias_method :altitude, :elevation
+    alias_method :alt, :elevation
+    
+    # Link to Station Photo
+    attr_reader :photo
+    
+    # Link to map of station location
+    attr_reader :map
+    
+    # Link to Metadata page listing
+    attr_reader :web
+    
+    attr_reader :instrumentation
+
+    def initialize(properties)
+      @id, @name, @elevation, @photo, @map, @web, @instrumentation = %w(id name elevation photo map web instrumentation).map do |p|
+        properties[p]
       end
-  
-      # Collections of variables and all Possible Variables
-      varOpts = {
-        "WIND" => ["DDVEC", "FG", "FHX", "FHX", "FXX"], 
-        "TEMP" => ["TG", "TN", "TX", "T10N"], 
-        "SUNR" => ["SQ", "SP", "Q"],
-        "PRCP" => ["DR", "RH", "EV24"],
-        "PRES" => ["PG", "PGX", "PGN"],
-        "VICL" => ["VVN", "VVX", "NG"],
-        "MSTR" => ["VVN", "VVX", "NG"],
-        "ALL"  => ["DDVEC", "FHVEC", "FG", "FHX", 
-                   "FHXH", "FHN", "FHNH", "FXX", "FXXH", "TG", "TN", 
-                   "TNH", "TX", "TXH", "T10N", "T10NH", "SQ", "SP", 
-                   "Q", "DR", "RH", "RHX", "RHXH", "EV24", "PG", "PX", 
-                   "PXH", "PN", "PNH", "VVN", "VVNH", "VVX", "VVXH", 
-                   "NG", "UG", "UX", "UXH", "UN", "UNH"]
-      }
-
-        # Drop in invalid vars
-       vars = ( vars & varOpts.to_a.flatten )
-
-       # Only Allow Variable to be selected once, All, or TEMP, not ALL & TEMP
-       # And count the number of selected variables
-    	if vars.include?("ALL") == true or vars.empty? == true
-	      vars = "ALL"
-	      nvars = varOpts["ALL"].count
-    	elsif (vars & varOpts.keys) # check if contains keys
-
-	      x = []
-	      (vars & varOpts.keys).each do |k|
-	        x << varOpts.values_at(k)
-	      end
-	      vars = (vars - x.flatten)
-
-	      nvars = 0
-	      ( vars & varOpts.keys ).each do |v|
-	        nvars += varOpts[v].count
-	      end
-
-	      ( vars - varOpts.keys ).each do |v|
-	        nvars += 1
-	      end      
-    	end
-
-      return vars, nvars
+      @coordinates = GeoKit::LatLng.new(properties['lat'], properties['lng'])
     end
     
-    # Parse Response into hashed arrays
-    #Other elements
-    #varlist = res[(7+nstn)..(6 + nstn + nvars)]
-    #colheader = res[(8 + nstn + nvars)]
-    #header = res[0..(9 + nstn + nvars)]
-    def parse_data(response, station_number, vars)
-      # Line Index Numbers
-      nstn = [station_number].flatten.length
-      vars, nvars = check_variables(vars)
-      
-      # Split lines into array
-      response = response.split(/\n/)
-
-      # Get Station Details
-      stations = response[5..(4+nstn)]
-      stations = stations.join.tr("\t", "\s")
-      stations = stations.tr("#", "")
-      stations = stations.tr(":", "")
-      stations = CSV.parse( stations, {:col_sep => "\s"} )
-      stations = stations.map {|row| row.map {|cell| cell.to_s } }
-      st_header = [:station_code, :lng, :lat, :elev, :name]
-      stations = stations.map {|row| Hash[*st_header.zip(row).flatten] }
-
-      # Get Variable Details
-      varlist = response[(7+nstn)..(6 + nstn + nvars)]
-      varlist = varlist.join
-      varlist = varlist.gsub(/# /, "")
-      varlist = varlist.gsub(/\s{2,}/, "")
-      varlist = varlist.gsub(/;/, "\r")
-      varlist = CSV.parse( varlist, {:col_sep => "= "} )
-      vr_header = [:var, :description]
-      varlist = varlist.map {|row| Hash[*vr_header.zip(row).flatten] }
-
-      # Get and clean data
-      response = response[(8 + nstn + nvars)..response.length]
-      response[0] = response[0].sub(/\r/, "")
-      response = response.join.tr("\s+", "")
-      response = response.tr("#", "")
-
-      # Parse into array and then hash with var name
-      response = CSV.parse(response, {:skip_blanks => true})
-      header = response.shift.map {|i| i.to_s.intern }
-      string_data = response.map {|row| row.map {|cell| cell.to_s } }
-      data = string_data.map {|row| Hash[*header.zip(row).flatten] }
-
-      return {:stations => stations, :variables => varlist, :data => data}
+    # Latitude of station
+    def latitude
+      @coordinates.lat
     end
-  end # End Private
-  
-  def initialize(station_number, vars = "")
-    #@vars, @nvars = check_variables(vars)
-    #@station_number = [station_number].flatten
-    @station_number = station_number
-    @vars = vars
-  end
-   
-  def parse
-    parse_data(@response, @station_number, @vars)
-  end
-   
-  # gets variables from station or list of stations
-  # with all variables if vars is empty or selected variables passed as an array
-  # data is from begining of current month to current day
-  # Example
-  # station_number = [210, 212]
-  # vars = "TG"
-  # res = KNMIdaily.get_station( station_number, vars )
-  # output {:stations => {:}}
-  def get_station
-    query = station(@station_number) + "&" + variables(@vars)
-    puts query 
-    @response = get("", { :query => query } )
-  end
-  
-  # gets variables from station or list of stations
-  # with all variables if vars is empty or selected variables passed as an array
-  # data is from start date to current
-  def self.get_station_start_to_current(station_number, start, vars = "")
-    query = station(station_number) + "&" + start_date(start) + "&" + variables(vars)
-    puts query
-    res = get("", { :query => query } )
-    res = {:station_number => station_number, :vars => vars, :output => res}
-  end
-  
-  # gets variables from station or list of stations
-  # with all variables if vars is empty or selected variables passed as an array
-  # data is from start date to end date
-  def self.get_station_range(station_number, _start, _end, vars = "")
-    query = station(station_number) + "&" + start_date(_start) + "&" + end_date(_end) + "&" + variables(vars)
-    puts query
-    res = get("", { :query => query } )
-    res = {:station_number => station_number, :vars => vars, :output => res}
-  end
-  
-  # gets variables from station or list of stations
-  # with all variables if vars is empty or selected variables passed as an array
-  # seasonal data is from start date to end date 
-  # by selected month and day within each year
-  def self.get_seasonal(station_number, _start, _end, vars = "")
-    query = station(station_number) + "&" + "inseason=true" + "&" + start_date(_start) + "&" + end_date(_end) + "&" + variables(vars)
-    puts query
-    res = get("", { :query => query } )
-    res = {:station_number => station_number, :vars => vars, :output => res}
-  end
-  
-  def self.to_csv(filename, response)
-    CSV.open(filename, "wb") do |csv|
-      response[:data]
-      csv << response[:data][0].keys
-      response[(1..(response[:data].length - 1))].each do |line|
-        csv << line.values
-      end
-    end
-  end
+    alias_method :lat, :latitude
 
+    # Longitude of station
+    def longitude
+      @coordinates.lng
+    end
+    alias_method :lng, :longitude
+    alias_method :lon, :longitude
+  end
 end

@@ -1,16 +1,24 @@
-require 'httparty'
-require 'csv'
+begin
+  require 'httparty'
+  require 'geokit'
+  require 'csv'
+rescue LoadError => e
+  if require 'rubygems' then retry
+  else raise(e)
+  end
+end
 
-%w(check_variables).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
+%w(station hourly daily).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
 
 module KNMI
 
   class << self
-    def intialize(station_number, vars = "")
-
-      @station_number = station_number
-      @vars = vars
-
+    def station_by_location(lat, lng)
+      Station.closest_to(lat, lng).id
+    end
+    
+    def station_by_id(station_id)
+      Station.find(station_id)
     end
   end
 end

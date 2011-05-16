@@ -12,7 +12,7 @@
 # http://www.knmi.nl/climatology/rainfall_data/getdata_rr.cgi
 
 # YAML maker
-require 'YAML'
+
 require 'CSV'
 
 csv_data = CSV.read "./data/knmi_daily_data_key.csv"
@@ -39,75 +39,114 @@ File.open("./data/knmi_hourly_data_key.yml", 'w') {|f| f.write(yml) }
 # KNMI Station MetaData ################################################
 require 'open-uri'
 require 'nokogiri'
+require 'knmi'
 
 current_stations = [210,225,235,240,242,249,251,257,260,265,267,269,
   270,273,275,277,278,279,280,283,286,290,310,319,323,330,340,
   344,348,350,356,370,375,377,380,391]
   
+xxx = KNMI.get_station(current_stations, "TX")
+File.open("./data/file_cache", 'w') {|f| f.write(xxx) }
 
+file = File.open("./data/file_cache", 'rb') 
+res = file.read
+res = eval(res)
 
-
-res = KNMI.new(235, "TX")
-x= res.parse
-
-stations = res[:stations]
-stations.each do |station|
+# Step through stations
+res[:stations].each do |station|
+  # Add station metadata urls, :web, :photo, :map
   station.merge!({
-    :photo => 'http://www.knmi.nl/klimatologie/metadata/' + station[:station_code] + '_' + station[:name].downcase + '_big.jpg',
-    :map => 'http://www.knmi.nl/klimatologie/metadata/stn_' + station[:name] + '.gif',
-    :web => 'http://www.knmi.nl/klimatologie/metadata/valkenburg' + station[:name].downcase + '.html'
+    :photo => 'http://www.knmi.nl/klimatologie/metadata/' + 
+      station[:id] + '_' + 
+      station[:name].downcase.tr("\s", "") + '_big.jpg',
+    :map => 'http://www.knmi.nl/klimatologie/metadata/stn_' + 
+      station[:id] + '.gif',
+    :web => 'http://www.knmi.nl/klimatologie/metadata/' +   
+      station[:name].downcase.tr("\s", "") + '.html'
   })
-end
-
-
-doc = Nokogiri::HTML(open('http://www.knmi.nl/klimatologie/metadata/' + station.downcase + '.html'))
-
-rows = doc.css('table.onelinetable')
-
-x = [] 
-rows.search('table').each do |row|
-  properties = row.search('text()').collect {|text| text.to_s}
-  x << properties
-end
-
-d = x.flatten.map { |x| x.strip }.delete_if { |x| x.empty? }
-
-ind = []
-['Temperatuurmetingen', 'Neerslagmetingen', 
-  'Luchtdrukmetingen', 'Windmetingen'].each { |e| ind << d.index { |x| x[/#{e}/]}}
-ind << d.index(d[-1])
-
-data = {}
-["temperature", "precipitation", "pressure", "wind"].each_with_index do |m, index|
-  dat = d[(ind[index] + 2)..(ind[index + 1] - 1)]
-  epoch = dat.values_at( * dat.each_index.select { |i| i.even?} )
-  epoch.map! { |e| e.split(" - ") } 
-  instrument = dat.values_at( * dat.each_index.select { |i| i.odd?} )
   
-  ts = []
-  epoch.each_with_index do |e, index|
-    ts << {
-      :epoch => index,
-      :start => e[0],
-      :end => e[1],
-      :instrument => instrument[index]
-    }
+  # Load :web metadata rescue HTTP 404
+  begin
+    doc = Nokogiri::HTML(open( station[:web] ), "ISO-8859-1")
+  rescue StandardError => ex
+    doc = nil
+    station[:web] = nil
+    station[:photo] = nil
+    station[:map] = nil
   end
+
+  # if Document loaded
+  if !doc.nil?
+    rows = doc.css('table.onelinetable') # select table
+
+    # Extract text from from html Table
+    x = [] 
+    rows.search('table').each do |row|
+      properties = row.search('text()').collect {|text| text.to_s}
+      x << properties
+    end
+
+    d = x.flatten.map { |x| x.strip }.delete_if { |x| x.empty? }
+
+    # Identify index of th break up table by section
+    ind = []
+    ['Temperatuurmetingen', 'Neerslagmetingen', 
+     'Luchtdrukmetingen', 'Windmetingen'].each { |e| ind << d.index { |x| x[/#{e}/]}}
+    ind << d.length # add end of array index
+
+    # Use index to grab details
+    station[:instrumentation] = {}
+    ["temperature", "precipitation", "pressure", "wind"].each_with_index do |m, index|
+      dat = d[(ind[index] + 2)..(ind[index + 1]  -1)]
+      epoch = dat.values_at( * dat.each_index.select { |i| i.even?} )
+      epoch.map! { |e| e.split(" - ") } 
+      instrument = dat.values_at( * dat.each_index.select { |i| i.odd?} )
   
-  data.merge!({m.intern => ts})
+      ts = []
+      epoch.each_with_index do |e, index|        
+        ts << {
+          :epoch => index,
+          :start => e[0],
+          :end => e[1],
+          :instrument => !instrument[index].nil? ? instrument[index].split.join(" ") : "missing"
+        }
+      end
+      
+      ts.delete_if do |ep|
+        ep[:start].include?("n.v.t") or 
+        ep[:start].include?("nvt")
+      end
+      
+      if !ts.empty?
+        station[:instrumentation].merge!({m.intern => ts})
+      end
+    end
+  end
 end
 
+x = res[:stations].to_yaml
+File.open("./data/current_stations.txt", 'w') {|f| f.write(x) }
+
+x = YAML::load( File.open( "./../../data/current_stations.yml" ) )
+
+x.find { |s| s[:id] = "348"}
 
 
 
-x = {
-  :epoch => "Present", 
-  :start => epoch.last[0], 
-  :end => "Present", 
-  :instrument => instrument.last
-}
+
+x = YAML::load( File.open( "./../../data/current_stations.yml" ) )
 
 
+
+
+file = YAML::load( File.open( "./../../data/knmi_daily_data_key.yml" ) )
+
+
+
+
+
+
+.tr("/\r\n/","")
 
 
 
@@ -185,7 +224,7 @@ end
 
 
 stations.each do |s|
-  code << s[:station_code]
+  code << s[:id]
   lat << s[:lat]
   lng << s[:lng]
   elev << s[:elev]

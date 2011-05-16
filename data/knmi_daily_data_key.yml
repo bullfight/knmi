@@ -1,194 +1,195 @@
 --- 
-- :Parameter: YYYYMMDD
-  :Category: 
-  :Description: Time Stamp
-  :Validate: 
-  :Conversion: |-
+- Parameter: YYYYMMDD
+  Category: ""
+  Description: Time Stamp
+  Units: YYYYMMDD
+  Valid_Range: ""
+  Conversion: |-
     Time.utc(
       year = n.to_s[(0..3)],
       month = n.to_s[(4..5)],
       day = n.to_s[(6..7)]
     )
-  :Units: Time
-- :Parameter: DDVEC
-  :Category: WIND
-  :Description: Wind Direction
-  :Validate: (0..360).include?(n)
-  :Conversion: n == 0 ? nil : n
-  :Units: Polar Coordinates (360=north, 90=east, 180=south, 270=west, 0=calm/variable)
-- :Parameter: FHVEC
-  :Category: WIND
-  :Description: Vector Mean Wind Speed
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: m/s
-- :Parameter: FG
-  :Category: WIND
-  :Description: Daily Mean Wind Speed
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: m/s
-- :Parameter: FHX
-  :Category: WIND
-  :Description: Maximum Hourly Mean Windspeed
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: m/s
-- :Parameter: FHXH
-  :Category: WIND
-  :Description: Hourly Division  at Which Maximum Wind Speed Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
-- :Parameter: FHN
-  :Category: WIND
-  :Description: Minimum Hourly Mean Windspeed
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: m/s
-- :Parameter: FHNH
-  :Category: WIND
-  :Description: Hourly Division  at Which Minimum Wind Speed Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
-- :Parameter: FXX
-  :Category: WIND
-  :Description: Maximum Instantaneous Wind Speed
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: m/s
-- :Parameter: FXXH
-  :Category: WIND
-  :Description: Hourly Division  at Which Maximum Instantaneous Wind Speed Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
-- :Parameter: TG
-  :Category: TEMP
-  :Description: Daily Mean Temperature
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: C
-- :Parameter: TN
-  :Category: TEMP
-  :Description: Minimum Temperature
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: C
-- :Parameter: TNH
-  :Category: TEMP
-  :Description: Hourly Division in Which Mimimum Temperature Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
-- :Parameter: TX
-  :Category: TEMP
-  :Description: Maximum Temperature
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: C
-- :Parameter: TXH
-  :Category: TEMP
-  :Description: Hourly Division in Which Maximum Temperature Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
-- :Parameter: T10N
-  :Category: TEMP
-  :Description: Minimum Temperature at 10 Cm Above Surface
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: C
-- :Parameter: T10NH
-  :Category: TEMP
-  :Description: Six Hourly Division at Which Minimum Temperature at 10 Cm Above Surface Was Measured
-  :Validate: (6..24).step(6)
-  :Conversion: 
-  :Units: 
-- :Parameter: SQ
-  :Category: RADT
-  :Description: Sunshine Duration
-  :Validate: (-1..6).include?(n)
-  :Conversion: n == -1 ? 0.05 : (n / 10) * 60
-  :Units: minutes
-- :Parameter: SP
-  :Category: RADT
-  :Description: Percent of Maximum Sunshine Duration
-  :Validate: (0..100).include?(n)
-  :Conversion: 
-  :Units: %
-- :Parameter: Q
-  :Category: RADT
-  :Description: Global Radiation
-  :Validate: n.integer?
-  :Conversion: 
-  :Units: J/cm^2
-- :Parameter: DR
-  :Category: PRCP
-  :Description: Precipitation Duration
-  :Validate: (0..6).include?(n)
-  :Conversion: (n / 10) * 60
-  :Units: minutes
-- :Parameter: RH
-  :Category: PRCP
-  :Description: Daily Precipitation
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: mm
-- :Parameter: RHX
-  :Category: PRCP
-  :Description: Maximum Hourly Precipitation
-  :Validate: n.integer?
-  :Conversion: n == -1 ? 0.05 : n / 10
-  :Units: mm
-- :Parameter: RHXH
-  :Category: PRCP
-  :Description: Hourly Division in Which Maximum Hourly Precipitation Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
-- :Parameter: EV24
-  :Category: ATMS
-  :Description: Potential Evapotranspiration
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: mm
-- :Parameter: PG
-  :Category: ATMS
-  :Description: Daily Mean Sea Level Pressure
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: hPa
-- :Parameter: PX
-  :Category: ATMS
-  :Description: Maximum Hourly Sea Level Pressure
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: hPa
-- :Parameter: PXH
-  :Category: ATMS
-  :Description: Hourly Division on Which Maximum Hourly Sea Level Pressure Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
-- :Parameter: PN
-  :Category: ATMS
-  :Description: Minimum Hourly Sea Level Pressure
-  :Validate: n.integer?
-  :Conversion: n / 10
-  :Units: hPa
-- :Parameter: PNH
-  :Category: ATMS
-  :Description: Hourly Division in Which Minimum Hourly Sea Level Pressure Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
-- :Parameter: VVN
-  :Category: VISB
-  :Description: Minimum Visibility
-  :Validate: (0..89).include(n)
-  :Conversion: |-
+- Parameter: DDVEC
+  Category: WIND
+  Description: "Wind Direction"
+  Units: Polar Coordinates (360=north, 90=east, 180=south, 270=west, 0=calm/variable)
+  Valid_Range: (0..360).include?(n)
+  Conversion: "n == 0 ? nil : n"
+- Parameter: FHVEC
+  Category: WIND
+  Description: vector mean wind speed
+  Units: m/s
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: FG
+  Category: WIND
+  Description: daily mean wind speed
+  Units: m/s
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: FHX
+  Category: WIND
+  Description: maximum hourly mean windspeed
+  Units: m/s
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: FHXH
+  Category: WIND
+  Description: Hourly division  at which maximum wind speed was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
+- Parameter: FHN
+  Category: WIND
+  Description: minimum hourly mean windspeed
+  Units: m/s
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: FHNH
+  Category: WIND
+  Description: Hourly division  at which minimum wind speed was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
+- Parameter: FXX
+  Category: WIND
+  Description: maximum instantaneous wind speed
+  Units: m/s
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: FXXH
+  Category: WIND
+  Description: Hourly division  at which maximum instantaneous wind speed was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
+- Parameter: TG
+  Category: TEMP
+  Description: Daily mean temperature
+  Units: C
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: TN
+  Category: TEMP
+  Description: minimum temperature
+  Units: C
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: TNH
+  Category: TEMP
+  Description: Hourly division in which mimimum temperature was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
+- Parameter: TX
+  Category: TEMP
+  Description: maximum temperature
+  Units: C
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: TXH
+  Category: TEMP
+  Description: Hourly division in which maximum temperature was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
+- Parameter: T10N
+  Category: TEMP
+  Description: minimum temperature at 10 cm above surface
+  Units: C
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: T10NH
+  Category: TEMP
+  Description: six hourly division at which minimum temperature at 10 cm above surface was measured
+  Units: ""
+  Valid_Range: (6..24).step(6)
+  Conversion: 
+- Parameter: SQ
+  Category: RADT
+  Description: Sunshine duration
+  Units: minutes
+  Valid_Range: (-1..6).include?(n)
+  Conversion: "n == -1 ? 0.05 : (n / 10) * 60"
+- Parameter: SP
+  Category: RADT
+  Description: Percent of maximum sunshine duration
+  Units: "%"
+  Valid_Range: (0..100).include?(n)
+  Conversion: 
+- Parameter: Q
+  Category: RADT
+  Description: Global radiation
+  Units: j/cm^2
+  Valid_Range: n.integer?
+  Conversion: 
+- Parameter: DR
+  Category: PRCP
+  Description: precipitation duration
+  Units: minutes
+  Valid_Range: (0..6).include?(n)
+  Conversion: (n / 10) * 60
+- Parameter: RH
+  Category: PRCP
+  Description: daily precipitation
+  Units: mm
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: RHX
+  Category: PRCP
+  Description: maximum hourly precipitation
+  Units: mm
+  Valid_Range: n.integer?
+  Conversion: "n == -1 ? 0.05 : n / 10"
+- Parameter: RHXH
+  Category: PRCP
+  Description: hourly division in which maximum hourly precipitation was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
+- Parameter: EV24
+  Category: ATMS
+  Description: potential evapotranspiration
+  Units: mm
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: PG
+  Category: ATMS
+  Description: daily mean sea level pressure
+  Units: hPa
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: PX
+  Category: ATMS
+  Description: maximum hourly sea level pressure
+  Units: hPa
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: PXH
+  Category: ATMS
+  Description: hourly division on which maximum hourly sea level pressure was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
+- Parameter: PN
+  Category: ATMS
+  Description: minimum hourly sea level pressure
+  Units: hPa
+  Valid_Range: n.integer?
+  Conversion: n / 10
+- Parameter: PNH
+  Category: ATMS
+  Description: hourly division in which minimum hourly sea level pressure was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
+- Parameter: VVN
+  Category: VISB
+  Description: minimum visibility
+  Units: ""
+  Valid_Range: (0..89).include(n)
+  Conversion: |-
     if n == 0 
       '< 100 meters'
     elsif (1..49).include?(n)
@@ -202,18 +203,18 @@
     elsif n == 89
       '> 70 kilometers'
     end
-  :Units: 
-- :Parameter: VVNH
-  :Category: VISB
-  :Description: Hourly Division in Which Minimum Visibility Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
-- :Parameter: VVX
-  :Category: VISB
-  :Description: Maximum Visibility
-  :Validate: (0..89).include(n)
-  :Conversion: |-
+- Parameter: VVNH
+  Category: VISB
+  Description: hourly division in which minimum visibility was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
+- Parameter: VVX
+  Category: VISB
+  Description: maximum visibility
+  Units: ""
+  Valid_Range: (0..89).include(n)
+  Conversion: |-
     if n == 0 
       '< 100 meters'
     elsif (1..49).include?(n)
@@ -227,46 +228,45 @@
     elsif n == 89
       '> 70 kilometers'
     end
-  :Units: 
-- :Parameter: VVXH
-  :Category: VISB
-  :Description: Hourly Division in Which Maximum Visibility Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
-- :Parameter: NG
-  :Category: VISB
-  :Description: Mean Daily Cloud Cover
-  :Validate: (0..9).include?(n)
-  :Conversion: 
-  :Units: 
-- :Parameter: UG
-  :Category: ATMS
-  :Description: Daily Mean Relative Humidity
-  :Validate: (0..100).include?(n)
-  :Conversion: 
-  :Units: %
-- :Parameter: UX
-  :Category: ATMS
-  :Description: Maximum Relative Humidity
-  :Validate: (0..100).include?(n)
-  :Conversion: 
-  :Units: %
-- :Parameter: UXH
-  :Category: ATMS
-  :Description: Hourly Division in Which Maximum Relative Humidty Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
-- :Parameter: UN
-  :Category: ATMS
-  :Description: Minimum Relative Humidity
-  :Validate: (0..100).include?(n)
-  :Conversion: 
-  :Units: %
-- :Parameter: UNH
-  :Category: ATMS
-  :Description: Hourly Division in Which Minimum Relative Humidity Was Measured
-  :Validate: (1..24).include?(n)
-  :Conversion: 
-  :Units: Hour
+- Parameter: VVXH
+  Category: VISB
+  Description: hourly division in which maximum visibility was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
+- Parameter: NG
+  Category: VISB
+  Description: mean daily cloud cover
+  Units: ""
+  Valid_Range: (0..9).include?(n)
+  Conversion: 
+- Parameter: UG
+  Category: ATMS
+  Description: daily mean relative humidity
+  Units: "%"
+  Valid_Range: (0..100).include?(n)
+  Conversion: 
+- Parameter: UX
+  Category: ATMS
+  Description: maximum relative humidity
+  Units: "%"
+  Valid_Range: (0..100).include?(n)
+  Conversion: 
+- Parameter: UXH
+  Category: ATMS
+  Description: hourly division in which maximum relative humidty was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
+- Parameter: UN
+  Category: ATMS
+  Description: minimum relative humidity
+  Units: "%"
+  Valid_Range: (0..100).include?(n)
+  Conversion: 
+- Parameter: UNH
+  Category: ATMS
+  Description: hourly division in which minimum relative humidity was measured
+  Units: Hour
+  Valid_Range: (1..24).include?(n)
+  Conversion: 
