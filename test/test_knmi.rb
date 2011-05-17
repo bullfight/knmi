@@ -41,36 +41,12 @@ class TestKNMI < KNMI::TestCase
       assert_equal @params.class, Array
     end
     
-    should "contain KNMI::Daily object" do
+    should "contain KNMI::Parameters object" do
       assert_equal @params[0].class, KNMI::Parameters
     end
     
     should "be length 1" do
       assert_equal @params.length, 1
-    end
-    
-    should "access parameter id" do
-      assert_equal @params[0].parameter, "TX"
-    end
-    
-    should "access category id" do
-      assert_equal @params[0].category, "TEMP"
-    end
-    
-    should "access description id" do
-      assert_contains @params[0].description, "Maximum Temperature"
-    end
-    
-    should "access validation equation" do
-      assert_equal @params[0].validate, "n.integer?"
-    end
-    
-    should "access conversion equation" do
-      assert_equal @params[0].conversion, "n / 10"
-    end
-    
-    should "access units" do
-      assert_equal @params[0].units, "C"
     end
   end
     
