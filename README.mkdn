@@ -4,8 +4,8 @@ knmi
 Ruby API to access Royal Netherlands Meteorological Institute daily climate data
 
 Access climatological data as provided by the Royal Netherlands Meteorological Institute through the http get forms for daily and hourly data
-	http://www.knmi.nl/climatology/daily_data/getdata_day.cgi
-	http://www.knmi.nl/klimatologie/uurgegevens/getdata_uur.cgi
+* http://www.knmi.nl/climatology/daily_data/getdata_day.cgi
+* http://www.knmi.nl/klimatologie/uurgegevens/getdata_uur.cgi
 	
 Details 
 -------
@@ -21,7 +21,8 @@ Installation
 	
 	gem install knmi
 	
-= Dependancies
+Dependancies
+------------
 * "httparty", "~> 0.7.7"
 * "geokit", "~> 1.5.0"
 
