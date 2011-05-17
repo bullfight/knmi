@@ -5,7 +5,7 @@ module KNMI
     
     class << self
       
-      def get_daily(station_object, parameter_object = "", start_at = nil, end_at = nil, seasonal = false)
+      def get_daily(station_object, parameter_object, start_at = nil, end_at = nil, seasonal = false)
         query = [station(station_object),  parameters(parameter_object), 
                  start_date(start_at)[0..13], end_date(end_at)[0..11],  # select YYYYMMDD (drops hour term)
                  seasonal(seasonal)].compact
@@ -30,15 +30,9 @@ module KNMI
     
       # pulls parameter names from parameter object defaults to All
       def parameters(parameter_object)
-        if parameter_object.empty?
-          "vars=ALL"
-        elsif parameter_object.kind_of?(Array)
-          vars = []
-          parameter_object.each { |p| vars << p.parameter}                    
-          "vars=#{vars * ":"}"
-        else
-          "vars=#{parameter_object.parameter}"
-        end    
+        vars = []
+        parameter_object.each { |p| vars << p.parameter }                    
+        "vars=#{vars * ":"}"
       end      
   
       # Select Data seasonally? between selected dates for each year.
@@ -51,27 +45,29 @@ module KNMI
       end
   
       # YYYYMMDDHH Default is previous day
-      def start_date(start_at)
-        if start_at.nil?
+      def start_date(starts)
+        if starts.nil?
           t = Time.now
           t = Time.utc(t.year, t.month, t.day)
           t = t - 24 * 60 * 60          
-          "start=#{t.year}#{t.strftime("%m")}#{t.day}#{t.strftime("%H")}"
-        elsif start_at.kind_of?(Time)
-          t = start_at
-          "start=#{t.year}#{t.strftime("%m")}#{t.day}#{t.strftime("%H")}"
+          time_str(t)
+        elsif starts.kind_of?(Time)
+          time_str(starts)
         end
       end
   
       # YYYYMMDDHH Default is current day
-      def end_date(end_at)
-        if end_at.nil?
+      def end_date(ends)
+        if ends.nil?
           t = Time.now
-          "end=#{t.year}#{t.strftime("%m")}#{t.day}#{t.strftime("%H")}"
-        elsif end_at.kind_of?(Time)
-          t = end_at
-          "end=#{t.year}#{t.strftime("%m")}#{t.day}#{t.strftime("%H")}"
+          time_str(t)
+        elsif ends.kind_of?(Time)
+          time_str(ends)
         end
+      end
+      
+      def time_str(t)
+        "end=#{t.year}#{t.strftime("%m")}#{t.day}#{t.strftime("%H")}"
       end
     
     end
@@ -84,9 +80,9 @@ module KNMI
     #
     # Returns result of HTTP get request
     # This is a text file with station and variable metadata as well as a csv of recorded values
-  
+    #
     # Example Response
-  
+    #
     ## THESE DATA CAN BE USED FREELY PROVIDED THAT THE FOLLOWING SOURCE IS ACKNOWLEDGED:
     ## ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
     ##
