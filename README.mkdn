@@ -100,30 +100,31 @@ Daily Data
 
 Hourly Data
 -----------
-	Parameter	Category	Description
-	YYYYMMDD				Time Stamp
-	HH			Hour
-	DD			WIND		Mean wind direction during the 10-minute period preceding the time of observation
-	FH			WIND		Hourly mean wind speed
-	FF			WIND		Mean wind speed
-	FX			WIND		Maximum wind gust
-	T				TEMP		Air Temperature at 1.5 m
-	T10N		TEMP		Minimum Air Temperature at 10 cm in the preceding 6 hours
-	TD			TEMP		Dew Point Temperature
-	SQ			RDTN		Sunshine Duration
-	Q				RDTN		Golbal Radiation
-	DR			PRCP		Precipitation Duration
-	RH			PRCP		Precipitation
-	P				ATMS		Air Pressure
-	VV			VISB		Visibility
-	N				VISB		Cloud Cover
-	U				ATMS		Relative Humidity
-	M				WTHR		Fog
-	R				WTHR		Rainfall
-	S				WTHR		Snow
-	O				WTHR		Thunder
-	Y				WTHR		Ice
-	WW			WTHR		Weather Code
+|Parameter|Category|Description|
+|:--------|:-------|:----------|
+|YYYYMMDD |        | Time Stamp|
+|HH       |	       |Hour |
+|DD   |WIND    | Mean wind direction during the 10-minute period preceding the time of observation|
+|FH   |WIND    | Hourly mean wind speed|
+|FF   |WIND    | Mean wind speed|
+|FX   |WIND    | Maximum wind gust|
+|T    |TEMP    | Air Temperature at 1.5 m|
+|T10N   |TEMP    | Minimum Air Temperature at 10 cm in the preceding 6 hours|
+|TD   |TEMP    | Dew Point Temperature|
+|SQ   |RDTN    | Sunshine Duration|
+|Q    |RDTN    | Golbal Radiation|
+|DR   |PRCP    | Precipitation Duration|
+|RH   |PRCP    | Precipitation|
+|P    |ATMS    | Air Pressure|
+|VV   |VISB    | Visibility|
+|N    |VISB    | Cloud Cover|
+|U    |ATMS    | Relative Humidity|
+|M    |WTHR    | Fog|
+|R    |WTHR    | Rainfall|
+|S    |WTHR    | Snow|
+|O    |WTHR    | Thunder|
+|Y    |WTHR    | Ice|
+|WW   |WTHR    | Weather Code|
 
                     
 Please Note the disclaimer included in the header source header
