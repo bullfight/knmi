@@ -6,19 +6,26 @@ module KNMI
     class << self
       
       def get_daily(station_object, parameter_object, start_at = nil, end_at = nil, seasonal = false)
+        # select YYYYMMDD (drops hour term)
         query = [station(station_object),  parameters(parameter_object), 
-                 start_date(start_at)[0..13], end_date(end_at)[0..11],  # select YYYYMMDD (drops hour term)
+                 start_date(start_at)[0..13], end_date(end_at)[0..11],
                  seasonal(seasonal)].compact
         result = get('http://www.knmi.nl/climatology/daily_data/getdata_day.cgi', { :query => "#{query * "&"}" } )
-        return new({"query" => query, "result" => result})
+        
+        data = parse(station_object, parameter_object, result)
+        
+        return new({"query" => query, "data" => data})
       end
   
-      def get_hourly(station_number, params = "", start_at = nil, end_at = nil, seasonal = false)
-        query = [station(station_number),  parameters(params), 
-                 start_date(start_at), end_date(end_at), 
+      def get_hourly(station_object, parameter_object, start_at = nil, end_at = nil, seasonal = false)
+        query = [station(station_object),  parameters(parameter_object), 
+                 start_date(start_at), end_date(end_at),
                  seasonal(seasonal)].compact
         result = get('http://www.knmi.nl/klimatologie/uurgegevens/getdata_uur.cgi', { :query => "#{query * "&"}" } )
-        return new({"query" => query, "result" => result})
+        
+        data = parse(station_object, parameter_object, result)
+        
+        return new({"query" => query, "data" => data})
       end
         
       private
@@ -45,11 +52,12 @@ module KNMI
       end
   
       # YYYYMMDDHH Default is previous day
+      # if starts is nil returns string for one day prior to current
       def start_date(starts)
         if starts.nil?
           t = Time.now
           t = Time.utc(t.year, t.month, t.day)
-          t = t - 24 * 60 * 60          
+          t = t - 24 * 60 * 60  
           "start" + time_str(t)
         elsif starts.kind_of?(Time)
           "start" + time_str(starts)
@@ -57,17 +65,43 @@ module KNMI
       end
   
       # YYYYMMDDHH Default is current day
+      # if ends is nil returns string for current time
       def end_date(ends)
         if ends.nil?
-          t = Time.now
-          "end" + time_str(t)
+          "end" + time_str(Time.now)
         elsif ends.kind_of?(Time)
           "end" + time_str(ends)
         end
       end
       
+      # Hours requires 01-24
       def time_str(t)
-        "=#{t.year}#{t.strftime("%m")}#{t.day}#{t.strftime("%H")}"
+        hour = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"]
+        "=#{t.year}#{t.strftime("%m")}#{t.day}#{hour[t.hour]}"
+      end
+      
+      # Grab the Http response data and convert to array of hashes
+      def parse(station_object, parameter_object, data)
+        # Number stations
+        nstn = 1
+        # Number parameters
+        nparams = parameter_object.length
+
+        # Split lines into array
+        data = data.split(/\n/)
+
+        # Get and clean data
+        data = data[(8 + nstn + nparams)..data.length]
+        data = data.join.tr("\s+", "")
+        data = data.tr("#", "")
+
+        # Parse into array and then hash with var name
+        data = CSV.parse(data, {:skip_blanks => true})
+        header = data.shift.map {|i| i.to_s.intern }
+        string_data = data.map {|row| row.map {|cell| cell.to_s } }
+        data = string_data.map {|row| Hash[*header.zip(row).flatten] }
+      
+        return data
       end
     
     end
@@ -78,33 +112,12 @@ module KNMI
     attr_reader :query
   
     #
-    # Returns result of HTTP get request
-    # This is a text file with station and variable metadata as well as a csv of recorded values
-    #
-    # Example Response
-    #
-    ## THESE DATA CAN BE USED FREELY PROVIDED THAT THE FOLLOWING SOURCE IS ACKNOWLEDGED:
-    ## ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
-    ##
-    ## STN          LON         LAT       ALT  NAME
-    ## 235:        4.79       52.92         5  DE KOOY    
-    ##
-    ## VVN   = Minimum opgetreden zicht / minimum visibility ...
-    ## VVX   = Maximum opgetreden zicht / maximum visibility ...
-    ## NG    = Bedekkingsgraad van de bovenlucht / cloud cover in octants (9=sky invisible)
-    ## DR    = Duur van de neerslag / precipitation duration in 0.1 hour
-    ## RH    = Etmaalsom van de neerslag / daily precipitation amount in 0.1 mm (-1 for <0,05 mm)
-    ## EV24  = Referentiegewasverdamping (Makkink)/  Potential evapotranspiration (Makkink) in 0.1 mm
-    ##
-    ## STN,YYYYMMDD,  VVN,  VVX,   NG,   DR,   RH, EV24
-    ##
-    #  235,19700101,   60,   65,    4,    0,    0,    4
-    #  235,19700102,   30,   75,    8,   14,   21,    2
-    #  235,19700103,   60,   70,    5,    2,    5,    3    
-    attr_reader :result
+    # Parsed HTTP request
+    # Array of Hashes     
+    attr_reader :data
   
     def initialize(properties)
-      @query, @result = %w(query result).map do |p|
+      @query, @data = %w(query data).map do |p|
         properties[p]
       end
     end

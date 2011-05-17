@@ -34,3 +34,5 @@ array_of_hashes = string_data.map {|row| Hash[*headers.zip(row).flatten] }
 
 yml = array_of_hashes.to_yaml
 File.open("./data/knmi_hourly_data_key.yml", 'w') {|f| f.write(yml) }
+
+File.open("../test/data/hourly_struct", 'w') {|f| f.write(@response) }
