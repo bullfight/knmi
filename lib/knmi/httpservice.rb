@@ -50,9 +50,9 @@ module KNMI
           t = Time.now
           t = Time.utc(t.year, t.month, t.day)
           t = t - 24 * 60 * 60          
-          time_str(t)
+          "start" + time_str(t)
         elsif starts.kind_of?(Time)
-          time_str(starts)
+          "start" + time_str(starts)
         end
       end
   
@@ -60,14 +60,14 @@ module KNMI
       def end_date(ends)
         if ends.nil?
           t = Time.now
-          time_str(t)
+          "end" + time_str(t)
         elsif ends.kind_of?(Time)
-          time_str(ends)
+          "end" + time_str(ends)
         end
       end
       
       def time_str(t)
-        "end=#{t.year}#{t.strftime("%m")}#{t.day}#{t.strftime("%H")}"
+        "=#{t.year}#{t.strftime("%m")}#{t.day}#{t.strftime("%H")}"
       end
     
     end
