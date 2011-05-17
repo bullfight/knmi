@@ -10,7 +10,7 @@ class TestParameters < KNMI::TestCase
       assert_equal @params.class, Array
     end
 
-    should "contain KNMI::Daily object" do
+    should "contain KNMI::Parameters object" do
      assert_equal @params[0].class, KNMI::Parameters
     end
     
@@ -24,11 +24,11 @@ class TestParameters < KNMI::TestCase
       @params = KNMI::Parameters.all("hourly")
     end
     
-    should "by an array" do
+    should "be an array" do
       assert_equal @params.class, Array
     end
 
-    should "contain KNMI::Daily object" do
+    should "contain KNMI::Parameters object" do
      assert_equal @params[0].class, KNMI::Parameters
     end
     
@@ -41,33 +41,37 @@ class TestParameters < KNMI::TestCase
     setup  do
       @params = KNMI::Parameters.find(period = "daily", "TX")
     end
+    
+    should "be an array" do
+      assert_equal @params.class, Array
+    end
 
-    should "contain KNMI::Daily object" do
-     assert_equal @params.class, KNMI::Parameters
+    should "contain KNMI::Parameters object" do
+     assert_equal @params[0].class, KNMI::Parameters
     end
 
     should "access parameter id" do
-     assert_equal @params.parameter, "TX"
+     assert_equal @params[0].parameter, "TX"
     end
 
     should "access category id" do
-     assert_equal @params.category, "TEMP"
+     assert_equal @params[0].category, "TEMP"
     end
 
     should "access description id" do
-     assert_contains @params.description, "Maximum Temperature"
+     assert_contains @params[0].description, "Maximum Temperature"
     end
 
     should "access validation equation" do
-     assert_equal @params.validate, "n.integer?"
+     assert_equal @params[0].validate, "n.integer?"
     end
 
     should "access conversion equation" do
-     assert_equal @params.conversion, "n / 10"
+     assert_equal @params[0].conversion, "n / 10"
     end
 
     should "access units" do
-     assert_equal @params.units, "C"
+     assert_equal @params[0].units, "C"
     end
   end
   
@@ -80,8 +84,20 @@ class TestParameters < KNMI::TestCase
       assert_equal @params.class, Array
     end
 
-    should "contain KNMI::Daily object" do
+    should "be length 2" do
+      assert_equal @params.length, 2
+    end
+    
+    should "contain KNMI::Parameters object" do
      assert_equal @params[0].class, KNMI::Parameters
+    end
+    
+    should "contain KNMI::Parameters object with parameter TX" do
+     assert_equal @params[0].parameter, "TX"     
+    end
+    
+    should "contain KNMI::Parameters object with parameter SP" do
+     assert_equal @params[1].parameter, "SP"     
     end
   end
   
@@ -90,32 +106,32 @@ class TestParameters < KNMI::TestCase
       @params = KNMI::Parameters.find(period = "hourly", "T")
     end
 
-    should "contain KNMI::Daily object" do
-     assert_equal @params.class, KNMI::Parameters
+    should "contain KNMI::Parameters object" do
+     assert_equal @params[0].class, KNMI::Parameters
     end
 
     should "access parameter id" do
-     assert_equal @params.parameter, "T"
+     assert_equal @params[0].parameter, "T"
     end
 
     should "access category id" do
-     assert_equal @params.category, "TEMP"
+     assert_equal @params[0].category, "TEMP"
     end
 
     should "access description id" do
-     assert_equal @params.description, "Air Temperature at 1.5 m"
+     assert_equal @params[0].description, "Air Temperature at 1.5 m"
     end
 
     should "access validation equation" do
-     assert_equal @params.validate, "n.integer?"
+     assert_equal @params[0].validate, "n.integer?"
     end
 
     should "access conversion equation" do
-     assert_equal @params.conversion, "n / 10"
+     assert_equal @params[0].conversion, "n / 10"
     end
 
     should "access units" do
-     assert_equal @params.units, "C"
+     assert_equal @params[0].units, "C"
     end
   end
   
@@ -128,7 +144,7 @@ class TestParameters < KNMI::TestCase
       assert_equal @params.class, Array
     end
 
-    should "contain KNMI::Daily object" do
+    should "contain KNMI::Parameters object" do
      assert_equal @params[0].class, KNMI::Parameters
     end
   end
@@ -138,7 +154,7 @@ class TestParameters < KNMI::TestCase
       @params = KNMI::Parameters.category(period = "hourly", "TEMP")
     end
     
-    should "contain KNMI::Daily object" do
+    should "contain KNMI::Parameters object" do
      assert_equal @params.class, Array
     end
     
@@ -152,7 +168,7 @@ class TestParameters < KNMI::TestCase
       @params = KNMI::Parameters.category(period = "hourly", ["TEMP", "WIND"])
     end
     
-    should "contain KNMI::Daily object" do
+    should "contain KNMI::Parameters object" do
      assert_equal @params.class, Array
     end
     
