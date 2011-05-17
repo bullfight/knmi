@@ -27,15 +27,92 @@ Details
 	station = KNMI.station_by_id(235)
 	
 	# Get parameter object at the time interval you wish to use "hourly" or "daily"
-    parameter = KNMI.parameters("daily", "TX")
+	# Params can be a single term or an array of terms such as "TG" or ["TG", TX]
+	# Categories can be a single term or an array of terms such as "WIND" or ["WIND", "TEMP"]
+    
+	parameter = KNMI.parameters(period = "daily", params = "TX", categories = "")
     
 	# Define Time period of interest
 	start_at = Time.utc(2010, 6, 28) 	# 2010 April 28th
     end_at = Time.utc(2010, 6, 29) 		# 2010 April 29th
     
-	# Get Data
+	# Get Data using previously retrieved objects
 	data = KNMI.get_data(station, parameter, start_at, end_at)
 
+= Available Data
+All available recorded parameters can be found in the file
+	.data/data_key.yml 
+
+= Daily Data
+	Parameter   Category	Description
+	YYYYMMDD				Time Stamp
+	DDVEC		WIND		Wind Direction 
+	FHVEC		WIND		Vector Mean Wind Speed
+	FG			WIND		Daily Mean Wind Speed
+	FHX	   		WIND		Maximum Hourly Mean Windspeed
+	FHXH   		WIND		Hourly Division  at Which Maximum Wind Speed Was Measured
+	FHN			WIND		Minimum Hourly Mean Windspeed
+	FHNH		WIND		Hourly Division  at Which Minimum Wind Speed Was Measured
+	FXX			WIND		Maximum Instantaneous Wind Speed
+	FXXH		WIND		Hourly Division  at Which Maximum Instantaneous Wind Speed Was Measured
+	TG			TEMP		Daily Mean Temperature
+	TN			TEMP		Minimum Temperature
+	TNH			TEMP		Hourly Division in Which Minimum Temperature Was Measured
+	TX			TEMP		Maximum Temperature
+	TXH			TEMP		Hourly Division in Which Maximum Temperature Was Measured
+	T10N		TEMP		Minimum Temperature at 10 Cm Above Surface
+	T10NH		TEMP		Six Hourly Division at Which Minimum Temperature at 10 Cm Above Surface Was Measured
+	SQ			RADT		Sunshine Duration
+	SP			RADT		Percent of Maximum Sunshine Duration
+	Q			RADT		Global Radiation
+	DR			PRCP		Precipitation Duration
+	RH			PRCP		Daily Precipitation
+	RHX			PRCP		Maximum Hourly Precipitation
+	RHXH		PRCP		Hourly Division in Which Maximum Hourly Precipitation Was Measured
+	EV24		ATMS		Potential Evapotranspiration
+	PG			ATMS		Daily Mean Sea Level Pressure
+	PX			ATMS		Maximum Hourly Sea Level Pressure
+	PXH			ATMS		Hourly Division on Which Maximum Hourly Sea Level Pressure Was Measured
+	PN			ATMS		Minimum Hourly Sea Level Pressure
+	PNH			ATMS		Hourly Division in Which Minimum Hourly Sea Level Pressure Was Measured
+	VVN			VISB		Minimum Visibility
+	VVNH		VISB		Hourly Division in Which Minimum Visibility Was Measured
+	VVX			VISB		Maximum Visibility
+	VVXH		VISB		Hourly Division in Which Maximum Visibility Was Measured
+	NG			VISB		Mean Daily Cloud Cover
+	UG			ATMS		Daily Mean Relative Humidity
+	UX			ATMS		Maximum Relative Humidity
+	UXH			ATMS		Hourly Division in Which Maximum Relative Humidity Was Measured
+	UN			ATMS		Minimum Relative Humidity
+	UNH			ATMS		Hourly Division in Which Minimum Relative Humidity Was Measured
+
+= Hourly Data
+	Parameter	Category	Description
+	YYYYMMDD				Time Stamp
+	HH			Hour
+	DD			WIND		Mean wind direction during the 10-minute period preceding the time of observation
+	FH			WIND		Hourly mean wind speed
+	FF			WIND		Mean wind speed
+	FX			WIND		Maximum wind gust
+	T			TEMP		Air Temperature at 1.5 m
+	T10N		TEMP		Minimum Air Temperature at 10 cm in the preceding 6 hours
+	TD			TEMP		Dew Point Temperature
+	SQ			RDTN		Sunshine Duration
+	Q			RDTN		Golbal Radiation
+	DR			PRCP		Precipitation Duration
+	RH			PRCP		Precipitation
+	P			ATMS		Air Pressure
+	VV			VISB		Visibility
+	N			VISB		Cloud Cover
+	U			ATMS		Relative Humidity
+	M			WTHR		Fog
+	R			WTHR		Rainfall
+	S			WTHR		Snow
+	O			WTHR		Thunder
+	Y			WTHR		Ice
+	WW			WTHR		Weather Code
+
+                    
 = Please Note the disclaimer included in the header source header
 	# DEZE GEGEVENS MOGEN VRIJ WORDEN GEBRUIKT MITS DE VOLGENDE BRONVERMELDING WORDT GEGEVEN:
 	# KONINKLIJK NEDERLANDS METEOROLOGISCH INSTITUUT (KNMI)
