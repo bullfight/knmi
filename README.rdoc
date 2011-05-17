@@ -2,116 +2,47 @@
 
 Ruby API to access Royal Netherlands Meteorological Institute daily climate data
 
-Access climatological data as provided by the Royal Netherlands Meteorological Institute through the http get form. 
-	http://www.knmi.nl/climatology/daily_data/getdata_day.cgi 
+Access climatological data as provided by the Royal Netherlands Meteorological Institute through the http get forms for daily and hourly data
+	http://www.knmi.nl/climatology/daily_data/getdata_day.cgi
+	http://www.knmi.nl/klimatologie/uurgegevens/getdata_uur.cgi
+	
+Details 
+* Hourly data (Dutch) - http://www.knmi.nl/klimatologie/uurgegevens/scriptxs-nl.html#uur
+* Daily data (English) - http://www.knmi.nl/climatology/daily_data/scriptxs-en.html
+* Select Data with a form, listed below are links to metadata about each station http://www.knmi.nl/climatology/daily_data/selection.cgi
 
-Please Note the disclaimer included in the header!
+
+= Installation
+	gem install httparty
+	gem install geokit
+	
+	gem install knmi
+	
+= Dependancies
+* "httparty", "~> 0.7.7"
+* "geokit", "~> 1.5.0"
+
+= Example Usage
+	# Get station object by station ID
+	station = KNMI.station_by_id(235)
+	
+	# Get parameter object at the time interval you wish to use "hourly" or "daily"
+    parameter = KNMI.parameters("daily", "TX")
+    
+	# Define Time period of interest
+	start_at = Time.utc(2010, 6, 28) 	# 2010 April 28th
+    end_at = Time.utc(2010, 6, 29) 		# 2010 April 29th
+    
+	# Get Data
+	data = KNMI.get_data(station, parameter, start_at, end_at)
+
+= Please Note the disclaimer included in the header source header
 	# DEZE GEGEVENS MOGEN VRIJ WORDEN GEBRUIKT MITS DE VOLGENDE BRONVERMELDING WORDT GEGEVEN:
 	# KONINKLIJK NEDERLANDS METEOROLOGISCH INSTITUUT (KNMI)
 	#
 	# THESE DATA CAN BE USED FREELY PROVIDED THAT THE FOLLOWING SOURCE IS ACKNOWLEDGED:
 	# ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
 
-* Details about data here 	
-	http://www.knmi.nl/climatology/daily_data/scriptxs-en.html)
-* Station list here 
-	http://www.knmi.nl/climatology/daily_data/scriptxs-en.html
-*  data is parsed into a array of hashes with keys for each element 
-	{ [ "STN" => 210, "YYYMMDD" => 20110427, "TG" => 25 ] }
-
-= Installation
-	gem install knmi
-	
-= Dependancies
-* httparty >= 0.7.4
-
-= Data
-Please note that the data must be converted from fixnum to float, I will include a method to take care of this in my next version.
-
-	YYYYMMDD = Date (YYYY=year MM=month DD=day)
-	DDVEC    = Vector mean wind direction in degrees (360=north, 90=east, 180=south, 270=west, 0=calm/variable)
-	FHVEC    = Vector mean windspeed (in 0.1 m/s)
-	FG       = Daily mean windspeed (in 0.1 m/s)
-	FHX      = Maximum hourly mean windspeed (in 0.1 m/s)
-	FHXH     = Hourly division in which FHX was measured
-	FHN      = Minimum hourly mean windspeed (in 0.1 m/s)
-	FHNH     = Hourly division in which FHN was measured
-	FXX      = Maximum wind gust (in 0.1 m/s)
-	FXXH     = Hourly division in which FXX was measured
-	TG       = Daily mean temperature in (0.1 degrees Celsius)
-	TN       = Minimum temperature (in 0.1 degrees Celsius)
-	TNH      = Hourly division in which TN was measured
-	TX       = Maximum temperature (in 0.1 degrees Celsius)
-	TXH      = Hourly division in which TX was measured
-	T10N     = Minimum temperature at 10 cm above surface (in 0.1 degrees Celsius)
-	T10NH    = 6-hourly division in which T10N was measured; 6=0-6 UT, 12=6-12 UT, 18=12-18 UT, 24=18-24 
-	SQ       = Sunshine duration (in 0.1 hour) calculated from global radiation (-1 for <0.05 hour)
-	SP       = Percentage of maximum potential sunshine duration
-	Q        = Global radiation (in J/cm2)
-	DR       = Precipitation duration (in 0.1 hour)
-	RH       = Daily precipitation amount (in 0.1 mm) (-1 for <0.05 mm)
-	RHX      = Maximum hourly precipitation amount (in 0.1 mm) (-1 for <0.05 mm)
-	RHXH     = Hourly division in which RHX was measured
-	PG       = Daily mean sea level pressure (in 0.1 hPa) calculated from 24 hourly values
-	PX       = Maximum hourly sea level pressure (in 0.1 hPa)
-	PXH      = Hourly division in which PX was measured
-	PN       = Minimum hourly sea level pressure (in 0.1 hPa)
-	PNH      = Hourly division in which PN was measured
-	VVN      = Minimum visibility; 0: <100 m, 1:100-200 m, 2:200-300 m,..., 49:4900-5000 m, 50:5-6 km, 56:6-7 km, 57:7-8 km,..., 79:29-30 km, 80:30-35 km, 81:35-40 km,..., 89: >70 k
-	VVNH     = Hourly division in which VVN was measured
-	VVX      = Maximum visibility; 0: <100 m, 1:100-200 m, 2:200-300 m,..., 49:4900-5000 m, 50:5-6 km, 56:6-7 km, 57:7-8 km,..., 79:29-30 km, 80:30-35 km, 81:35-40 km,..., 89: >70 k
-	VVXH     = Hourly division in which VVX was measured
-	NG       = Mean daily cloud cover (in octants, 9=sky invisible)
-	UG       = Daily mean relative atmospheric humidity (in percents)
-	UX       = Maximum relative atmospheric humidity (in percents)
-	UXH      = Hourly division in which UX was measured
-	UN       = Minimum relative atmospheric humidity (in percents)
-	UNH      = Hourly division in which UN was measured
-	EV24     =  Potential evapotranspiration (Makkink) (in 0.1 mm
-
-= List of Recorded Parameters and group name
-When entering parameters in method call use groupname for collection of variables of use individual parameter names
-# Name - GroupName => ["Parameter"]
-	* Wind - "WIND" => ["DDVEC", "FG", "FHX", "FHX", "FX"]
-	* Temperature - "TEMP" => ["TG", "TN", "TX", "T10N"]
-	* Sunshine and global radiation - "SUNR" => ["SQ", "SP", "Q"]
-	* Precipitation - "PRCP" => ["DR", "RH", "EV24"]
-	* Sea-Level Pressure - "PRES" => ["PG", "PGX", "PGN"]
-	* Visibility and Cloud Cover - "VICL" => ["VVN", "VVX", "NG"]
-	* Humidity - "MSTR" => ["VVN", "VVX", "NG"]
-	* "ALL"  => ["DDVEC", "FHVEC", "FG", "FHX", 
-      "FHXH", "FHN", "FHNH", "FXX", "FXXH", "TG", "TN", 
-      "TNH", "TX", "TXH", "T10N", "T10NH", "SQ", "SP", 
-      "Q", "DR", "RH", "RHX", "RHXH", "EV24", "PG", "PX", 
-      "PXH", "PN", "PNH", "VVN", "VVNH", "VVX", "VVXH", 
-      "NG", "UG", "UX", "UXH", "UN", "UNH"]
-
-
-= List of Method Parameters
-
-* station_number = number or array of numbers eg 210 or [210, 225]
-* vars = optional parameters to select measure parameters of interest if not defined all recorded parameters will be returned
-* response =  KNMI.get_station(station_number, vars) this will return all daily values from the begining of the month to current
-* start = date in the form YYYYMMDD
-* end = date in the form YYYYMMDD
-
-= Method calls
-	response =  KNMI.get_station(station_number, vars)
-this will return all daily values from the begining of the month to current for selected vars
-
-	response =  KNMI.get_station_start_to_current(station_number, start, vars)
-this will return all daily values from defined start date to current
-
-	response =  KNMI.get_station_range(station_number, start, end, vars)
-this will return all daily values from defined start date to defined end date
-
-	response =  KNMI.get_station_seasonal(station_number, start, end, vars)
-this will return all daily values from seasonally defined start date to defined end date
-eg start = 19800123, end = 19840427 will return data between January 23 and April 27th for 1980 to 1984
-
-	KNMI.to_csv("path/to/filename", response)
-	# NOTE: I am currently working on this, it isn't working as I add features, when I finished I rewrite it.
-convenience function for writing response array to a csv
 
 == Copyright
 

@@ -8,7 +8,7 @@ rescue LoadError => e
   end
 end
 
-%w(station parameters httpservice parse).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
+%w(station parameters httpservice).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
 
 module KNMI
 
@@ -57,7 +57,7 @@ module KNMI
         
     #
     # Input a station object from KNMI.station_by_id or KNMI.station_by_location
-    # and a parameter hash of objects from # KNMI.daily_parameters or KNMI.hourly_parameters
+    # and a parameter hash of objects from # KNMI.Parameters
     # return 
     def get_data(station_object, parameter_object, start_at = nil, end_at = nil, seasonal = false)
       if parameter_object[0].period == "daily"
@@ -66,12 +66,7 @@ module KNMI
         HttpService.get_hourly(station_object, parameter_object, start_at, end_at, seasonal)
       end
     end
-    
-    #
-    # Parse data response to json
-    def json(station_object, parameter_object, data)
-      Parse.json(station_object, parameter_object, data)
-    end
+
     
     private
     
