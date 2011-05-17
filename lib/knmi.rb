@@ -8,7 +8,7 @@ rescue LoadError => e
   end
 end
 
-%w(station hourly daily httpservice parse).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
+%w(station parameters httpservice parse).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
 
 module KNMI
 
@@ -38,17 +38,17 @@ module KNMI
     
     def parameters(period, params = "", categories = "")
       if params.blank? and categories.blank?
-        list = Daily.all
+        list = Parameters.all(period)
       else
         list = []
         
         # Parameters by category
-        list << Daily.category(categories)
+        list << Parameters.category(period, categories)
         list.flatten!
         
         # Parameters by name
         params = unique_params(params, list) #ensure params are unique to list 
-        list << Daily.find(params)        
+        list << Parameters.find(period, params)        
         list.flatten!
         list.compact!
       end

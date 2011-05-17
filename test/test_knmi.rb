@@ -76,7 +76,7 @@ class TestKNMI < KNMI::TestCase
     
   context "fetch daily - more than one parameter" do
     setup do
-      @params = KNMI.parameters(period = "daily",["TX", "TG"])
+      @params = KNMI.parameters(period = "daily", ["TX", "TG"])
     end
     
     should "be length 2" do
