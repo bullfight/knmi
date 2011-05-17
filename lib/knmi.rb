@@ -59,11 +59,11 @@ module KNMI
     # Input a station object from KNMI.station_by_id or KNMI.station_by_location
     # and a parameter hash of objects from # KNMI.daily_parameters or KNMI.hourly_parameters
     # return 
-    def get_data(station_object, parameter_object)
+    def get_data(station_object, parameter_object, start_at = nil, end_at = nil, seasonal = false)
       if parameter_object[0].period == "daily"
-        HttpService.get_daily(station_object, parameter_object)
+        HttpService.get_daily(station_object, parameter_object, start_at, end_at, seasonal)
       elsif parameter_object[0].period == "hourly"
-        HttpService.get_hourly(station_object, parameter_object)
+        HttpService.get_hourly(station_object, parameter_object, start_at, end_at, seasonal)
       end
     end
     

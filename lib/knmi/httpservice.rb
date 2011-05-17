@@ -36,14 +36,14 @@ module KNMI
     #  235,19700103,   60,   70,    5,    2,    5,    3    
     attr_reader :result
         
-    def get_daily(station_object, parameter_object = "", start_at = "", end_at = "", seasonal = false)
+    def get_daily(station_object, parameter_object = "", start_at = nil, end_at = nil, seasonal = false)
       @query = [station(station_object),  parameters(parameter_object), 
                start_date(start_at)[0..13], end_date(end_at)[0..11],  # select YYYYMMDD (drops hour term)
                seasonal(seasonal)].compact
       @result = get('http://www.knmi.nl/climatology/daily_data/getdata_day.cgi', { :query => "#{query * "&"}" } )
     end
   
-    def get_hourly(station_number, params = "", start_at = "", end_at = "", seasonal = false)
+    def get_hourly(station_number, params = "", start_at = nil, end_at = nil, seasonal = false)
       @query = [station(station_number),  parameters(params), 
                start_date(start_at), end_date(end_at), 
                seasonal(seasonal)].compact
@@ -81,7 +81,7 @@ module KNMI
     
       # YYYYMMDDHH Default is previous day
       def start_date(start_at)
-        if start_at.empty?
+        if start_at.nil?
           t = Time.now
           t = Time.utc(t.year, t.month, t.day)
           t = t - 24 * 60 * 60          
@@ -94,7 +94,7 @@ module KNMI
     
       # YYYYMMDDHH Default is current day
       def end_date(end_at)
-        if end_at.empty?
+        if end_at.nil?
           t = Time.now
           "end=#{t.year}#{t.strftime("%m")}#{t.day}#{t.strftime("%H")}"
         elsif end_at.kind_of?(Time)
