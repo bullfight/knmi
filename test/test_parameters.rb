@@ -37,7 +37,6 @@ class TestParameters < KNMI::TestCase
     end
   end  
   
-  
   context "find a single daily parameter" do
     setup  do
       @params = KNMI::Parameters.find(period = "daily", "TX")
