@@ -39,6 +39,10 @@ Details
 	# Get Data using previously retrieved objects
 	data = KNMI.get_data(station, parameter, start_at, end_at)
 
+= TODO
+* function validate data at each time step using associated parameterobject.validate
+* function to convert data at each time step using associated parameterobject.conversion
+
 = Available Data
 All available recorded parameters can be found in the file
 	.data/data_key.yml 
