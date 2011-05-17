@@ -29,8 +29,14 @@ module KNMI
     end
     
     #
-    # Generate array of daily parameter objects
-    def daily_parameters(params = "", categories = "")
+    # Generate array of unique daily or hourly parameter objects
+    # All details in daily_data_key.yml and hourly_data_key.yml
+    # inputs 
+    # period = "daily" or "hourly" 
+    # params =  
+    # categories =
+    
+    def parameters(period, params = "", categories = "")
       if params.blank? and categories.blank?
         list = Daily.all
       else
@@ -48,28 +54,7 @@ module KNMI
       end
       return list
     end
-    
-    #
-    # Generate array of hourly parameter objects
-    def hourly_parameters(params = "", categories = "")
-      if params.blank? and categories.blank?
-        list = Daily.all
-      else
-        list = []
         
-        # Parameters by category
-        list << Daily.category(categories)
-        list.flatten!
-        
-        # Parameters by name
-        params = unique_params(params, list) #ensure params are unique to list 
-        list << Daily.find(params)        
-        list.flatten!
-        list.compact!
-      end
-      return list
-    end
-    
     #
     # Input a station object from KNMI.station_by_id or KNMI.station_by_location
     # and a parameter hash of objects from # KNMI.daily_parameters or KNMI.hourly_parameters

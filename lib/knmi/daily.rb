@@ -1,5 +1,5 @@
 module KNMI
-  class Daily
+  class Parameters
     class << self
       attr_writer :daily_key
       
@@ -8,12 +8,12 @@ module KNMI
       #
       # KNMI::Daily.find("TA")  #=> KNMI::Station object for TG (Daily Max temperature)
       # KNMI::Daily.find(["TG", "TX"])  #=> KNMI::Daily array of objects TG (Daily Mean temperature) and TX (Daily Max Temperature)
-      def find(parameter)
+      def find(period, parameter)
         if parameter.kind_of?(String)
           daily.find { |daily| daily.parameter == parameter }
         elsif parameter.kind_of?(Array)
           list = []
-          parameter.each do |p|
+          parameter.uniq.each do |p|
             list << daily.find { |daily| daily.parameter == p }
           end
           return list
@@ -26,12 +26,12 @@ module KNMI
       #
       # KNMI.Daily.category("WIND") #=> [#<Daily:0x00000100b433f8 @parameter="SQ", @category="RADT", @description="Sunshine Duration", @validate="(-1..6).include?(n)", @conversion="n == -1 ? 0.05 : (n / 10) * 60", @units="minutes">, #<Daily:0x00000100b43290 @parameter="SP", @category="RADT", @description="Percent of Maximum Sunshine Duration", @validate="(0..100).include?(n)", @conversion=nil, @units="%">, #<Daily:0x00000100b43128 @parameter="Q", @category="RADT", @description="Global Radiation", @validate="n.integer?", @conversion=nil, @units="J/cm^2">]
       # KNMI.Daily.category(["WIND", "TEMP"]) 
-      def category(category)
+      def category(period, category)
         if category.kind_of?(String)
           daily.select { |daily| daily.category == category }
         elsif category.kind_of?(Array)
           list = []
-          category.each do |c|
+          category.uniq.each do |c|
             list << daily.select { |daily| daily.category == c }
             list.flatten!            
           end
@@ -48,6 +48,7 @@ module KNMI
       
       private
       
+      # Daily Key
       def daily
         File.open(daily_key) do |file|
           yaml = YAML.load(file) || raise("Can't parse #{file.path}")
@@ -57,7 +58,20 @@ module KNMI
 
       def daily_key
         @daily_key ||= File.join(File.dirname(__FILE__), '..', '..', 'data', 'daily_data_key.yml')
-      end      
+      end
+      
+      # Hourly Key
+      def hourly
+        File.open(hourly_key) do |file|
+          yaml = YAML.load(file) || raise("Can't parse #{file.path}")
+          yaml.map { |hourly_hash| new(hourly_hash) }
+        end
+      end
+
+      def hourly_key
+        @hourly_key ||= File.join(File.dirname(__FILE__), '..', '..', 'data', 'hourly_data_key.yml')
+      end
+      
     end
     
     # Paramter shortname
