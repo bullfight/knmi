@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{knmi}
-  s.version = "0.1.4"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["bullfight"]
-  s.date = %q{2011-05-02}
+  s.date = %q{2011-05-17}
   s.description = %q{A set of methods to query the KNMI HTTP get form for daily climate data and select a variety of measured parameters, from available stations, in a json style array of hashes, and if necessary convert to csv.}
   s.email = %q{p.schmitz@gmail.com}
   s.extra_rdoc_files = [
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
+    ".DS_Store",
     ".document",
     "Gemfile",
     "Gemfile.lock",
@@ -24,10 +25,21 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "data/current_stations.yml",
+    "data/daily_data_key.yml",
+    "data/data_key.yml",
+    "data/hourly_data_key.yml",
     "knmi.gemspec",
+    "lib/.DS_Store",
     "lib/knmi.rb",
+    "lib/knmi/httpservice.rb",
+    "lib/knmi/parameters.rb",
+    "lib/knmi/station.rb",
     "test/helper.rb",
-    "test/test_knmi.rb"
+    "test/test_httpservice.rb",
+    "test/test_knmi.rb",
+    "test/test_parameters.rb",
+    "test/test_station.rb"
   ]
   s.homepage = %q{http://github.com/bullfight/knmi}
   s.licenses = ["MIT"]
@@ -36,30 +48,45 @@ Gem::Specification.new do |s|
   s.summary = %q{Ruby API to access daily climate data from the Royal Netherlands Meteorological Institute}
   s.test_files = [
     "test/helper.rb",
-    "test/test_knmi.rb"
+    "test/test_httpservice.rb",
+    "test/test_knmi.rb",
+    "test/test_parameters.rb",
+    "test/test_station.rb"
   ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<shoulda>, [">= 0"])
+      s.add_runtime_dependency(%q<httparty>, ["~> 0.7.7"])
+      s.add_runtime_dependency(%q<geokit>, ["~> 1.5.0"])
+      s.add_development_dependency(%q<shoulda>, ["~> 2.11.3"])
+      s.add_development_dependency(%q<shoulda-context>, ["~> 1.0.0.beta1"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<pry>, ["~> 0.8.3"])
       s.add_runtime_dependency(%q<httparty>, [">= 0.7.4"])
     else
-      s.add_dependency(%q<shoulda>, [">= 0"])
+      s.add_dependency(%q<httparty>, ["~> 0.7.7"])
+      s.add_dependency(%q<geokit>, ["~> 1.5.0"])
+      s.add_dependency(%q<shoulda>, ["~> 2.11.3"])
+      s.add_dependency(%q<shoulda-context>, ["~> 1.0.0.beta1"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<pry>, ["~> 0.8.3"])
       s.add_dependency(%q<httparty>, [">= 0.7.4"])
     end
   else
-    s.add_dependency(%q<shoulda>, [">= 0"])
+    s.add_dependency(%q<httparty>, ["~> 0.7.7"])
+    s.add_dependency(%q<geokit>, ["~> 1.5.0"])
+    s.add_dependency(%q<shoulda>, ["~> 2.11.3"])
+    s.add_dependency(%q<shoulda-context>, ["~> 1.0.0.beta1"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<pry>, ["~> 0.8.3"])
     s.add_dependency(%q<httparty>, [">= 0.7.4"])
   end
 end
