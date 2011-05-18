@@ -2,30 +2,22 @@ knmi
 ====
 
 Ruby API to access Royal Netherlands Meteorological Institute daily climate data
-
 Access climatological data as provided by the Royal Netherlands Meteorological Institute through the http get forms for daily and hourly data
 
 * http://www.knmi.nl/climatology/daily_data/getdata_day.cgi
 * http://www.knmi.nl/klimatologie/uurgegevens/getdata_uur.cgi
-	
-Details 
--------
+
+This gem was constructed using information from the KNMI climate data pages here.
 * Hourly data (Dutch) - http://www.knmi.nl/klimatologie/uurgegevens/scriptxs-nl.html#uur
 * Daily data (English) - http://www.knmi.nl/climatology/daily_data/scriptxs-en.html
 * Select Data with a form, listed below are links to metadata about each station http://www.knmi.nl/climatology/daily_data/selection.cgi
 
-
 Installation
-============
+------------
 	gem install httparty
 	gem install geokit
 	
 	gem install knmi
-	
-Dependancies
-------------
-* "httparty", "~> 0.7.7"
-* "geokit", "~> 1.5.0"
 
 Example Usage
 -------------
@@ -48,15 +40,10 @@ end_at = Time.utc(2010, 6, 29) 		# 2010 April 29th
 data = KNMI.get_data(station, parameter, start_at, end_at)
 ```
 
-TODO
-----
-* function validate data at each time step using associated parameterobject.validate
-* function to convert data at each time step using associated parameterobject.conversion
-
-Available Data
-==============
-All available recorded parameters can be found in the file
-	.data/data_key.yml 
+Available Parameters
+--------------------
+All available recorded parameters can be found in the file .data/data_key.yml 
+This file contains the parameter name, category, description, a script to validate the data, a script to convert the data to to appropriate units, units, and the appropriate period.
 
 Daily Data
 ----------
@@ -131,8 +118,14 @@ Hourly Data
 |Y    |WTHR    | Ice|
 |WW   |WTHR    | Weather Code|
 
+
+TODO
+----
+* function validate data at each time step using associated parameterobject.validate
+* function to convert data at each time step using associated parameterobject.conversion
+
                     
-Please Note the disclaimer included in the header source header
+Please Note the license included in the header source header
 ---------------------------------------------------------------
 	# DEZE GEGEVENS MOGEN VRIJ WORDEN GEBRUIKT MITS DE VOLGENDE BRONVERMELDING WORDT GEGEVEN:
 	# KONINKLIJK NEDERLANDS METEOROLOGISCH INSTITUUT (KNMI)
@@ -140,10 +133,8 @@ Please Note the disclaimer included in the header source header
 	# THESE DATA CAN BE USED FREELY PROVIDED THAT THE FOLLOWING SOURCE IS ACKNOWLEDGED:
 	# ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
 
-
 Copyright
 ---------
 
 Copyright (c) 2011 Patrick Galvin Schmitz p.schmitz@gmail.com. See LICENSE.txt for
 further details.
-
