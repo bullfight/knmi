@@ -98,7 +98,7 @@ module KNMI
         # Parse into array and then hash with var name
         data = CSV.parse(data, {:skip_blanks => true})
         header = data.shift.map {|i| i.to_s.intern }
-        string_data = data.map {|row| row.map {|cell| cell.to_s } }
+        string_data = data.map {|row| row.map {|cell| cell.to_i } }
         data = string_data.map {|row| Hash[*header.zip(row).flatten] }
       
         return data
