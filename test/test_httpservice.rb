@@ -20,7 +20,7 @@ class TestHttpService < KNMI::TestCase
     end
     
     should "have result" do
-      assert_equal @response.data, [{:STN=>"235", :YYYYMMDD=>"20100628", :TX=>"263"}, {:STN=>"235", :YYYYMMDD=>"20100629", :TX=>"225"}]
+      assert_equal @response.data, [{:STN=>235, :YYYYMMDD=>20100628, :TX=>263}, {:STN=>235, :YYYYMMDD=>20100629, :TX=>225}]
     end    
   end
   
@@ -43,10 +43,10 @@ class TestHttpService < KNMI::TestCase
     end
     
     should "have result" do
-      assert_equal @response.data, [
-        {:STN=>"235", :YYYYMMDD=>"20100427", :HH=>"1", :T=>"88"},
-        {:STN=>"235", :YYYYMMDD=>"20100427", :HH=>"2", :T=>"79"},
-        {:STN=>"235", :YYYYMMDD=>"20100427", :HH=>"3", :T=>"73"} ]
+      assert_equal @response.data, [          
+        {:STN=>235, :YYYYMMDD=>20100427, :HH=>1, :T=>88},
+        {:STN=>235, :YYYYMMDD=>20100427, :HH=>2, :T=>79},
+        {:STN=>235, :YYYYMMDD=>20100427, :HH=>3, :T=>73} ]
     end
   end
 
