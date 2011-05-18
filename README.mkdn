@@ -4,6 +4,7 @@ knmi
 Ruby API to access Royal Netherlands Meteorological Institute daily climate data
 
 Access climatological data as provided by the Royal Netherlands Meteorological Institute through the http get forms for daily and hourly data
+
 * http://www.knmi.nl/climatology/daily_data/getdata_day.cgi
 * http://www.knmi.nl/klimatologie/uurgegevens/getdata_uur.cgi
 	
@@ -28,21 +29,24 @@ Dependancies
 
 Example Usage
 -------------
-	# Get station object by station ID
-	station = KNMI.station_by_id(235)
-	
-	# Get parameter object at the time interval you wish to use "hourly" or "daily"
-	# Params can be a single term or an array of terms such as "TG" or ["TG", TX]
-	# Categories can be a single term or an array of terms such as "WIND" or ["WIND", "TEMP"]
-    
-	parameter = KNMI.parameters(period = "daily", params = "TX", categories = "")
-    
-	# Define Time period of interest
-	start_at = Time.utc(2010, 6, 28) 	# 2010 April 28th
-	end_at = Time.utc(2010, 6, 29) 		# 2010 April 29th
-    
-	# Get Data using previously retrieved objects
-	data = KNMI.get_data(station, parameter, start_at, end_at)
+
+```Ruby
+# Get station object by station ID
+station = KNMI.station_by_id(235)
+
+# Get parameter object at the time interval you wish to use "hourly" or "daily"
+# Params can be a single term or an array of terms such as "TG" or ["TG", TX]
+# Categories can be a single term or an array of terms such as "WIND" or ["WIND", "TEMP"]
+  
+parameter = KNMI.parameters(period = "daily", params = "TX", categories = "")
+  
+# Define Time period of interest
+start_at = Time.utc(2010, 6, 28) 	# 2010 April 28th
+end_at = Time.utc(2010, 6, 29) 		# 2010 April 29th
+  
+# Get Data using previously retrieved objects
+data = KNMI.get_data(station, parameter, start_at, end_at)
+```
 
 TODO
 ----
