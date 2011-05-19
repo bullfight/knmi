@@ -66,11 +66,21 @@ module KNMI
     #
     def parameters(period, params = nil, categories = nil)
       if params.nil? and categories.nil?
-        list = Parameters.all(period)
-      else
-        list = []
         
+        list = Parameters.all(period)
+      
+      elsif categories.nil?
+        
+        # Parameters by name
+        list = []
+        params = unique_params(params, list) #ensure params are unique to list 
+        list << Parameters.find(period, params)        
+        list.flatten!
+        list.compact!
+      else 
+
         # Parameters by category
+        list = []
         list << Parameters.category(period, categories)
         list.flatten!
         
