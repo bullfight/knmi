@@ -1,23 +1,35 @@
 module KNMI
   class Station
     class <<self
-      attr_writer :stations_file #:nodoc:
+      attr_writer :stations_file
 
+      # Retrieve station object by id
       #
-      # Retrieve information about a station given a station ID
+      # @param id [Numeric, String] - Station id
+      # @return [KNMI::Station]
       #
-      #   KNMI::Station.find(210)  #=> KNMI::Station object for Valkenburg
+      # @example Retrieve Station object for Valkenburg
+      #   KNMI::Station.find(210)
+      #
       def find(id)
         stations.find { |station| station.id == id }
       end
 
-      # 
       # Find the station closest to a given location. Can accept arguments in any of the following
       # three forms (all are equivalent):
       #
+      # @param *args [String, Array, Geokit::LatLLng]
+      # @return [KNMI::Station] - Object with details about the station nearest to the requested lat/lng
+      #
+      # @example Retrieve Station by lat, lng
       #   KNMI::Station.closest_to(52.165, 4.419)
+      #
+      # @example Retrieve Station by [lat, lng]  
       #   KNMI::Station.closest_to([52.165, 4.419])
+      #
+      # @example Retrieve Station with GeoKit object
       #   KNMI::Station.closest_to(GeoKit::LatLng.new(52.165, 4.419))
+      #
       def closest_to(*args)
         if args.length == 1
           if args.first.respond_to?(:distance_to)
@@ -59,31 +71,32 @@ module KNMI
         @stations_file ||= File.join(File.dirname(__FILE__), '..', '..', 'data', 'current_stations.yml')
       end
     end
-
-    # GeoKit::LatLng containing the station's coordinates
+    
+    # @return [GeoKit::LatLng] - object containing the station's coordinates
     attr_reader :coordinates
 
-    # Station ID (e.g., 210)
+    # @return [String] - Station ID (e.g., 210)
     attr_reader :id
 
-    # Station name (e.g., "Valkenburg")
+    # @return [String] - Station name (e.g., "Valkenburg")
     attr_reader :name
     
-    # Station Elevation
+    # @return [String] - Station Elevation
     attr_reader :elevation
     alias_method :elev, :elevation
     alias_method :altitude, :elevation
     alias_method :alt, :elevation
     
-    # Link to Station Photo
+    # @return [String] - Link to Station Photo {http://www.knmi.nl/klimatologie/metadata/210_valkenburg_big.jpg Station 210 - Valkenburg Station Photo}
     attr_reader :photo
     
-    # Link to map of station location
+    # @return [String] - Link to map of station location {http://www.knmi.nl/klimatologie/metadata/stn_210.gif Station 210 - Valkenburg Station Map}
     attr_reader :map
     
-    # Link to Metadata page listing
+    # @return [String] - Link to Metadata page listing http://www.knmi.nl/klimatologie/metadata/valkenburg.html {Station 210 - Valkenburg Station MetaData page}
     attr_reader :web
     
+    # @return [Hash<Array>] - Hash containing arrays with detail about historical and current instrumentation at station
     attr_reader :instrumentation
 
     def initialize(properties)
@@ -93,19 +106,21 @@ module KNMI
       @coordinates = GeoKit::LatLng.new(properties['lat'], properties['lng'])
     end
     
-    # Latitude of station
+    # @return [Float] - Latitude of station
     def latitude
       @coordinates.lat
     end
     alias_method :lat, :latitude
 
-    # Longitude of station
+    # @return [Float] - Longitude of station
     def longitude
       @coordinates.lng
     end
     alias_method :lng, :longitude
     alias_method :lon, :longitude
     
+    
+    # @return [Hash] - contains a has with detail about the station
     def detail
       {:id => @id, :name => @name, :elev => @elevation, :lat => latitude, :lng => longitude}    
     end
