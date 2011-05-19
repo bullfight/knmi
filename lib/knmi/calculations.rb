@@ -2,9 +2,10 @@ module KNMI
   class Calculations
     class << self
    
-      # Function which operates on both hourly and daily data array from
-      # KNMI.get_data().data
-      # converts to operable units
+      # Converts Daily KNMI.get_data().data from storage to operable units
+      #
+      # @param [Array<Hash>] array - in storage format (integers)
+      # @return [Array<Hash>] - in operable format (Float, Integer, Time)
       def convert_daily(array)
         array.each do |a|
           
@@ -13,6 +14,10 @@ module KNMI
         end              
       end
       
+      # Converts Hourly KNMI.get_data().data from storage to operable units
+      #
+      # @param [Array<Hash>] array - Array of hashes, in storage format (integers)
+      # @return [Array<Hash>] - Array of hashes, in operable format (Float, Integer, Time)      
       def convert_hourly(array)
         array.each do |a|
           

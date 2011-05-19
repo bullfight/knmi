@@ -14,30 +14,34 @@ module KNMI
 
   class << self
     
-    #
     # Get nearest station by lat lng
-    # KNMI.station_by_location(52.165, 4.419) #=> #<KNMI::Station:0x0000010134e7f0>
+    #
+    # @param lat [Numeric] - latitude e.g. 52.165
+    # @param lng [Numeric] - longitude e.g. 4.419
+    # @param [Array] [] - [lat, lng] e.g. [52.165, 4,419] *eqivalent to (lat, lng)*
+    # @param [GeoKit::LatLng] - Geokit object e.g. GeoKit::LatLng.new(52.165, 4.419) *eqivalent to (lat, lng)*
+    # @return [KNMI::Station] - Object with details about the station nearest to the requested lat/lng
     def station_by_location(lat, lng)
       Station.closest_to(lat, lng)
     end
     
-    #
     # Get station object by station ID
-    # KNMI.station_by_id(210) #=> #<KNMI::Station:0x000001016b9b38>
+    #
+    # @param station_id [String, Numeric] - number of station of interest, station_ids can be found in 
+    # @return [KNMI::Station] - Object with details about the requested station
     def station_by_id(station_id)
       Station.find(station_id)
     end
     
+    # Get an array of parameter objects
     #
-    # Generate array of unique daily or hourly parameter objects
     # All details in daily_data_key.yml and hourly_data_key.yml
-    # inputs 
-    # period = "daily" or "hourly" 
-    # params =  
-    # categories =
-    
-    def parameters(period, params = "", categories = "")
-      if params.blank? and categories.blank?
+    # @param [string] period - "daily" or "hourly"
+    # @param [Array<string>] params - array of parameters e.g ["TX", "TG"]
+    # @param [Array<string>] categories - array of categories e.g. ["WIND", "TEMP"]
+    # @return [Array<KNMI::Parameters>] - array of KNMI::Parameters objects
+    def parameters(period, params = nil, categories = nil)
+      if params.nil? and categories.nil?
         list = Parameters.all(period)
       else
         list = []
@@ -67,7 +71,6 @@ module KNMI
       end
     end
     
-    # 
     # Input data request object and return array of hashes
     # data has been converted to operable units.
     def convert(request_object)
