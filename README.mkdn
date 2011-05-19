@@ -23,77 +23,81 @@ Installation
 Example Usage
 -------------
 
-# Quick Script
+### Quick Script
 
-  require 'knmi'
+```Ruby
+require 'knmi'
 
-  station = KNMI.station_by_id(235)
-  parameter = KNMI.parameters(period = "daily", params = nil, categories = ["TEMP", "WIND"])
-  starts = Time.utc(2010, 6, 28) # 2010 April 28th
-  ends = Time.utc(2010, 6, 29) # 2010 April 29th
-  request = KNMI.get_data(station, parameter, starts, ends)
-  data = KNMI::Calculations.convert(request.data)
+station = KNMI.station_by_id(235)
+parameter = KNMI.parameters(period = "daily", params = nil, categories = ["TEMP", "WIND"])
+starts = Time.utc(2010, 6, 28) # 2010 April 28th
+ends = Time.utc(2010, 6, 29) # 2010 April 29th
+request = KNMI.get_data(station, parameter, starts, ends)
+data = KNMI::Calculations.convert(request.data)
+```
+### Elaborated Script
 
-# Elaborated Script
+```Ruby
+require 'knmi'
 
-  require 'knmi'
+# Get station object by station ID
+station = KNMI.station_by_id(235)
 
-  # Get station object by station ID
-  station = KNMI.station_by_id(235)
+station
+#=> #<KNMI::Station:0x0000010133c938> # A struct object
 
-  station
-  #=> #<KNMI::Station:0x0000010133c938> # A struct object
-
-  # Available Instance Variables
-  station.instance_variables
-  #=> [:@id, :@name, :@elevation, :@photo, :@map, :@web, :@instrumentation, :@coordinates]
-  station.id
-  #=> 235
-  station.name
-  #=>"De kooy"
-  station.coordinates
-  #=> 52.924,4.785
-
-
-  # Get parameter object at the time interval you wish to use "hourly" or "daily"
-  # Params can be a single term or an array of terms such as "TG" or ["TG", TX]
-  # Categories can be a single term or an array of terms such as "WIND" or ["WIND", "TEMP"]
-  parameters = KNMI.parameters(period = "daily", params = nil, categories = ["TEMP", "WIND"])
-
-  parameters # returns an array of parameter objects
-  #=> [#<KNMI::Parameters:0x000001011387e0 @parameter="TX", @category="TEMP", @description="Maximum Temperature", @validate="n.integer?", @conversion="n / 10", @units="C", @period="daily">]
-
-  # Available Instance Variables
-  parameters[0].instance_variables
-  #=>[:@parameter, :@category, :@description, :@validate, :@conversion, :@units, :@period]
-
-  parameters[0].parameter
-  #=> "TX"
+# Available Instance Variables
+station.instance_variables
+#=> [:@id, :@name, :@elevation, :@photo, :@map, :@web, :@instrumentation, :@coordinates]
+station.id
+#=> 235
+station.name
+#=>"De kooy"
+station.coordinates
+#=> 52.924,4.785
 
 
-  # Define Time period of interest
-  starts = Time.utc(2010, 6, 28) 	# 2010 April 28th
-  ends = Time.utc(2010, 7, 01) 		# 2010 April 29th
+# Get parameter object at the time interval you wish to use "hourly" or "daily"
+# Params can be a single term or an array of terms such as "TG" or ["TG", TX]
+# Categories can be a single term or an array of terms such as "WIND" or ["WIND", "TEMP"]
+parameters = KNMI.parameters(period = "daily", params = nil, categories = ["TEMP", "WIND"])
 
-  # Get Data using previously retrieved objects
-  request = KNMI.get_data(station, parameters, starts, ends)
+parameters # returns an array of parameter objects
+#=> [#<KNMI::Parameters:0x000001011387e0 @parameter="TX", @category="TEMP", @description="Maximum Temperature", @validate="n.integer?", @conversion="n / 10", @units="C", @period="daily">]
 
-  # Available Instance Variables
-  request.instance_variables
-  #=> [:@query, :@data]
+# Available Instance Variables
+parameters[0].instance_variables
+#=>[:@parameter, :@category, :@description, :@validate, :@conversion, :@units, :@period]
 
-  request.query
-  #=>["stns=235", "vars=TX", "start=20100628", "end=20100629"]
-
-  request.data
-  #=>[{:STN=>"235", :YYYYMMDD=>"20100628", :TX=>"263"}, {:STN=>"235", :YYYYMMDD=>"20100629", :TX=>"225"}]
-
-  request.data[0]
-  #=>{:STN=>"235", :YYYYMMDD=>"20100628", :TX=>"263"}
+parameters[0].parameter
+#=> "TX"
 
 
-  # Convert data from storage format to operating format
-  data = KNMI.convert(parameters, request)
+# Define Time period of interest
+starts = Time.utc(2010, 6, 28) 	# 2010 April 28th
+ends = Time.utc(2010, 7, 01) 		# 2010 April 29th
+
+# Get Data using previously retrieved objects
+request = KNMI.get_data(station, parameters, starts, ends)
+
+# Available Instance Variables
+request.instance_variables
+#=> [:@query, :@data]
+
+request.query
+#=>["stns=235", "vars=TX", "start=20100628", "end=20100629"]
+
+request.data
+#=>[{:STN=>"235", :YYYYMMDD=>"20100628", :TX=>"263"}, {:STN=>"235", :YYYYMMDD=>"20100629", :TX=>"225"}]
+
+request.data[0]
+#=>{:STN=>"235", :YYYYMMDD=>"20100628", :TX=>"263"}
+
+
+# Convert data from storage format to operating format
+data = KNMI.convert(parameters, request)
+```
+
 
 Available Parameters
 --------------------
