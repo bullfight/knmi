@@ -1,3 +1,6 @@
+# @author Mat Brown
+# @author Patrick Galvin Schmitz
+
 module KNMI
   class Station
     class <<self
