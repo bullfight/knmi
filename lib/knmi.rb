@@ -93,18 +93,31 @@ module KNMI
     #
     # @return [KNMI::HttpService]
     def get_data(station, parameters, starts = nil, ends = nil, seasonal = false)
-      if parameters[0].period == "daily"
+      
+      if parameters[0].period == "daily"        
         HttpService.get_daily(station, parameters, starts, ends, seasonal)
-      elsif parameters[0].period == "hourly"
+        
+      elsif parameters[0].period == "hourly"        
         HttpService.get_hourly(station, parameters, starts, ends, seasonal)
+        
       end
     end
     
-    # Input data request object and return array of hashes
-    # data has been converted to operable units.
-    def convert(request_object)
-    
-    
+    # Input data request object and return array of hashes converted from storage to operable units.
+    #
+    # @param parameters [KNMI::Stations] - Parameters object
+    # @param request [KNMI:HttpService] - Data object from HttpRequest
+    #
+    # @return [Hash] - Hash containing climate data in operable units
+    def convert(parameters, request)
+      
+      if parameters[0].period == "daily"        
+        KNMI::Calculations.convert_daily(request.data)
+        
+      elsif parameters[0].period == "hourly"
+        KNMI::Calculations.convert_hourly(request.data)
+        
+      end    
     end
 
     
