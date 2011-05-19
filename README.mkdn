@@ -32,8 +32,8 @@ require 'knmi'
 
 station = KNMI.station_by_id(235)
 parameters = KNMI.parameters(period = "daily", params = nil, categories = ["TEMP", "WIND"])
-starts = Time.utc(2010, 6, 28) # 2010 April 28th
-ends = Time.utc(2010, 6, 29) # 2010 April 29th
+starts = Time.utc(2010, 6, 28) # 2010 June 28th
+ends = Time.utc(2010, 6, 29) # 2010 June 29th
 request = KNMI.get_data(station, parameters, starts, ends)
 data = KNMI.convert(parameters, request)
 ```
@@ -76,8 +76,8 @@ parameters[0].parameter
 
 
 # Define Time period of interest
-starts = Time.utc(2010, 6, 28) 	# 2010 April 28th
-ends = Time.utc(2010, 7, 01) 		# 2010 April 29th
+starts = Time.utc(2010, 6, 28) 	# 2010 June 28th
+ends = Time.utc(2010, 7, 01) 		# 2010 June 29th
 
 # Get Data using previously retrieved objects
 request = KNMI.get_data(station, parameters, starts, ends)
