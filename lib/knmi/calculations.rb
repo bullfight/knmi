@@ -9,7 +9,7 @@ module KNMI
       def convert_daily(array)
         array.each do |a|
           
-          a.each_pair { |key,value| a[key] = converts(key, value) }
+          a.each_pair { |key,value| a[key] = converts_daily(key, value) }
         
         end              
       end
@@ -21,7 +21,7 @@ module KNMI
       def convert_hourly(array)
         array.each do |a|
           
-          a.each_pair { |key,value| a[key] = converts(key, value) }
+          a.each_pair { |key,value| a[key] = converts_hourly(key, value) }
           a[:Time] = a[:YYYYMMDD] + a[:HH]
         end
       end
