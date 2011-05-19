@@ -8,7 +8,7 @@ rescue LoadError => e
   end
 end
 
-%w(station parameters httpservice).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
+%w(station parameters httpservice calculations).each { |file| require File.join(File.dirname(__FILE__), 'knmi', file) }
 
 module KNMI
 
@@ -65,6 +65,14 @@ module KNMI
       elsif parameter_object[0].period == "hourly"
         HttpService.get_hourly(station_object, parameter_object, start_at, end_at, seasonal)
       end
+    end
+    
+    # 
+    # Input data request object and return array of hashes
+    # data has been converted to operable units.
+    def convert(request_object)
+    
+    
     end
 
     
