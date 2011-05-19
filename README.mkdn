@@ -29,11 +29,11 @@ Example Usage
 require 'knmi'
 
 station = KNMI.station_by_id(235)
-parameter = KNMI.parameters(period = "daily", params = nil, categories = ["TEMP", "WIND"])
+parameters = KNMI.parameters(period = "daily", params = nil, categories = ["TEMP", "WIND"])
 starts = Time.utc(2010, 6, 28) # 2010 April 28th
 ends = Time.utc(2010, 6, 29) # 2010 April 29th
-request = KNMI.get_data(station, parameter, starts, ends)
-data = KNMI::Calculations.convert(request.data)
+request = KNMI.get_data(station, parameters, starts, ends)
+data = KNMI.convert(parameters, request)
 ```
 ### Elaborated Script
 

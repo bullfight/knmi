@@ -11,7 +11,7 @@ module KNMI
         
         array.each_with_index do |a, index|
           x[index] = {}
-          x[index][:stn] = a
+          x[index][:STN] = a[:STN]
           a.each_pair { |key,value| x[index].merge!( {key => converts_daily(key, value)} ) }
         
         end
@@ -28,6 +28,7 @@ module KNMI
         
         array.each_with_index do |a, index|
           x[index] = {}
+          x[index][:STN] = a[:STN]
           a.each_pair { |key,value| x[index].merge!( {key => converts_daily(key, value)} ) }
           x[index][:Time] = x[index][:YYYYMMDD] + x[index][:HH]
           
