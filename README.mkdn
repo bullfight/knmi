@@ -23,6 +23,8 @@ Installation
 Example Usage
 -------------
 
+Launch console e.g. irb at the command line
+
 ### Quick Script
 
 ```Ruby
