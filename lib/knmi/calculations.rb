@@ -7,11 +7,16 @@ module KNMI
       # @param [Array<Hash>] array - in storage format (integers)
       # @return [Array<Hash>] - in operable format (Float, Integer, Time)
       def convert_daily(array)
-        array.each do |a|
-          
-          a.each_pair { |key,value| a[key] = converts_daily(key, value) }
+        x = []
         
-        end              
+        array.each_with_index do |a, index|
+          x[index] = {}
+          x[index][:stn] = a
+          a.each_pair { |key,value| x[index].merge!( {key => converts_daily(key, value)} ) }
+        
+        end
+        
+        return x          
       end
       
       # Converts Hourly KNMI.get_data().data from storage to operable units
@@ -19,11 +24,16 @@ module KNMI
       # @param [Array<Hash>] array - Array of hashes, in storage format (integers)
       # @return [Array<Hash>] - Array of hashes, in operable format (Float, Integer, Time)      
       def convert_hourly(array)
-        array.each do |a|
+        x = []
+        
+        array.each_with_index do |a, index|
+          x[index] = {}
+          a.each_pair { |key,value| x[index].merge!( {key => converts_daily(key, value)} ) }
+          x[index][:Time] = x[index][:YYYYMMDD] + x[index][:HH]
           
-          a.each_pair { |key,value| a[key] = converts_hourly(key, value) }
-          a[:Time] = a[:YYYYMMDD] + a[:HH]
         end
+        
+        return x
       end
           
       private
