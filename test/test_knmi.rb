@@ -139,8 +139,8 @@ class TestKNMI < KNMI::TestCase
     
     should "have result" do
       assert_equal @response.data, [
-        {:STN=>"210", :YYYYMMDD=>"20100628", :TX=>"268"},
-        {:STN=>"210", :YYYYMMDD=>"20100629", :TX=>"239"}]
+        {:STN=>210, :YYYYMMDD=>20100628, :TX=>268},
+        {:STN=>210, :YYYYMMDD=>20100629, :TX=>239}]
     end    
   end
   
