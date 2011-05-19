@@ -3,11 +3,16 @@ module KNMI
     class << self
       attr_writer :keys_file
       
+      # Retrieve Parameter Object by named parameter
       #
-      # Retrieve information about Parameter can be string or array
+      # @param period [String] - "daily" or "hourly"
+      # @param parameter [Array, String] - Array of strings or string of parameter name
+      # @return [Array<KNMI::Parameters>] - array of parameter objects
       #
-      # KNMI::Parameter.find(period = "daily", "TA")  #=> KNMI::Parameter object for TG (Daily Max temperature)
-      # KNMI::Parameter.find(period = "daily", ["TG", "TX"])  #=> KNMI::Parameter array of objects TG (Daily Mean temperature) and TX (Daily Max Temperature)
+      # @example
+      #   KNMI::Parameter.find(period = "daily", "TA")  
+      #   KNMI::Parameter.find(period = "daily", ["TG", "TX"])
+      #
       def find(period, parameter)
         parameter = [parameter].flatten
         
@@ -19,12 +24,16 @@ module KNMI
         return list
       end     
       
+      # Retrieve Parameter Object by named parameter
       #
-      # Retrieve each parameter within a category
-      # an Array of structs
+      # @param period [String] - "daily" or "hourly"
+      # @param category [Array, String] - Array of strings or string of category name
+      # @return [Array<KNMI::Parameters>] - array of parameter objects
       #
-      # KNMI.Parameter.category(period = "daily, ""WIND") #=> [#<Parameter:0x00000100b433f8 @parameter="SQ", @category="RADT", @description="Sunshine Duration", @validate="(-1..6).include?(n)", @conversion="n == -1 ? 0.05 : (n / 10) * 60", @units="minutes">, #<Daily:0x00000100b43290 @parameter="SP", @category="RADT", @description="Percent of Maximum Sunshine Duration", @validate="(0..100).include?(n)", @conversion=nil, @units="%">, #<Daily:0x00000100b43128 @parameter="Q", @category="RADT", @description="Global Radiation", @validate="n.integer?", @conversion=nil, @units="J/cm^2">]
-      # KNMI.Parameter.category(period = "daily, ["WIND", "TEMP"]) 
+      # @example
+      #   KNMI.Parameter.category(period = "daily, ""WIND")
+      #   KNMI.Parameter.category(period = "daily, ["WIND", "TEMP"])
+      #
       def category(period, category)        
         category = [category].flatten
         
@@ -36,9 +45,10 @@ module KNMI
         return list.flatten!
       end
       
-      #
       # Retrieve all Parameters
-      # an Array of structs
+      # @param period [String] - "daily" or "hourly"
+      # @return [Array<KNMI::Parameters>] - array of parameter objects
+      #
       def all(period)      
         list = []
         list << keys.select { |k| k.period == period }
@@ -61,25 +71,25 @@ module KNMI
       
     end
     
-    # Paramter shortname
+    # @return [String] - Paramter shortname
     attr_reader :parameter
     
-    # Categories grouping parameters
+    # @return [String] - Categories grouping parameters
     attr_reader :category
     
-    # Description of parameter
+    # @return [String] - Description of parameter
     attr_reader :description 
     
-    # Code to validate data as accurate
+    # @return [String] - example code to validate data as accurate
     attr_reader :validate
     
-    # Code to convert data into appropriate format/units
+    # @return [String] - example code to convert data into appropriate format/units for operation
     attr_reader :conversion
     
-    # Unit of converted format
+    # @return [String] - Unit of converted format
     attr_reader :units 
     
-    # Time Period
+    # @return [String] - Time Period "daily" or "hourly"
     attr_reader :period
     
     def initialize(properties)
@@ -88,6 +98,7 @@ module KNMI
       end
     end
     
+    # @return [Hash] - Hash containing important details about parameters object
     def detail
       {:parameter => @parameter, :category => @category, 
        :description => @description, :validate => @validate, 

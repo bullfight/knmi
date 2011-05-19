@@ -86,16 +86,17 @@ module KNMI
     # Retrieve climate data from a weather station
     #
     # @param station [KNMI::Station] - station object retrieved with KNMI.station_by_id() or KNMI.station_by_location()
-    # @param parameter [Array<KNMI::Parameters>] - parameter object retrieved with KNMI.parameters()
+    # @param parameters [Array<KNMI::Parameters>] - parameters object retrieved with KNMI.parameters()
     # @param starts [Time] - Time object e.g. Time.utc(2010, 6, 28)
     # @param ends [Time] - Time object e.g. Time.utc(2010, 6, 29)
+    # @param seasonal [Boolean]
     #
     # @return [KNMI::HttpService]
-    def get_data(station, parameter, starts = nil, ends = nil, seasonal = false)
-      if parameter[0].period == "daily"
-        HttpService.get_daily(station, parameter, starts, ends, seasonal)
-      elsif parameter[0].period == "hourly"
-        HttpService.get_hourly(station, parameter, starts, ends, seasonal)
+    def get_data(station, parameters, starts = nil, ends = nil, seasonal = false)
+      if parameters[0].period == "daily"
+        HttpService.get_daily(station, parameters, starts, ends, seasonal)
+      elsif parameters[0].period == "hourly"
+        HttpService.get_hourly(station, parameters, starts, ends, seasonal)
       end
     end
     

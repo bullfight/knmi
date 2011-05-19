@@ -5,25 +5,43 @@ module KNMI
     
     class << self
       
-      def get_daily(station_object, parameter_object, start_at = nil, end_at = nil, seasonal = false)
+      # Requests Daily data
+      #
+      # @param station_object [KNMI::Station] - Station Object
+      # @param parameter_object [KNMI::Parameters] - Parameter Object
+      # @param starts [Time] - Time Object
+      # @param ends [Time] - Time Object
+      # @param seasonal [Boolean]
+      # @return [KNMI::HttpService]
+      #
+      def get_daily(station_object, parameters_object, starts = nil, ends = nil, seasonal = false)
         # select YYYYMMDD (drops hour term)
-        query = [station(station_object),  parameters(parameter_object), 
-                 start_date(start_at)[0..13], end_date(end_at)[0..11],
+        query = [station(station_object),  parameters(parameters_object), 
+                 start_date(starts)[0..13], end_date(ends)[0..11],
                  seasonal(seasonal)].compact
         result = get('http://www.knmi.nl/climatology/daily_data/getdata_day.cgi', { :query => "#{query * "&"}" } )
         
-        data = parse(station_object, parameter_object, result)
+        data = parse(station_object, parameters_object, result)
         
         return new({"query" => query, "data" => data})
       end
-  
-      def get_hourly(station_object, parameter_object, start_at = nil, end_at = nil, seasonal = false)
-        query = [station(station_object),  parameters(parameter_object), 
-                 start_date(start_at), end_date(end_at),
+      
+      # Requests Hourly data
+      #
+      # @param station_object [KNMI::Station] - Station Object
+      # @param parameter_object [KNMI::Parameters] - Parameter Object
+      # @param starts [Time] - Time Object
+      # @param ends [Time] - Time Object
+      # @param seasonal [Boolean]
+      # @return [KNMI::HttpService]
+      #
+      def get_hourly(station_object, parameters_object, starts = nil, ends = nil, seasonal = false)
+        query = [station(station_object),  parameters(parameters_object), 
+                 start_date(starts), end_date(ends),
                  seasonal(seasonal)].compact
         result = get('http://www.knmi.nl/klimatologie/uurgegevens/getdata_uur.cgi', { :query => "#{query * "&"}" } )
         
-        data = parse(station_object, parameter_object, result)
+        data = parse(station_object, parameters_object, result)
         
         return new({"query" => query, "data" => data})
       end
@@ -106,14 +124,21 @@ module KNMI
     
     end
   
-    #
     # Returns query string used in HTTP get request
-    # KNMI::HttpService.get_daily(210) #=> @ query =>[ "stns=210", "vars=ALL", "start=2011051500", "end=2011051613"]
+    #
+    # @return [Array<string>] - array of strings which contains the components used in the HTTP request
+    #
+    # @example
+    #   KNMI::HttpService.get_daily(station, parameter).query
+    #   =>[ "stns=210", "vars=ALL", "start=2011051500", "end=2011051613"]
     attr_reader :query
   
-    #
     # Parsed HTTP request
-    # Array of Hashes     
+    #
+    # @return [Array<Hash>] - array of hashes which contains climate data in storage(integer) format
+    # @example
+    #   KNMI::HttpService.get_daily(station, parameter).data
+    #   =>[{:STN=>"235", :YYYYMMDD=>"20100628", :TX=>"263"}, {:STN=>"235", :YYYYMMDD=>"20100629", :TX=>"225"}]
     attr_reader :data
   
     def initialize(properties)
