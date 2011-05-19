@@ -172,6 +172,11 @@ Hourly Data
 |O    |WTHR    | Thunder|
 |Y    |WTHR    | Ice|
 |WW   |WTHR    | Weather Code|
+
+TODO
+----
+
+Write unit tests for lib/calculations/calculations.rb
                     
 Please Note the license included in the header source header
 ---------------------------------------------------------------
