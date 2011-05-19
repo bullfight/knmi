@@ -5,24 +5,23 @@
 
 Gem::Specification.new do |s|
   s.name = %q{knmi}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["bullfight"]
-  s.date = %q{2011-05-17}
+  s.date = %q{2011-05-19}
   s.description = %q{A set of methods to query the KNMI HTTP get form for daily climate data and select a variety of measured parameters, from available stations, in a json style array of hashes, and if necessary convert to csv.}
   s.email = %q{p.schmitz@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.mkdn"
   ]
   s.files = [
-    ".DS_Store",
     ".document",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.mkdn",
     "Rakefile",
     "VERSION",
     "data/current_stations.yml",
@@ -30,12 +29,13 @@ Gem::Specification.new do |s|
     "data/data_key.yml",
     "data/hourly_data_key.yml",
     "knmi.gemspec",
-    "lib/.DS_Store",
     "lib/knmi.rb",
+    "lib/knmi/calculations.rb",
     "lib/knmi/httpservice.rb",
     "lib/knmi/parameters.rb",
     "lib/knmi/station.rb",
     "test/helper.rb",
+    "test/test_calculations.rb",
     "test/test_httpservice.rb",
     "test/test_knmi.rb",
     "test/test_parameters.rb",
@@ -48,6 +48,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Ruby API to access daily climate data from the Royal Netherlands Meteorological Institute}
   s.test_files = [
     "test/helper.rb",
+    "test/test_calculations.rb",
     "test/test_httpservice.rb",
     "test/test_knmi.rb",
     "test/test_parameters.rb",
