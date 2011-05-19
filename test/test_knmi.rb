@@ -122,26 +122,46 @@ class TestKNMI < KNMI::TestCase
   
   context "get data over daily timestep" do
     setup do
-      station = KNMI.station_by_location(52.165, 4.419)
-      params = KNMI.parameters(period = "daily", "TX")
-      start_at = Time.utc(2010, 6, 28)
-      end_at = Time.utc(2010, 6, 29)
-      @response = KNMI.get_data(station, params, start_at, end_at)
+      @station = KNMI.station_by_location(52.165, 4.419).freeze
+      @params = KNMI.parameters(period = "daily", "TX").freeze
+      @starts = Time.utc(2010, 6, 28)
+      @ends = Time.utc(2010, 6, 29)
+      @request = KNMI.get_data(@station, @params, @starts, @ends)
+      @data = KNMI.convert(@params, @request)
     end
     
     should "have HTTParty::Response class" do
-      assert_equal @response.class, KNMI::HttpService
+      assert_equal @request.class, KNMI::HttpService
     end
     
-    should "have query" do
-      assert_equal @response.query, ["stns=210", "vars=TX", "start=20100628", "end=20100629"]
+    should "request should have query" do
+      assert_equal @request.query, ["stns=210", "vars=TX", "start=20100628", "end=20100629"]
     end
     
-    should "have result" do
-      assert_equal @response.data, [
-        {:STN=>210, :YYYYMMDD=>20100628, :TX=>268},
-        {:STN=>210, :YYYYMMDD=>20100629, :TX=>239}]
-    end    
+    should "request should have result" do
+      assert_equal @request.data, [{:STN=>210, :YYYYMMDD=>20100628, :TX=>268},
+                                   {:STN=>210, :YYYYMMDD=>20100629, :TX=>239}]
+    end 
+    
+    should "data should have class array" do 
+      assert_equal @data.class, Array
+    end
+    
+    should "data[0] should have class Hash" do 
+      assert_equal @data[0].class, Hash
+    end
+    
+    should "data[0] should have station" do 
+      assert_equal @data[0][:STN], 210
+    end
+    
+    should "data[0] should have result" do 
+      assert_equal @data[0][:TX], 26.8
+    end
+    
+    should "data[0] should have time class" do 
+      assert_equal @data[0][:YYYYMMDD].class, Time
+    end
   end
   
 end
