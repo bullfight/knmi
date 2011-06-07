@@ -15,6 +15,8 @@ This gem was constructed using information from the KNMI climate data pages here
 
 Installation
 ------------
+Requires Ruby 1.9.2
+
 	gem install httparty
 	gem install geokit
 	
