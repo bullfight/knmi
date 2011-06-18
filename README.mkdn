@@ -29,7 +29,7 @@ Launch console e.g. irb at the command line
 
 ### Quick Script
 
-```Ruby
+```ruby
 require 'knmi'
 
 station = KNMI.station_by_id(235)
@@ -41,7 +41,7 @@ data = KNMI.convert(parameters, request)
 ```
 ### Elaborated Script
 
-```Ruby
+```ruby
 require 'knmi'
 
 # Get station object by station ID
