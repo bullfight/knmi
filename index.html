@@ -1,0 +1,500 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Knmi by bullfight</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Knmi</h1>
+        <p>Ruby API to access ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE daily climate data</p>
+        <p class="view"><a href="https://github.com/bullfight/knmi">View the Project on GitHub <small>bullfight/knmi</small></a></p>
+        <ul>
+          <li><a href="https://github.com/bullfight/knmi/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/bullfight/knmi/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/bullfight/knmi">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>knmi</h1>
+
+<p>Ruby API to access Royal Netherlands Meteorological Institute daily climate data
+Access climatological data as provided by the Royal Netherlands Meteorological Institute through the http get forms for daily and hourly data</p>
+
+<ul>
+<li><a href="http://www.knmi.nl/climatology/daily_data/getdata_day.cgi">http://www.knmi.nl/climatology/daily_data/getdata_day.cgi</a></li>
+<li><a href="http://www.knmi.nl/klimatologie/uurgegevens/getdata_uur.cgi">http://www.knmi.nl/klimatologie/uurgegevens/getdata_uur.cgi</a></li>
+</ul><p>This gem was constructed using information from the KNMI climate data pages here.</p>
+
+<ul>
+<li>Hourly data (Dutch) - <a href="http://www.knmi.nl/klimatologie/uurgegevens/scriptxs-nl.html#uur">http://www.knmi.nl/klimatologie/uurgegevens/scriptxs-nl.html#uur</a></li>
+<li>Daily data (English) - <a href="http://www.knmi.nl/climatology/daily_data/scriptxs-en.html">http://www.knmi.nl/climatology/daily_data/scriptxs-en.html</a></li>
+<li>Select Data with a form, listed below are links to metadata about each station <a href="http://www.knmi.nl/climatology/daily_data/selection.cgi">http://www.knmi.nl/climatology/daily_data/selection.cgi</a></li>
+</ul><h2>Installation</h2>
+
+<p>Requires Ruby 1.9.2</p>
+
+<pre><code>gem install httparty
+gem install geokit
+
+gem install knmi
+</code></pre>
+
+<h2>Example Usage</h2>
+
+<p>Launch console e.g. irb at the command line</p>
+
+<h3>Quick Script</h3>
+
+<div class="highlight">
+<pre><span class="nb">require</span> <span class="s1">'knmi'</span>
+
+<span class="n">station</span> <span class="o">=</span> <span class="no">KNMI</span><span class="o">.</span><span class="n">station_by_id</span><span class="p">(</span><span class="mi">235</span><span class="p">)</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="no">KNMI</span><span class="o">.</span><span class="n">parameters</span><span class="p">(</span><span class="n">period</span> <span class="o">=</span> <span class="s2">"daily"</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">categories</span> <span class="o">=</span> <span class="o">[</span><span class="s2">"TEMP"</span><span class="p">,</span> <span class="s2">"WIND"</span><span class="o">]</span><span class="p">)</span>
+<span class="n">starts</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">utc</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span> <span class="c1"># 2010 June 28th</span>
+<span class="n">ends</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">utc</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">29</span><span class="p">)</span> <span class="c1"># 2010 June 29th</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">KNMI</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">station</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">starts</span><span class="p">,</span> <span class="n">ends</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="no">KNMI</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+</pre>
+</div>
+
+
+<h3>Elaborated Script</h3>
+
+<div class="highlight">
+<pre><span class="nb">require</span> <span class="s1">'knmi'</span>
+
+<span class="c1"># Get station object by station ID</span>
+<span class="n">station</span> <span class="o">=</span> <span class="no">KNMI</span><span class="o">.</span><span class="n">station_by_id</span><span class="p">(</span><span class="mi">235</span><span class="p">)</span>
+
+<span class="n">station</span>
+<span class="c1">#=&gt; #&lt;KNMI::Station:0x0000010133c938&gt; # A struct object</span>
+
+<span class="c1"># Available Instance Variables</span>
+<span class="n">station</span><span class="o">.</span><span class="n">instance_variables</span>
+<span class="c1">#=&gt; [:@id, :@name, :@elevation, :@photo, :@map, :@web, :@instrumentation, :@coordinates]</span>
+<span class="n">station</span><span class="o">.</span><span class="n">id</span>
+<span class="c1">#=&gt; 235</span>
+<span class="n">station</span><span class="o">.</span><span class="n">name</span>
+<span class="c1">#=&gt;"De kooy"</span>
+<span class="n">station</span><span class="o">.</span><span class="n">coordinates</span>
+<span class="c1">#=&gt; 52.924,4.785</span>
+
+
+<span class="c1"># Get parameter object at the time interval you wish to use "hourly" or "daily"</span>
+<span class="c1"># Params can be a single term or an array of terms such as "TG" or ["TG", TX]</span>
+<span class="c1"># Categories can be a single term or an array of terms such as "WIND" or ["WIND", "TEMP"]</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="no">KNMI</span><span class="o">.</span><span class="n">parameters</span><span class="p">(</span><span class="n">period</span> <span class="o">=</span> <span class="s2">"daily"</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="n">categories</span> <span class="o">=</span> <span class="o">[</span><span class="s2">"TEMP"</span><span class="p">,</span> <span class="s2">"WIND"</span><span class="o">]</span><span class="p">)</span>
+
+<span class="n">parameters</span> <span class="c1"># returns an array of parameter objects</span>
+<span class="c1">#=&gt; [#&lt;KNMI::Parameters:0x000001011387e0 @parameter="TX", @category="TEMP", @description="Maximum Temperature", @validate="n.integer?", @conversion="n / 10", @units="C", @period="daily"&gt;]</span>
+
+<span class="c1"># Available Instance Variables</span>
+<span class="n">parameters</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">instance_variables</span>
+<span class="c1">#=&gt;[:@parameter, :@category, :@description, :@validate, :@conversion, :@units, :@period]</span>
+
+<span class="n">parameters</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">parameter</span>
+<span class="c1">#=&gt; "TX"</span>
+
+
+<span class="c1"># Define Time period of interest</span>
+<span class="n">starts</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">utc</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>  <span class="c1"># 2010 June 28th</span>
+<span class="n">ends</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">utc</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mo">01</span><span class="p">)</span>        <span class="c1"># 2010 June 29th</span>
+
+<span class="c1"># Get Data using previously retrieved objects</span>
+<span class="n">request</span> <span class="o">=</span> <span class="no">KNMI</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">station</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">starts</span><span class="p">,</span> <span class="n">ends</span><span class="p">)</span>
+
+<span class="c1"># Available Instance Variables</span>
+<span class="n">request</span><span class="o">.</span><span class="n">instance_variables</span>
+<span class="c1">#=&gt; [:@query, :@data]</span>
+
+<span class="n">request</span><span class="o">.</span><span class="n">query</span>
+<span class="c1">#=&gt;["stns=235", "vars=TX", "start=20100628", "end=20100629"]</span>
+
+<span class="n">request</span><span class="o">.</span><span class="n">data</span>
+<span class="c1">#=&gt;[{:STN=&gt;"235", :YYYYMMDD=&gt;"20100628", :TX=&gt;"263"}, {:STN=&gt;"235", :YYYYMMDD=&gt;"20100629", :TX=&gt;"225"}]</span>
+
+<span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+<span class="c1">#=&gt;{:STN=&gt;"235", :YYYYMMDD=&gt;"20100628", :TX=&gt;"263"}</span>
+
+
+<span class="c1"># Convert data from storage format to operating format</span>
+<span class="n">data</span> <span class="o">=</span> <span class="no">KNMI</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+</pre>
+</div>
+
+
+<h2>Available Parameters</h2>
+
+<p>All available recorded parameters can be found in the file .data/data_key.yml 
+This file contains the parameter name, category, description, a script to validate the data, a script to convert the data to to appropriate units, units, and the appropriate period.</p>
+
+<h2>Daily Data</h2>
+
+<table>
+<tr>
+<th align="left">Parameter</th>
+<th align="left">Category</th>
+<th align="left">Description</th>
+</tr>
+<tr>
+<td align="left">YYYYMMDD</td>
+<td align="left"></td>
+<td align="left">Time Stamp</td>
+</tr>
+<tr>
+<td align="left">DDVEC</td>
+<td align="left">WIND</td>
+<td align="left">Wind Direction</td>
+</tr>
+<tr>
+<td align="left">FHVEC</td>
+<td align="left">WIND</td>
+<td align="left">Vector Mean Wind Speed</td>
+</tr>
+<tr>
+<td align="left">FG</td>
+<td align="left">WIND</td>
+<td align="left">Daily Mean Wind Speed</td>
+</tr>
+<tr>
+<td align="left">FHX</td>
+<td align="left">WIND</td>
+<td align="left">Maximum Hourly Mean Windspeed</td>
+</tr>
+<tr>
+<td align="left">FHXH</td>
+<td align="left">WIND</td>
+<td align="left">Hourly Division  at Which Maximum Wind Speed Was Measured</td>
+</tr>
+<tr>
+<td align="left">FHN</td>
+<td align="left">WIND</td>
+<td align="left">Minimum Hourly Mean Windspeed</td>
+</tr>
+<tr>
+<td align="left">FHNH</td>
+<td align="left">WIND</td>
+<td align="left">Hourly Division  at Which Minimum Wind Speed Was Measured</td>
+</tr>
+<tr>
+<td align="left">FXX</td>
+<td align="left">WIND</td>
+<td align="left">Maximum Instantaneous Wind Speed</td>
+</tr>
+<tr>
+<td align="left">FXXH</td>
+<td align="left">WIND</td>
+<td align="left">Hourly Division  at Which Maximum Instantaneous Wind Speed Was Measured</td>
+</tr>
+<tr>
+<td align="left">TG</td>
+<td align="left">TEMP</td>
+<td align="left">Daily Mean Temperature</td>
+</tr>
+<tr>
+<td align="left">TN</td>
+<td align="left">TEMP</td>
+<td align="left">Minimum Temperature</td>
+</tr>
+<tr>
+<td align="left">TNH</td>
+<td align="left">TEMP</td>
+<td align="left">Hourly Division in Which Minimum Temperature Was Measured</td>
+</tr>
+<tr>
+<td align="left">TX</td>
+<td align="left">TEMP</td>
+<td align="left">Maximum Temperature</td>
+</tr>
+<tr>
+<td align="left">TXH</td>
+<td align="left">TEMP</td>
+<td align="left">Hourly Division in Which Maximum Temperature Was Measured</td>
+</tr>
+<tr>
+<td align="left">T10N</td>
+<td align="left">TEMP</td>
+<td align="left">Minimum Temperature at 10 Cm Above Surface</td>
+</tr>
+<tr>
+<td align="left">T10NH</td>
+<td align="left">TEMP</td>
+<td align="left">Six Hourly Division at Which Minimum Temperature at 10 Cm Above Surface Was Measured</td>
+</tr>
+<tr>
+<td align="left">SQ</td>
+<td align="left">RADT</td>
+<td align="left">Sunshine Duration</td>
+</tr>
+<tr>
+<td align="left">SP</td>
+<td align="left">RADT</td>
+<td align="left">Percent of Maximum Sunshine Duration</td>
+</tr>
+<tr>
+<td align="left">Q</td>
+<td align="left">RADT</td>
+<td align="left">Global Radiation</td>
+</tr>
+<tr>
+<td align="left">DR</td>
+<td align="left">PRCP</td>
+<td align="left">Precipitation Duration</td>
+</tr>
+<tr>
+<td align="left">RH</td>
+<td align="left">PRCP</td>
+<td align="left">Daily Precipitation</td>
+</tr>
+<tr>
+<td align="left">RHX</td>
+<td align="left">PRCP</td>
+<td align="left">Maximum Hourly Precipitation</td>
+</tr>
+<tr>
+<td align="left">RHXH</td>
+<td align="left">PRCP</td>
+<td align="left">Hourly Division in Which Maximum Hourly Precipitation Was Measured</td>
+</tr>
+<tr>
+<td align="left">EV24</td>
+<td align="left">ATMS</td>
+<td align="left">Potential Evapotranspiration</td>
+</tr>
+<tr>
+<td align="left">PG</td>
+<td align="left">ATMS</td>
+<td align="left">Daily Mean Sea Level Pressure</td>
+</tr>
+<tr>
+<td align="left">PX</td>
+<td align="left">ATMS</td>
+<td align="left">Maximum Hourly Sea Level Pressure</td>
+</tr>
+<tr>
+<td align="left">PXH</td>
+<td align="left">ATMS</td>
+<td align="left">Hourly Division on Which Maximum Hourly Sea Level Pressure Was Measured</td>
+</tr>
+<tr>
+<td align="left">PN</td>
+<td align="left">ATMS</td>
+<td align="left">Minimum Hourly Sea Level Pressure</td>
+</tr>
+<tr>
+<td align="left">PNH</td>
+<td align="left">ATMS</td>
+<td align="left">Hourly Division in Which Minimum Hourly Sea Level Pressure Was Measured</td>
+</tr>
+<tr>
+<td align="left">VVN</td>
+<td align="left">VISB</td>
+<td align="left">Minimum Visibility</td>
+</tr>
+<tr>
+<td align="left">VVNH</td>
+<td align="left">VISB</td>
+<td align="left">Hourly Division in Which Minimum Visibility Was Measured</td>
+</tr>
+<tr>
+<td align="left">VVX</td>
+<td align="left">VISB</td>
+<td align="left">Maximum Visibility</td>
+</tr>
+<tr>
+<td align="left">VVXH</td>
+<td align="left">VISB</td>
+<td align="left">Hourly Division in Which Maximum Visibility Was Measured</td>
+</tr>
+<tr>
+<td align="left">NG</td>
+<td align="left">VISB</td>
+<td align="left">Mean Daily Cloud Cover</td>
+</tr>
+<tr>
+<td align="left">UG</td>
+<td align="left">ATMS</td>
+<td align="left">Daily Mean Relative Humidity</td>
+</tr>
+<tr>
+<td align="left">UX</td>
+<td align="left">ATMS</td>
+<td align="left">Maximum Relative Humidity</td>
+</tr>
+<tr>
+<td align="left">UXH</td>
+<td align="left">ATMS</td>
+<td align="left">Hourly Division in Which Maximum Relative Humidity Was Measured</td>
+</tr>
+<tr>
+<td align="left">UN</td>
+<td align="left">ATMS</td>
+<td align="left">Minimum Relative Humidity</td>
+</tr>
+<tr>
+<td align="left">UNH</td>
+<td align="left">ATMS</td>
+<td align="left">Hourly Division in Which Minimum Relative Humidity Was Measured</td>
+</tr>
+</table><h2>Hourly Data</h2>
+
+<table>
+<tr>
+<th align="left">Parameter</th>
+<th align="left">Category</th>
+<th align="left">Description</th>
+</tr>
+<tr>
+<td align="left">YYYYMMDD</td>
+<td align="left"></td>
+<td align="left">Time Stamp</td>
+</tr>
+<tr>
+<td align="left">HH</td>
+<td align="left"></td>
+<td align="left">Hour</td>
+</tr>
+<tr>
+<td align="left">DD</td>
+<td align="left">WIND</td>
+<td align="left">Mean wind direction during the 10-minute period preceding the time of observation</td>
+</tr>
+<tr>
+<td align="left">FH</td>
+<td align="left">WIND</td>
+<td align="left">Hourly mean wind speed</td>
+</tr>
+<tr>
+<td align="left">FF</td>
+<td align="left">WIND</td>
+<td align="left">Mean wind speed</td>
+</tr>
+<tr>
+<td align="left">FX</td>
+<td align="left">WIND</td>
+<td align="left">Maximum wind gust</td>
+</tr>
+<tr>
+<td align="left">T</td>
+<td align="left">TEMP</td>
+<td align="left">Air Temperature at 1.5 m</td>
+</tr>
+<tr>
+<td align="left">T10N</td>
+<td align="left">TEMP</td>
+<td align="left">Minimum Air Temperature at 10 cm in the preceding 6 hours</td>
+</tr>
+<tr>
+<td align="left">TD</td>
+<td align="left">TEMP</td>
+<td align="left">Dew Point Temperature</td>
+</tr>
+<tr>
+<td align="left">SQ</td>
+<td align="left">RDTN</td>
+<td align="left">Sunshine Duration</td>
+</tr>
+<tr>
+<td align="left">Q</td>
+<td align="left">RDTN</td>
+<td align="left">Golbal Radiation</td>
+</tr>
+<tr>
+<td align="left">DR</td>
+<td align="left">PRCP</td>
+<td align="left">Precipitation Duration</td>
+</tr>
+<tr>
+<td align="left">RH</td>
+<td align="left">PRCP</td>
+<td align="left">Precipitation</td>
+</tr>
+<tr>
+<td align="left">P</td>
+<td align="left">ATMS</td>
+<td align="left">Air Pressure</td>
+</tr>
+<tr>
+<td align="left">VV</td>
+<td align="left">VISB</td>
+<td align="left">Visibility</td>
+</tr>
+<tr>
+<td align="left">N</td>
+<td align="left">VISB</td>
+<td align="left">Cloud Cover</td>
+</tr>
+<tr>
+<td align="left">U</td>
+<td align="left">ATMS</td>
+<td align="left">Relative Humidity</td>
+</tr>
+<tr>
+<td align="left">M</td>
+<td align="left">WTHR</td>
+<td align="left">Fog</td>
+</tr>
+<tr>
+<td align="left">R</td>
+<td align="left">WTHR</td>
+<td align="left">Rainfall</td>
+</tr>
+<tr>
+<td align="left">S</td>
+<td align="left">WTHR</td>
+<td align="left">Snow</td>
+</tr>
+<tr>
+<td align="left">O</td>
+<td align="left">WTHR</td>
+<td align="left">Thunder</td>
+</tr>
+<tr>
+<td align="left">Y</td>
+<td align="left">WTHR</td>
+<td align="left">Ice</td>
+</tr>
+<tr>
+<td align="left">WW</td>
+<td align="left">WTHR</td>
+<td align="left">Weather Code</td>
+</tr>
+</table><h2>TODO</h2>
+
+<p>Write unit tests for lib/calculations/calculations.rb</p>
+
+<h2>Please Note the license included in the header source header</h2>
+
+<pre><code># DEZE GEGEVENS MOGEN VRIJ WORDEN GEBRUIKT MITS DE VOLGENDE BRONVERMELDING WORDT GEGEVEN:
+# KONINKLIJK NEDERLANDS METEOROLOGISCH INSTITUUT (KNMI)
+#
+# THESE DATA CAN BE USED FREELY PROVIDED THAT THE FOLLOWING SOURCE IS ACKNOWLEDGED:
+# ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
+</code></pre>
+
+<h2>Copyright</h2>
+
+<p>Copyright (c) 2011 Patrick Galvin Schmitz p.schmitz@gmail.com. See LICENSE.txt for
+further details.</p>
+
+<p>Copyright (c) 2008 Mat Brown
+Portions of stations.rb were adapted from Mat Brown's <a href="https://github.com/outoftime/noaa">https://github.com/outoftime/noaa</a> </p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/bullfight">bullfight</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>
